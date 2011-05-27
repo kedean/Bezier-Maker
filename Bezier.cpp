@@ -305,17 +305,13 @@ void BezierCurve::Animate(sf::RenderWindow* canvas, double t){
 			_asSprite = sf::Sprite(*this);
 		}
 		int lControls = _controls.size()-1; //number of non-end control points
-		vector<sf::Shape> controlLines;
-		for(int i = 0; i < lControls; i++){
-			controlLines.push_back(sf::Shape::Line(_controls[i], _controls[i+1], 1, sf::Color(0, 0, 255)));
-		}
 		
 		if(_canvas != NULL){
 			canvas->Clear(sf::Color(255, 255, 255));
 			canvas->Draw(_asSprite);
 			
 			for(int i = 0; i < lControls; i++){
-				canvas->Draw(controlLines[i]);
+				canvas->Draw(sf::Shape::Line(_controls[i], _controls[i+1], 1, sf::Color(0, 0, 255)));
 			}
 		}
 		

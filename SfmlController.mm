@@ -109,6 +109,10 @@
 		[NSApp terminate: nil];
 	}
 	else if(animationMeter < 1.0){ //Handle the animation process
+		
+		sf::Event Event;
+		sfmlView->GetEvent(Event); //pull any events so as to ignore them.
+		
 		mainCurve.Animate(sfmlView, animationMeter);
 		animationMeter += mainCurve.GetThrottle();
 		

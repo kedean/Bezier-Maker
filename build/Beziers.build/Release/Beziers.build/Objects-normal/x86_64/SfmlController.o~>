@@ -1,8 +1,0 @@
-/Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm: In function 'void -[SfmlController awakeFromNib](SfmlController*, objc_selector*)':
-/Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm:12: error: 'sfmlView' was not declared in this scope
-/Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm: In function 'void -[SfmlController onInit](SfmlController*, objc_selector*)':
-/Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm:30: error: 'sfmlView' was not declared in this scope
-/Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm: In function 'void -[SfmlController onQuit:](SfmlController*, objc_selector*, objc_object*)':
-/Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm:41: error: 'sfmlView' was not declared in this scope
-/Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm: In function 'void -[SfmlController display:](SfmlController*, objc_selector*, NSTimer*)':
-/Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm:107: error: 'sfmlView' was not declared in this scope
