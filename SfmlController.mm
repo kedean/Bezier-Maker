@@ -33,6 +33,8 @@
 	mode.Lines = true;
 	mode.Gradient = false;
 	animationMeter = 1.0f;
+	pausedAnimationMeterVal = -1;
+	currentScale = 1.0f;
 }
 
 // Called when the Quit button is clicked
@@ -42,7 +44,8 @@
 }
 - (IBAction)onClear:(id)sender{
 	mainCurve.Clear();
-	animationMeter = 1.0;
+	animationMeter = 1.0f;
+	currentScale = 1.0f;
 	[animateButton setTitle:@"Animate"];
 	[renderProgressIndicator stopAnimation:self];
 }
@@ -79,7 +82,6 @@
 	}
 }
 - (IBAction)onAnimate:(id)sender{
-	static double pausedAnimationMeterVal = -1;
 	if(animationMeter >= 1.0 && animationMeter < 2.0){
 		animationMeter = 0;
 		[animateButton setTitle:@"Pause"];
@@ -99,6 +101,21 @@
 		}
 	}
 }
+- (IBAction)onZoomIn:(id)sender{
+	if(currentScale > 1)
+		++currentScale;
+	else
+		currentScale *= 2;
+	mainCurve.Scale(currentScale, sf::Vector2f(sfmlView->GetWidth()/2, sfmlView->GetHeight()/2));
+}
+- (IBAction)onZoomOut:(id)sender{
+	if(currentScale > 1)
+		--currentScale;
+	else
+		currentScale /= 2;
+
+	mainCurve.Scale(currentScale, sf::Vector2f(sfmlView->GetWidth()/2, sfmlView->GetHeight()/2));
+}
 
 - (void)display:(NSTimer *)theTimer
 {
@@ -109,7 +126,6 @@
 		[NSApp terminate: nil];
 	}
 	else if(animationMeter < 1.0){ //Handle the animation process
-		
 		sf::Event Event;
 		sfmlView->GetEvent(Event); //pull any events so as to ignore them.
 		
@@ -145,6 +161,7 @@
 				}
 			}
 		}
+		mainCurve.Animate(sfmlView, pausedAnimationMeterVal);
 	}
 	else if(animationMeter < 2.0){ //Handles normal drawing mode
 		sf::Event Event; 
@@ -164,8 +181,13 @@
 			}
 			else if(Event.Type == sf::Event::MouseMoved){
 				if(mouseClicked == true){
-					mainCurve.RemovePoint(-1);
-					mainCurve.AddPoint(Event.MouseMove.X, Event.MouseMove.Y);
+					sf::Vector2f removed = mainCurve.RemovePoint(-1);
+					if(removed.x == -1 && removed.y == -1){ //no point was found, shift the screen instead
+						
+					}
+					else{
+						mainCurve.AddPoint(Event.MouseMove.X, Event.MouseMove.Y);
+					}
 				}
 			}
 			else if(Event.Type == sf::Event::MouseButtonPressed){

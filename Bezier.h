@@ -13,9 +13,13 @@ private:
 	sf::Sprite _asSprite;
 	bool _hasGradient;
 	sf::RenderWindow* _canvas;
+	double _canvasTime;
+	
+	double _scaleFactor;
+	sf::Vector2f _scaleOffsets;
 	
 	void DrawLine(sf::Vector2f origin, sf::Vector2f slope); //draws a straight line across the image, with the given slope, that goes through 'origin'
-	sf::Vector2f DrawLineLayer(vector<sf::Vector2f> &controlSet, double t, sf::RenderWindow* canvas=NULL);
+	sf::Vector2f DrawLineLayer(vector<sf::Vector2f> &controlSet, double t);
 	
 	sf::Vector2f Interpolate(double i); //Calculates the point located at the time interval i
 	sf::Vector2f Derive(double i); //Calculates the point located at time interval i on the first derivative of the curve
@@ -40,6 +44,8 @@ public:
 	void SetColor(sf::Color color); //alter the color of the curve drawn
 	sf::Color GetColor();
 	void SetSize(int width, int height); //alter the size of the canvas
+	void Scale(double factor, sf::Vector2f center=sf::Vector2f(0,0)); //scale the image by the given factor and centered on the given center, good for zooming
+	
 	void Animate(sf::RenderWindow* canvas, double t=1.1);
 	
 //	void EnableGradient(bool status); //enable or disable gradient drawing

@@ -1,5 +1,5 @@
 #include "Bezier.h"
-
+#include<iostream>
 sf::Color longToColor(unsigned long int color){
 	int r = color % 256;
 	int g = (color/256) % 256;
@@ -94,7 +94,7 @@ sf::Vector2f BezierCurve::Derive(double i){
 	return sf::Vector2f(x, y);
 }
 
-sf::Vector2f BezierCurve::DrawLineLayer(vector<sf::Vector2f> &controlSet, double t, sf::RenderWindow* canvas){
+sf::Vector2f BezierCurve::DrawLineLayer(vector<sf::Vector2f> &controlSet, double t){
 	int maxControl = controlSet.size()-1; //do not operate on the last control, since it will be just an endpoint to a line
 	if(maxControl == 0) //only one control, so there are no control sets
 		return controlSet[0];
@@ -111,8 +111,8 @@ sf::Vector2f BezierCurve::DrawLineLayer(vector<sf::Vector2f> &controlSet, double
 			subControls[i].x += (subControls[i+1].x - subControls[i].x)*t;
 			subControls[i].y += (subControls[i+1].y - subControls[i].y)*t;
 			
-			if(canvas != NULL && i != 0){
-				canvas->Draw(sf::Shape::Line(subControls[i-1], subControls[i], 1, _animatedLineColor));
+			if(_canvas != NULL && i != 0){
+				_canvas->Draw(sf::Shape::Line(subControls[i-1], subControls[i], 1, _animatedLineColor));
 			}
 		}
 		maxControl--;
@@ -200,7 +200,8 @@ void BezierCurve::Generate(){
 		sf::Vector2f p = this->DrawLineLayer(_controls, t);
 		
 		if(_points.size() == 0 || p != _points.back()){
-			SetPixel(p.x, p.y, _color);
+			if(p.x < _width && p.x > 0 && p.y < _height && p.y > 0) //only draw pixels inside the image space
+				SetPixel(p.x, p.y, _color);
 			_points.push_back(p);
 		}
 	}
@@ -223,6 +224,10 @@ BezierCurve::BezierCurve(){
 	_color = sf::Color(0,0,0);
 	_animatedLineColor = sf::Color(0, 255, 0);
 	_hasGradient = false;
+	_scaleOffsets = sf::Vector2f(0,0);
+	_scaleFactor = 1;
+	_canvas = NULL;
+	_canvasTime = 0;
 	Create(_width, _height, sf::Color(0, 0, 0, 0));
 	_asSprite = sf::Sprite(*this);
 }
@@ -232,6 +237,10 @@ BezierCurve::BezierCurve(int width, int height, bool gradient, sf::Color color, 
 	_height = height;
 	_color = color;
 	_animatedLineColor = sf::Color(0, 255, 0);
+	_scaleOffsets = sf::Vector2f(0,0);
+	_scaleFactor = 1;
+	_canvas = NULL;
+	_canvasTime = 0;
 	_hasGradient = gradient;
 	Create(width, height, sf::Color(0, 0, 0, 0));
 	_asSprite = sf::Sprite(*this);
@@ -298,37 +307,68 @@ void BezierCurve::SetSize(int width, int height){
 	_height = height;
 	Generate();
 }
+void BezierCurve::Scale(double factor, sf::Vector2f center){
+	vector<sf::Vector2f>::iterator it;
+	double offsetX = center.x*(factor-1);
+	double offsetY = center.y*(factor-1);
+	
+	for(it = _controls.begin(); it < _controls.end(); it++){
+		it->x = (((it->x + _scaleOffsets.x)/_scaleFactor) * factor) - offsetX;
+		it->y = (((it->y + _scaleOffsets.y)/_scaleFactor) * factor) - offsetY;
+	}
+	
+	if(_canvas != NULL){ //don't regenerate in the middle of animation, just scale the already calculated pixels
+		sf::RenderWindow* tempCanvas = _canvas;
+		for(double t = 0; t < _canvasTime; t+=_stepSize)
+			Animate(NULL, t);
+		_canvas = tempCanvas;
+		_canvas->Draw(_asSprite);
+	} else{
+		Generate();
+	}
+	
+	_scaleFactor = factor;
+	_scaleOffsets.x = offsetX;
+	_scaleOffsets.y = offsetY;
+}
 void BezierCurve::Animate(sf::RenderWindow* canvas, double t){
-	if(canvas != NULL){
-		if(t == 0){ //on the first time iteration the pixels must be cleared
-			Create(_width, _height, sf::Color(0, 0, 0, 0));
-			_asSprite = sf::Sprite(*this);
-		}
-		int lControls = _controls.size()-1; //number of non-end control points
+	_canvas = canvas;
+	if(t == 0){ //on the first time iteration the pixels must be cleared
+		Create(_width, _height, sf::Color(0, 0, 0, 0));
+		_asSprite = sf::Sprite(*this);
+	}
+	int lControls = _controls.size()-1; //number of non-end control points
+	
+	if(_canvas != NULL){
+		_canvas->Clear(sf::Color(255, 255, 255));
+		_canvas->Draw(_asSprite);
 		
-		if(_canvas != NULL){
-			canvas->Clear(sf::Color(255, 255, 255));
-			canvas->Draw(_asSprite);
-			
-			for(int i = 0; i < lControls; i++){
-				canvas->Draw(sf::Shape::Line(_controls[i], _controls[i+1], 1, sf::Color(0, 0, 255)));
-			}
-		}
-		
-		sf::Vector2f p = this->DrawLineLayer(_controls, t, canvas);
-		
-		if(_points.size() == 0 || p != _points.back()){
-			SetPixel(p.x, p.y, _color);
-			_points.push_back(p);
-			canvas->Draw(sf::Shape::Circle(p, 5, sf::Color(255, 0, 0)));
-		}
-		
-		if(canvas != NULL){
-			canvas->Display();
+		for(int i = 0; i < lControls; i++){
+			_canvas->Draw(sf::Shape::Line(_controls[i], _controls[i+1], 1, sf::Color(0, 0, 255)));
 		}
 	}
+	
+	sf::Vector2f p = this->DrawLineLayer(_controls, t);
+	
+	if(_points.size() == 0 || p != _points.back()){
+		if(p.x < _width && p.x > 0 && p.y < _height && p.y > 0) //only draw pixels inside the image space
+			SetPixel(p.x, p.y, _color);
+		_points.push_back(p);
+		if(_canvas != NULL)
+			_canvas->Draw(sf::Shape::Circle(p, 5, sf::Color(255, 0, 0)));
+	}
+	
+	if(_canvas != NULL){
+		_canvas->Display();
+		_canvasTime = t;
+	}
+	
+	if(t == 1)
+		_canvas = NULL;
 }
 void BezierCurve::Clear(){
+	_scaleOffsets = sf::Vector2f(0,0);
+	_scaleFactor = 1;
 	_controls.clear();
 	Create(_width, _height, sf::Color(0,0,0,0));
 	_asSprite = sf::Sprite(*this);

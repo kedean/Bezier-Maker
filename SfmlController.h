@@ -21,7 +21,9 @@
 	
 	BezierCurve mainCurve;
 	double animationMeter;
-} 
+	double pausedAnimationMeterVal;
+	double currentScale;
+}
 
 - (void)display:(NSTimer*)theTimer; 
 - (void)onInit;
@@ -33,5 +35,7 @@
 - (IBAction)onToggleGradient:(id)sender;
 - (IBAction)onSetDetail:(id)sender;
 - (IBAction)onAnimate:(id)sender;
+- (IBAction)onZoomIn:(id)sender;
+- (IBAction)onZoomOut:(id)sender;
 
 @end 

@@ -278,7 +278,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>5</integer>
+									<integer>2</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -303,7 +303,7 @@
 							<real>227</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>228 60 1280 968 0 0 1680 1028 </string>
+						<string>229 59 1280 968 0 0 1680 1028 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -321,7 +321,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SfmlController.mm</string>
+								<string>Bezier.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -329,24 +329,25 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SfmlController.mm</string>
+										<string>Bezier.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>000C980D13901DCE008F72D4</string>
+										<string>000C99D1139036E2008F72D4</string>
 										<key>history</key>
 										<array>
 											<string>00ED4A90138C36C80099A63B</string>
 											<string>00ED4A91138C36C80099A63B</string>
 											<string>00ED4A92138C36C80099A63B</string>
-											<string>00836A9C138EE57200CB2EF2</string>
 											<string>00836AC1138EE86200CB2EF2</string>
 											<string>00D25C4413900FFE0012C3C3</string>
-											<string>00D25C4613900FFE0012C3C3</string>
 											<string>00D25C86139017C30012C3C3</string>
-											<string>00D25C91139018210012C3C3</string>
-											<string>000C980B13901DCE008F72D4</string>
-											<string>000C980C13901DCE008F72D4</string>
+											<string>000C993E13902D0E008F72D4</string>
+											<string>000C99AF139032EF008F72D4</string>
+											<string>000C99B1139032EF008F72D4</string>
+											<string>000C99BA1390341C008F72D4</string>
+											<string>000C99CD139036B1008F72D4</string>
+											<string>000C99CE139036B1008F72D4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -360,7 +361,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1031, 635}}</string>
 								<key>RubberWindowFrame</key>
-								<string>228 60 1280 968 0 0 1680 1028 </string>
+								<string>229 59 1280 968 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -380,7 +381,7 @@
 								<key>Frame</key>
 								<string>{{0, 640}, {1031, 287}}</string>
 								<key>RubberWindowFrame</key>
-								<string>228 60 1280 968 0 0 1680 1028 </string>
+								<string>229 59 1280 968 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -544,16 +545,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>000C981513901DCE008F72D4</string>
 		<string>000C981613901DCE008F72D4</string>
 		<string>000C981713901DCE008F72D4</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>00ED4A66138C33D10099A63B</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/kevindean/bezier_cocoa/Beziers.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>228 60 1280 968 0 0 1680 1028 </string>
+	<string>229 59 1280 968 0 0 1680 1028 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -574,7 +574,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>Bezier.cpp</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -591,6 +591,8 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -885,6 +887,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -930,7 +934,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
