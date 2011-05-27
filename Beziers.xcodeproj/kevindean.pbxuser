@@ -1,0 +1,340 @@
+// !$*UTF8*$!
+{
+	00836A9C138EE57200CB2EF2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4AE4138C3AAC0099A63B /* Vector2.inl */;
+		name = "Vector2.inl: 149";
+		rLen = 0;
+		rLoc = 4527;
+		rType = 0;
+		vrLen = 1292;
+		vrLoc = 4178;
+	};
+	00836ABB138EE85900CB2EF2 /* Thread.hpp */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.cpp.h;
+		name = Thread.hpp;
+		path = /Developer/SDKs/MacOSX10.6.sdk/Library/Frameworks/SFML.framework/Headers/System/Unix/Thread.hpp;
+		sourceTree = "<absolute>";
+	};
+	00836AC1138EE86200CB2EF2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00836ABB138EE85900CB2EF2 /* Thread.hpp */;
+		name = "Thread.hpp: 92";
+		rLen = 0;
+		rLoc = 3354;
+		rType = 0;
+		vrLen = 1493;
+		vrLoc = 2534;
+	};
+	00D25C4413900FFE0012C3C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00D25C4513900FFE0012C3C3 /* allocator.h */;
+		name = "allocator.h: 99";
+		rLen = 0;
+		rLoc = 3420;
+		rType = 0;
+		vrLen = 1307;
+		vrLoc = 2981;
+	};
+	00D25C4513900FFE0012C3C3 /* allocator.h */ = {
+		isa = PBXFileReference;
+		name = allocator.h;
+		path = "/Developer/SDKs/MacOSX10.6.sdk/usr/include/c++/4.2.1/bits/allocator.h";
+		sourceTree = "<absolute>";
+	};
+	00D25C4613900FFE0012C3C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
+		name = "Bezier.h: 12";
+		rLen = 0;
+		rLoc = 271;
+		rType = 0;
+		vrLen = 2238;
+		vrLoc = 0;
+	};
+	00D25C86139017C30012C3C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 14";
+		rLen = 0;
+		rLoc = 255;
+		rType = 0;
+		vrLen = 256;
+		vrLoc = 0;
+	};
+	00D25C8B139017F10012C3C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
+		name = "SfmlController.mm: 8";
+		rLen = 0;
+		rLoc = 149;
+		rType = 0;
+		vrLen = 1019;
+		vrLoc = 80;
+	};
+	00D25C91139018210012C3C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A72138C34330099A63B /* SfmlController.h */;
+		name = "SfmlController.h: 10";
+		rLen = 0;
+		rLoc = 258;
+		rType = 0;
+		vrLen = 931;
+		vrLoc = 0;
+	};
+	00D25C92139018210012C3C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
+		name = "Bezier.cpp: 328";
+		rLen = 0;
+		rLoc = 9586;
+		rType = 0;
+		vrLen = 1187;
+		vrLoc = 8549;
+	};
+	00D25C9613901A030012C3C3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
+		name = "SfmlController.mm: 19";
+		rLen = 0;
+		rLoc = 387;
+		rType = 0;
+		vrLen = 1032;
+		vrLoc = 117;
+	};
+	00ED4A55138C33BD0099A63B /* Beziers */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Beziers;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	00ED4A68138C33D10099A63B /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	00ED4A69138C33D10099A63B /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	00ED4A6A138C33FF0099A63B /* Bezier.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {509, 4485}}";
+			sepNavSelRange = "{19, 0}";
+			sepNavVisRange = "{277, 316}";
+			sepNavWindowFrame = "{{-1265, 26}, {628, 1024}}";
+		};
+	};
+	00ED4A6B138C33FF0099A63B /* Bezier.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1104, 624}}";
+			sepNavSelRange = "{271, 0}";
+			sepNavVisRange = "{0, 2238}";
+		};
+	};
+	00ED4A72138C34330099A63B /* SfmlController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {970, 561}}";
+			sepNavSelRange = "{258, 0}";
+			sepNavVisRange = "{0, 931}";
+		};
+	};
+	00ED4A73138C343D0099A63B /* SfmlController.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {970, 3068}}";
+			sepNavSelRange = "{387, 0}";
+			sepNavVisRange = "{117, 1032}";
+			sepNavWindowFrame = "{{-1265, 26}, {628, 1024}}";
+		};
+	};
+	00ED4A90138C36C80099A63B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3F00F4B6AF500CF3369 /* Beziers_Prefix.pch */;
+		name = "bezier_cocoa_Prefix.pch: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 155;
+		vrLoc = 0;
+	};
+	00ED4A91138C36C80099A63B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 089C165DFE840E0CC02AAC07 /* English */;
+		name = "InfoPlist.strings: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 45;
+		vrLoc = 0;
+	};
+	00ED4A92138C36C80099A63B /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Beziers-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/kevindean/Documents/bezier_cocoa/bezier_cocoa-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	00ED4AE4138C3AAC0099A63B /* Vector2.inl */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text;
+		name = Vector2.inl;
+		path = /Library/Frameworks/SFML.framework/Versions/A/Headers/System/Vector2.inl;
+		sourceTree = "<absolute>";
+	};
+	089C165DFE840E0CC02AAC07 /* English */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {980, 544}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 45}";
+		};
+	};
+	256AC3F00F4B6AF500CF3369 /* Beziers_Prefix.pch */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {980, 544}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 155}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeExecutable = 00ED4A55138C33BD0099A63B /* Beziers */;
+		activeTarget = 8D1107260486CEB800E47090 /* Beziers */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* Beziers */,
+		);
+		breakpoints = (
+		);
+		codeSenseManager = 00ED4A69138C33D10099A63B /* Code sense */;
+		executables = (
+			00ED4A55138C33BD0099A63B /* Beziers */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXBookmarksDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBookmarksDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					200,
+					200,
+					611.58349609375,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBookmarksDataSource_LocationID,
+					PBXBookmarksDataSource_NameID,
+					PBXBookmarksDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					792,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					752,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 328206488;
+			PBXWorkspaceStateSaveDate = 328206488;
+		};
+		perUserProjectItems = {
+			00836A9C138EE57200CB2EF2 /* PBXTextBookmark */ = 00836A9C138EE57200CB2EF2 /* PBXTextBookmark */;
+			00836AC1138EE86200CB2EF2 /* PBXTextBookmark */ = 00836AC1138EE86200CB2EF2 /* PBXTextBookmark */;
+			00D25C4413900FFE0012C3C3 /* PBXTextBookmark */ = 00D25C4413900FFE0012C3C3 /* PBXTextBookmark */;
+			00D25C4613900FFE0012C3C3 /* PBXTextBookmark */ = 00D25C4613900FFE0012C3C3 /* PBXTextBookmark */;
+			00D25C86139017C30012C3C3 /* PBXTextBookmark */ = 00D25C86139017C30012C3C3 /* PBXTextBookmark */;
+			00D25C8B139017F10012C3C3 /* PBXTextBookmark */ = 00D25C8B139017F10012C3C3 /* PBXTextBookmark */;
+			00D25C91139018210012C3C3 /* PBXTextBookmark */ = 00D25C91139018210012C3C3 /* PBXTextBookmark */;
+			00D25C92139018210012C3C3 /* PBXTextBookmark */ = 00D25C92139018210012C3C3 /* PBXTextBookmark */;
+			00D25C9613901A030012C3C3 /* PBXTextBookmark */ = 00D25C9613901A030012C3C3 /* PBXTextBookmark */;
+			00ED4A90138C36C80099A63B /* PBXTextBookmark */ = 00ED4A90138C36C80099A63B /* PBXTextBookmark */;
+			00ED4A91138C36C80099A63B /* PBXTextBookmark */ = 00ED4A91138C36C80099A63B /* PBXTextBookmark */;
+			00ED4A92138C36C80099A63B /* PlistBookmark */ = 00ED4A92138C36C80099A63B /* PlistBookmark */;
+		};
+		sourceControlManager = 00ED4A68138C33D10099A63B /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	29B97316FDCFA39411CA2CEA /* main.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {970, 609}}";
+			sepNavSelRange = "{255, 0}";
+			sepNavVisRange = "{0, 256}";
+		};
+	};
+	8D1107260486CEB800E47090 /* Beziers */ = {
+		activeExec = 0;
+		executables = (
+			00ED4A55138C33BD0099A63B /* Beziers */,
+		);
+	};
+}
