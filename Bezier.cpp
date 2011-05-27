@@ -321,8 +321,7 @@ void BezierCurve::Scale(double factor, sf::Vector2f center){
 		sf::RenderWindow* tempCanvas = _canvas;
 		for(double t = 0; t < _canvasTime; t+=_stepSize)
 			Animate(NULL, t);
-		_canvas = tempCanvas;
-		_canvas->Draw(_asSprite);
+		Animate(tempCanvas, _canvasTime);
 	} else{
 		Generate();
 	}
@@ -354,11 +353,10 @@ void BezierCurve::Animate(sf::RenderWindow* canvas, double t){
 		if(p.x < _width && p.x > 0 && p.y < _height && p.y > 0) //only draw pixels inside the image space
 			SetPixel(p.x, p.y, _color);
 		_points.push_back(p);
-		if(_canvas != NULL)
-			_canvas->Draw(sf::Shape::Circle(p, 5, sf::Color(255, 0, 0)));
 	}
 	
 	if(_canvas != NULL){
+		_canvas->Draw(sf::Shape::Circle(p, 5, sf::Color(255, 0, 0)));
 		_canvas->Display();
 		_canvasTime = t;
 	}
