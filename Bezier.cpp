@@ -68,7 +68,7 @@ sf::Vector2f BezierCurve::DrawLineLayer(vector<sf::Vector2f> &controlSet, double
 		subControls[i] = controlSet[i];
 	}
 	
-	do{
+	for(; maxControl > 0; maxControl--){
 		for(int i = 0; i < maxControl; i++){
 			subControls[i].x += (subControls[i+1].x - subControls[i].x)*t;
 			subControls[i].y += (subControls[i+1].y - subControls[i].y)*t;
@@ -77,8 +77,7 @@ sf::Vector2f BezierCurve::DrawLineLayer(vector<sf::Vector2f> &controlSet, double
 				_canvas->Draw(sf::Shape::Line(subControls[i-1], subControls[i], 1, _animatedLineColor));
 			}
 		}
-		maxControl--;
-	} while(maxControl >= 1);
+	}
 	
 	return subControls[0];
 }

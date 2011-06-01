@@ -20,7 +20,7 @@ private:
 	sf::Vector2f _scaleOffsets;
 	
 	/*line calculation*/
-	sf::Vector2f DrawLineLayer(vector<sf::Vector2f> &controlSet, double t); //calculate the point at time interval t by recursively (technically used a do/while instead of recursion) performing intersections of lines in the control set. The final intersection is the result.
+	sf::Vector2f DrawLineLayer(vector<sf::Vector2f> &controlSet, double t); //calculate the point at time interval t by recursively (technically used a for loop instead of recursion) performing intersections of lines in the control set. The final intersection is the result.
 	sf::Vector2f Interpolate(double i); //Calculates the point located at the time interval i
 	sf::Vector2f Derive(double i); //Calculates the point located at time interval i on the first derivative of the curve
 	
