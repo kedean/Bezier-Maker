@@ -59,7 +59,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 358";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 9599;
@@ -116,7 +116,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 340";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1249;
 		vrLoc = 9612;
@@ -126,7 +126,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 340";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1220;
 		vrLoc = 9612;
@@ -136,7 +136,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 349";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 9612;
@@ -146,7 +146,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 350";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 9612;
@@ -156,7 +156,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 350";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 9612;
@@ -166,7 +166,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 363";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 9612;
@@ -176,7 +176,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 351";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 9386;
@@ -186,7 +186,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 364";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1231;
 		vrLoc = 9674;
@@ -196,7 +196,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 351";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1227;
 		vrLoc = 9674;
@@ -216,7 +216,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 329";
 		rLen = 0;
-		rLoc = 6904;
+		rLoc = 6677;
 		rType = 0;
 		vrLen = 1428;
 		vrLoc = 8911;
@@ -276,7 +276,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 339";
 		rLen = 0;
-		rLoc = 7132;
+		rLoc = 6905;
 		rType = 0;
 		vrLen = 1251;
 		vrLoc = 9726;
@@ -286,7 +286,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 347";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1235;
 		vrLoc = 9728;
@@ -296,7 +296,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 129";
 		rLen = 0;
-		rLoc = 2868;
+		rLoc = 2764;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 3134;
@@ -336,7 +336,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 129";
 		rLen = 0;
-		rLoc = 2868;
+		rLoc = 2764;
 		rType = 0;
 		vrLen = 1459;
 		vrLoc = 3134;
@@ -346,7 +346,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 201";
 		rLen = 0;
-		rLoc = 3042;
+		rLoc = 2764;
 		rType = 0;
 		vrLen = 1096;
 		vrLoc = 5535;
@@ -356,7 +356,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 205";
 		rLen = 0;
-		rLoc = 3163;
+		rLoc = 2764;
 		rType = 0;
 		vrLen = 1284;
 		vrLoc = 5221;
@@ -406,7 +406,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 353";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 9449;
@@ -416,7 +416,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 248";
 		rLen = 0;
-		rLoc = 3223;
+		rLoc = 3333;
 		rType = 0;
 		vrLen = 1470;
 		vrLoc = 6684;
@@ -437,7 +437,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 100;
+		rLoc = 96;
 		rType = 1;
 	};
 	00B9F2EC1396CC6C00BF8B5E /* PBXTextBookmark */ = {
@@ -445,7 +445,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 203";
 		rLen = 0;
-		rLoc = 3134;
+		rLoc = 2764;
 		rType = 0;
 		vrLen = 434;
 		vrLoc = 5943;
@@ -455,7 +455,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 251";
 		rLen = 0;
-		rLoc = 3223;
+		rLoc = 3333;
 		rType = 0;
 		vrLen = 1473;
 		vrLoc = 6684;
@@ -525,7 +525,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 251";
 		rLen = 0;
-		rLoc = 3223;
+		rLoc = 3333;
 		rType = 0;
 		vrLen = 1473;
 		vrLoc = 6684;
@@ -535,7 +535,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 128";
 		rLen = 0;
-		rLoc = 2868;
+		rLoc = 2764;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 3320;
@@ -545,7 +545,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 135";
 		rLen = 0;
-		rLoc = 3039;
+		rLoc = 2764;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 3142;
@@ -555,7 +555,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 144";
 		rLen = 0;
-		rLoc = 3189;
+		rLoc = 3110;
 		rType = 0;
 		vrLen = 3011;
 		vrLoc = 1050;
@@ -565,7 +565,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 160";
 		rLen = 0;
-		rLoc = 3223;
+		rLoc = 3333;
 		rType = 0;
 		vrLen = 1352;
 		vrLoc = 3954;
@@ -675,7 +675,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 160";
 		rLen = 0;
-		rLoc = 3223;
+		rLoc = 3333;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 3951;
@@ -715,7 +715,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 160";
 		rLen = 0;
-		rLoc = 3223;
+		rLoc = 3333;
 		rType = 0;
 		vrLen = 1355;
 		vrLoc = 3951;
@@ -725,7 +725,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 271";
 		rLen = 0;
-		rLoc = 7544;
+		rLoc = 7317;
 		rType = 0;
 		vrLen = 1657;
 		vrLoc = 7276;
@@ -735,7 +735,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 273";
 		rLen = 0;
-		rLoc = 7544;
+		rLoc = 7317;
 		rType = 0;
 		vrLen = 1544;
 		vrLoc = 6933;
@@ -745,7 +745,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 276";
 		rLen = 0;
-		rLoc = 7617;
+		rLoc = 7390;
 		rType = 0;
 		vrLen = 1340;
 		vrLoc = 6933;
@@ -755,7 +755,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 267";
 		rLen = 0;
-		rLoc = 7354;
+		rLoc = 7127;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 6933;
@@ -765,7 +765,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 297";
 		rLen = 0;
-		rLoc = 7617;
+		rLoc = 7390;
 		rType = 0;
 		vrLen = 1407;
 		vrLoc = 7663;
@@ -805,7 +805,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 297";
 		rLen = 0;
-		rLoc = 7617;
+		rLoc = 7390;
 		rType = 0;
 		vrLen = 1407;
 		vrLoc = 7663;
@@ -815,7 +815,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 133";
 		rLen = 0;
-		rLoc = 2868;
+		rLoc = 2764;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 3174;
@@ -825,7 +825,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 272";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1210;
 		vrLoc = 7197;
@@ -835,7 +835,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 270";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 7197;
@@ -865,7 +865,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 102";
 		rLen = 0;
-		rLoc = 3134;
+		rLoc = 2764;
 		rType = 0;
 		vrLen = 347;
 		vrLoc = 5790;
@@ -885,7 +885,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 270";
 		rLen = 0;
-		rLoc = 8672;
+		rLoc = 8445;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 7197;
@@ -895,7 +895,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 143";
 		rLen = 0;
-		rLoc = 3223;
+		rLoc = 3333;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 2912;
@@ -905,7 +905,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 58";
 		rLen = 0;
-		rLoc = 1659;
+		rLoc = 1640;
 		rType = 0;
 		vrLen = 2986;
 		vrLoc = 0;
@@ -945,7 +945,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 289";
 		rLen = 0;
-		rLoc = 8040;
+		rLoc = 7813;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 7516;
@@ -1015,7 +1015,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 313";
 		rLen = 0;
-		rLoc = 8673;
+		rLoc = 8446;
 		rType = 0;
 		vrLen = 1287;
 		vrLoc = 7516;
@@ -1026,7 +1026,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 0;
-		rLoc = 215;
+		rLoc = 199;
 		rType = 1;
 	};
 	00B9F37A1396E06000BF8B5E /* PBXTextBookmark */ = {
@@ -1034,7 +1034,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 217";
 		rLen = 0;
-		rLoc = 6061;
+		rLoc = 5834;
 		rType = 0;
 		vrLen = 326;
 		vrLoc = 5830;
@@ -1044,7 +1044,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 318";
 		rLen = 0;
-		rLoc = 8817;
+		rLoc = 8590;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 7543;
@@ -1094,7 +1094,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 286";
 		rLen = 0;
-		rLoc = 8033;
+		rLoc = 7806;
 		rType = 0;
 		vrLen = 1257;
 		vrLoc = 7565;
@@ -1104,7 +1104,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 234";
 		rLen = 0;
-		rLoc = 6593;
+		rLoc = 6366;
 		rType = 0;
 		vrLen = 1168;
 		vrLoc = 6154;
@@ -1124,7 +1124,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 241";
 		rLen = 0;
-		rLoc = 6904;
+		rLoc = 6677;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 6156;
@@ -1134,7 +1134,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 229";
 		rLen = 0;
-		rLoc = 6248;
+		rLoc = 6021;
 		rType = 0;
 		vrLen = 1164;
 		vrLoc = 6107;
@@ -1144,7 +1144,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 229";
 		rLen = 0;
-		rLoc = 6248;
+		rLoc = 6021;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 6107;
@@ -1174,7 +1174,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 118";
 		rLen = 0;
-		rLoc = 3489;
+		rLoc = 3335;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 2871;
@@ -1244,7 +1244,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 118";
 		rLen = 0;
-		rLoc = 3489;
+		rLoc = 3335;
 		rType = 0;
 		vrLen = 1257;
 		vrLoc = 2871;
@@ -1254,10 +1254,90 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 138";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 3819;
 		rType = 0;
 		vrLen = 3632;
 		vrLoc = 3398;
+	};
+	00B9F3A81396E74200BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A72138C34330099A63B /* SfmlController.h */;
+		name = "SfmlController.h: 15";
+		rLen = 0;
+		rLoc = 427;
+		rType = 0;
+		vrLen = 957;
+		vrLoc = 0;
+	};
+	00B9F3A91396E74200BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
+		name = "Bezier.cpp: 138";
+		rLen = 0;
+		rLoc = 3819;
+		rType = 0;
+		vrLen = 3632;
+		vrLoc = 3398;
+	};
+	00B9F3AA1396E74200BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
+		name = "Bezier.cpp: 121";
+		rLen = 0;
+		rLoc = 3584;
+		rType = 0;
+		vrLen = 2220;
+		vrLoc = 2983;
+	};
+	00B9F3B01396E76400BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
+		name = "Bezier.cpp: 120";
+		rLen = 0;
+		rLoc = 3421;
+		rType = 0;
+		vrLen = 2219;
+		vrLoc = 2983;
+	};
+	00B9F3B41396E7A300BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
+		name = "Bezier.cpp: 122";
+		rLen = 0;
+		rLoc = 3584;
+		rType = 0;
+		vrLen = 2350;
+		vrLoc = 2983;
+	};
+	00B9F3B81396E7C700BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
+		name = "Bezier.cpp: 121";
+		rLen = 0;
+		rLoc = 3584;
+		rType = 0;
+		vrLen = 2467;
+		vrLoc = 2983;
+	};
+	00B9F3BC1396E7F800BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
+		name = "Bezier.cpp: 109";
+		rLen = 0;
+		rLoc = 3141;
+		rType = 0;
+		vrLen = 2927;
+		vrLoc = 2986;
+	};
+	00B9F3BE1396E84D00BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
+		name = "Bezier.cpp: 1";
+		rLen = 0;
+		rLoc = 19;
+		rType = 0;
+		vrLen = 3072;
+		vrLoc = 0;
 	};
 	00D25C4413900FFE0012C3C3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1334,10 +1414,10 @@
 	};
 	00ED4A6A138C33FF0099A63B /* Bezier.cpp */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{88, 679}\";\n            s = 0;\n        },\n                {\n            r = \"{813, 845}\";\n            s = 0;\n        },\n                {\n            r = \"{4127, 39}\";\n            s = 0;\n        },\n                {\n            r = \"{4231, 460}\";\n            s = 0;\n        },\n                {\n            r = \"{4742, 462}\";\n            s = 0;\n        },\n                {\n            r = \"{5262, 20}\";\n            s = 0;\n        },\n                {\n            r = \"{5337, 18}\";\n            s = 0;\n        },\n                {\n            r = \"{5413, 52}\";\n            s = 0;\n        },\n                {\n            r = \"{5501, 20}\";\n            s = 0;\n        },\n                {\n            r = \"{5576, 46}\";\n            s = 0;\n        },\n                {\n            r = \"{5658, 17}\";\n            s = 0;\n        },\n                {\n            r = \"{5737, 53}\";\n            s = 0;\n        },\n                {\n            r = \"{5833, 24}\";\n            s = 0;\n        },\n                {\n            r = \"{5924, 58}\";\n            s = 0;\n        },\n                {\n            r = \"{6030, 29}\";\n            s = 0;\n        },\n                {\n            r = \"{6130, 898}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 8817}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1083, 2262}}";
-			sepNavSelRange = "{2524, 0}";
-			sepNavVisRange = "{1876, 1450}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{69, 679}\";\n            s = 0;\n        },\n                {\n            r = \"{794, 845}\";\n            s = 0;\n        },\n                {\n            r = \"{3900, 39}\";\n            s = 0;\n        },\n                {\n            r = \"{4004, 460}\";\n            s = 0;\n        },\n                {\n            r = \"{4515, 462}\";\n            s = 0;\n        },\n                {\n            r = \"{5035, 20}\";\n            s = 0;\n        },\n                {\n            r = \"{5110, 18}\";\n            s = 0;\n        },\n                {\n            r = \"{5186, 52}\";\n            s = 0;\n        },\n                {\n            r = \"{5274, 20}\";\n            s = 0;\n        },\n                {\n            r = \"{5349, 46}\";\n            s = 0;\n        },\n                {\n            r = \"{5431, 17}\";\n            s = 0;\n        },\n                {\n            r = \"{5510, 53}\";\n            s = 0;\n        },\n                {\n            r = \"{5606, 24}\";\n            s = 0;\n        },\n                {\n            r = \"{5697, 58}\";\n            s = 0;\n        },\n                {\n            r = \"{5803, 29}\";\n            s = 0;\n        },\n                {\n            r = \"{5903, 898}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 8590}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1083, 2184}}";
+			sepNavSelRange = "{19, 0}";
+			sepNavVisRange = "{0, 1550}";
 			sepNavWindowFrame = "{{-1265, 26}, {628, 1024}}";
 		};
 	};
@@ -1641,6 +1721,14 @@
 			00B9F3A21396E65800BF8B5E /* PBXTextBookmark */ = 00B9F3A21396E65800BF8B5E /* PBXTextBookmark */;
 			00B9F3A31396E65800BF8B5E /* PBXTextBookmark */ = 00B9F3A31396E65800BF8B5E /* PBXTextBookmark */;
 			00B9F3A41396E65800BF8B5E /* PBXTextBookmark */ = 00B9F3A41396E65800BF8B5E /* PBXTextBookmark */;
+			00B9F3A81396E74200BF8B5E /* PBXTextBookmark */ = 00B9F3A81396E74200BF8B5E /* PBXTextBookmark */;
+			00B9F3A91396E74200BF8B5E /* PBXTextBookmark */ = 00B9F3A91396E74200BF8B5E /* PBXTextBookmark */;
+			00B9F3AA1396E74200BF8B5E /* PBXTextBookmark */ = 00B9F3AA1396E74200BF8B5E /* PBXTextBookmark */;
+			00B9F3B01396E76400BF8B5E /* PBXTextBookmark */ = 00B9F3B01396E76400BF8B5E /* PBXTextBookmark */;
+			00B9F3B41396E7A300BF8B5E /* PBXTextBookmark */ = 00B9F3B41396E7A300BF8B5E /* PBXTextBookmark */;
+			00B9F3B81396E7C700BF8B5E /* PBXTextBookmark */ = 00B9F3B81396E7C700BF8B5E /* PBXTextBookmark */;
+			00B9F3BC1396E7F800BF8B5E /* PBXTextBookmark */ = 00B9F3BC1396E7F800BF8B5E /* PBXTextBookmark */;
+			00B9F3BE1396E84D00BF8B5E /* PBXTextBookmark */ = 00B9F3BE1396E84D00BF8B5E /* PBXTextBookmark */;
 			00D25C4413900FFE0012C3C3 = 00D25C4413900FFE0012C3C3 /* PBXTextBookmark */;
 			00D25C86139017C30012C3C3 = 00D25C86139017C30012C3C3 /* PBXTextBookmark */;
 			00ED4A90138C36C80099A63B = 00ED4A90138C36C80099A63B /* PBXTextBookmark */;

@@ -1,5 +1,4 @@
 #include "Bezier.h"
-#include<iostream>
 
 sf::Vector2f BezierCurve::Interpolate(double i){
 	
@@ -85,47 +84,32 @@ sf::Vector2f BezierCurve::DrawLineLayer(vector<sf::Vector2f> &controlSet, double
 }
 
 void BezierCurve::Generate(){
-	if(_controls.size() == 0) //no control points, no curve
-		return;
-	_points.clear();
-	
-	sf::RenderWindow* tempCanvas = _canvas;
-	_canvas = NULL;
-	
-	for(double t = 0; t < 1; t+=_throttle){
+	if(_controls.size() != 0){ //no control points, no curve
+		_points.clear();
 		
-		//new version calculates by recursive line drawing, more accurate
+		sf::RenderWindow* tempCanvas = _canvas;
+		_canvas = NULL;
 		
-		sf::Vector2f p = this->DrawLineLayer(_controls, t);
-		
-		if(_points.size() == 0 || p != _points.back()){ //only draw pixels inside the image space
-			_points.push_back(p);
+		for(double t = 0; t < 1; t+=_throttle){
+			
+			sf::Vector2f p = this->DrawLineLayer(_controls, t);
+			
+			if(_points.size() == 0 || p != _points.back()){ //only draw pixels inside the image space
+				_points.push_back(p);
+			}
 		}
+		
+		_canvas = tempCanvas;
 	}
-	_canvas = tempCanvas;
 }
 
-BezierCurve::BezierCurve(){
-	_throttle = 0.00001;
-	_color = sf::Color(0,0,0);
-	_controlColor = sf::Color(255, 0, 0);
-	_boundingLineColor = sf::Color(0, 0, 255);
-	_animatedLineColor = sf::Color(0, 255, 0);
-	_scaleOffsets = sf::Vector2f(0,0);
-	_scaleFactor = 1;
-	_canvas = NULL;
-	_canvasTime = 0;
+BezierCurve::BezierCurve()
+: _throttle(0.00001), _color(0,0,0), _controlColor(255, 0, 0), _boundingLineColor(0, 0, 255), _animatedLineColor(0, 255, 0), _scaleOffsets(0,0), _scaleFactor(1), _canvas(NULL), _canvasTime(0){
 }
-BezierCurve::BezierCurve(sf::RenderWindow* canvas, double throttle){
+BezierCurve::BezierCurve(sf::RenderWindow* canvas, double throttle)
+: _color(0,0,0), _controlColor(255, 0, 0), _boundingLineColor(0, 0, 255), _animatedLineColor(0, 255, 0), _scaleOffsets(0,0), _scaleFactor(1), _canvasTime(0){
 	_throttle = throttle;
-	_color = sf::Color(0, 0, 0);
-	_controlColor = sf::Color(255, 0, 0);
-	_boundingLineColor = sf::Color(0, 0, 255);
-	_animatedLineColor = sf::Color(0, 255, 0);
-	_scaleOffsets = sf::Vector2f(0,0);
-	_scaleFactor = 1;
 	_canvas = canvas;
-	_canvasTime = 0;
 }
 BezierCurve& BezierCurve::AddPoint(sf::Vector2f p){
 	_controls.push_back(p);
