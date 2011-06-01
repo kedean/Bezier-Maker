@@ -27,7 +27,7 @@
 	for(int i = 0; i < detailValue+3; i++){
 		throttle /= 10;
 	}
-	mainCurve = BezierCurve(sfmlView, throttle).SetColor(sf::Color(255, 0, 0));
+	mainCurve = BezierCurve(sfmlView).SetColor(sf::Color(255, 0, 0)).SetThrottle(throttle);
 	mode.Vertices = true;
 	mode.Lines = true;
 	animationMeter = 1.0f;

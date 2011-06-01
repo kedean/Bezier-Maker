@@ -59,7 +59,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 358";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 9599;
@@ -69,7 +69,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 156";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3908;
 		rType = 0;
 		vrLen = 1389;
 		vrLoc = 3159;
@@ -96,7 +96,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 156";
 		rLen = 0;
-		rLoc = 3896;
+		rLoc = 3908;
 		rType = 0;
 		vrLen = 1367;
 		vrLoc = 3161;
@@ -106,7 +106,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 128";
 		rLen = 0;
-		rLoc = 2998;
+		rLoc = 3010;
 		rType = 0;
 		vrLen = 1360;
 		vrLoc = 3829;
@@ -116,7 +116,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 340";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1249;
 		vrLoc = 9612;
@@ -126,7 +126,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 340";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1220;
 		vrLoc = 9612;
@@ -136,7 +136,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 349";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 9612;
@@ -146,7 +146,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 350";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 9612;
@@ -156,7 +156,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 350";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 9612;
@@ -166,7 +166,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 363";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 9612;
@@ -176,7 +176,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 351";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 9386;
@@ -186,7 +186,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 364";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1231;
 		vrLoc = 9674;
@@ -196,7 +196,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 351";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1227;
 		vrLoc = 9674;
@@ -206,7 +206,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 49";
 		rLen = 0;
-		rLoc = 3357;
+		rLoc = 3498;
 		rType = 0;
 		vrLen = 2279;
 		vrLoc = 162;
@@ -216,7 +216,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 329";
 		rLen = 0;
-		rLoc = 6670;
+		rLoc = 6428;
 		rType = 0;
 		vrLen = 1428;
 		vrLoc = 8911;
@@ -226,7 +226,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 128";
 		rLen = 0;
-		rLoc = 2998;
+		rLoc = 3010;
 		rType = 0;
 		vrLen = 1353;
 		vrLoc = 3829;
@@ -236,7 +236,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 164";
 		rLen = 0;
-		rLoc = 4109;
+		rLoc = 4121;
 		rType = 0;
 		vrLen = 1336;
 		vrLoc = 3655;
@@ -246,7 +246,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 32";
 		rLen = 0;
-		rLoc = 1896;
+		rLoc = 2009;
 		rType = 0;
 		vrLen = 2239;
 		vrLoc = 162;
@@ -256,7 +256,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 30";
 		rLen = 0;
-		rLoc = 644;
+		rLoc = 656;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 62;
@@ -276,7 +276,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 339";
 		rLen = 0;
-		rLoc = 6898;
+		rLoc = 6656;
 		rType = 0;
 		vrLen = 1251;
 		vrLoc = 9726;
@@ -286,7 +286,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 347";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1235;
 		vrLoc = 9728;
@@ -306,7 +306,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 32";
 		rLen = 0;
-		rLoc = 1896;
+		rLoc = 2009;
 		rType = 0;
 		vrLen = 2163;
 		vrLoc = 162;
@@ -366,7 +366,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 30";
 		rLen = 0;
-		rLoc = 644;
+		rLoc = 656;
 		rType = 0;
 		vrLen = 1037;
 		vrLoc = 79;
@@ -376,7 +376,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 212";
 		rLen = 0;
-		rLoc = 5379;
+		rLoc = 5391;
 		rType = 0;
 		vrLen = 1643;
 		vrLoc = 5515;
@@ -386,7 +386,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 212";
 		rLen = 0;
-		rLoc = 5379;
+		rLoc = 5391;
 		rType = 0;
 		vrLen = 1647;
 		vrLoc = 5515;
@@ -406,7 +406,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 353";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 9449;
@@ -416,7 +416,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 248";
 		rLen = 0;
-		rLoc = 3326;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 1470;
 		vrLoc = 6684;
@@ -426,7 +426,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 163";
 		rLen = 0;
-		rLoc = 4087;
+		rLoc = 4099;
 		rType = 0;
 		vrLen = 408;
 		vrLoc = 4205;
@@ -455,7 +455,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 251";
 		rLen = 0;
-		rLoc = 3326;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 1473;
 		vrLoc = 6684;
@@ -465,7 +465,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 212";
 		rLen = 0;
-		rLoc = 5379;
+		rLoc = 5391;
 		rType = 0;
 		vrLen = 1642;
 		vrLoc = 4953;
@@ -475,7 +475,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 244";
 		rLen = 0;
-		rLoc = 5506;
+		rLoc = 5518;
 		rType = 0;
 		vrLen = 1563;
 		vrLoc = 5613;
@@ -485,7 +485,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 212";
 		rLen = 0;
-		rLoc = 5379;
+		rLoc = 5391;
 		rType = 0;
 		vrLen = 1561;
 		vrLoc = 5613;
@@ -495,7 +495,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 206";
 		rLen = 0;
-		rLoc = 5332;
+		rLoc = 5344;
 		rType = 0;
 		vrLen = 1804;
 		vrLoc = 5247;
@@ -505,7 +505,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 211";
 		rLen = 0;
-		rLoc = 5402;
+		rLoc = 5414;
 		rType = 0;
 		vrLen = 1808;
 		vrLoc = 5247;
@@ -515,7 +515,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 212";
 		rLen = 0;
-		rLoc = 5402;
+		rLoc = 5414;
 		rType = 0;
 		vrLen = 1639;
 		vrLoc = 5462;
@@ -525,7 +525,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 251";
 		rLen = 0;
-		rLoc = 3326;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 1473;
 		vrLoc = 6684;
@@ -565,7 +565,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 160";
 		rLen = 0;
-		rLoc = 3326;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 1352;
 		vrLoc = 3954;
@@ -575,7 +575,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 28";
 		rLen = 0;
-		rLoc = 1427;
+		rLoc = 910;
 		rType = 0;
 		vrLen = 1967;
 		vrLoc = 0;
@@ -595,7 +595,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 212";
 		rLen = 0;
-		rLoc = 5402;
+		rLoc = 5414;
 		rType = 0;
 		vrLen = 1633;
 		vrLoc = 5462;
@@ -605,7 +605,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 30";
 		rLen = 0;
-		rLoc = 603;
+		rLoc = 601;
 		rType = 0;
 		vrLen = 976;
 		vrLoc = 0;
@@ -615,7 +615,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 204";
 		rLen = 0;
-		rLoc = 5402;
+		rLoc = 5414;
 		rType = 0;
 		vrLen = 1523;
 		vrLoc = 5330;
@@ -625,7 +625,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 204";
 		rLen = 0;
-		rLoc = 5402;
+		rLoc = 5414;
 		rType = 0;
 		vrLen = 1497;
 		vrLoc = 5356;
@@ -665,7 +665,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 233";
 		rLen = 0;
-		rLoc = 5503;
+		rLoc = 5515;
 		rType = 0;
 		vrLen = 1585;
 		vrLoc = 5267;
@@ -675,7 +675,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 160";
 		rLen = 0;
-		rLoc = 3326;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 3951;
@@ -685,7 +685,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 32";
 		rLen = 0;
-		rLoc = 1896;
+		rLoc = 2009;
 		rType = 0;
 		vrLen = 2230;
 		vrLoc = 143;
@@ -695,7 +695,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 206";
 		rLen = 0;
-		rLoc = 5503;
+		rLoc = 5515;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 4413;
@@ -705,7 +705,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 23";
 		rLen = 0;
-		rLoc = 1201;
+		rLoc = 799;
 		rType = 0;
 		vrLen = 2230;
 		vrLoc = 143;
@@ -715,7 +715,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 160";
 		rLen = 0;
-		rLoc = 3326;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 1355;
 		vrLoc = 3951;
@@ -725,7 +725,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 271";
 		rLen = 0;
-		rLoc = 7310;
+		rLoc = 7068;
 		rType = 0;
 		vrLen = 1657;
 		vrLoc = 7276;
@@ -735,7 +735,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 273";
 		rLen = 0;
-		rLoc = 7310;
+		rLoc = 7068;
 		rType = 0;
 		vrLen = 1544;
 		vrLoc = 6933;
@@ -745,7 +745,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 276";
 		rLen = 0;
-		rLoc = 7383;
+		rLoc = 7141;
 		rType = 0;
 		vrLen = 1340;
 		vrLoc = 6933;
@@ -755,7 +755,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 267";
 		rLen = 0;
-		rLoc = 7120;
+		rLoc = 6878;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 6933;
@@ -765,7 +765,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 297";
 		rLen = 0;
-		rLoc = 7383;
+		rLoc = 7141;
 		rType = 0;
 		vrLen = 1407;
 		vrLoc = 7663;
@@ -775,7 +775,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 54";
 		rLen = 0;
-		rLoc = 3051;
+		rLoc = 3192;
 		rType = 0;
 		vrLen = 2107;
 		vrLoc = 196;
@@ -785,7 +785,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 54";
 		rLen = 0;
-		rLoc = 3051;
+		rLoc = 3192;
 		rType = 0;
 		vrLen = 2036;
 		vrLoc = 196;
@@ -795,7 +795,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 36";
 		rLen = 0;
-		rLoc = 2045;
+		rLoc = 2154;
 		rType = 0;
 		vrLen = 2105;
 		vrLoc = 196;
@@ -805,7 +805,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 297";
 		rLen = 0;
-		rLoc = 7383;
+		rLoc = 7141;
 		rType = 0;
 		vrLen = 1407;
 		vrLoc = 7663;
@@ -825,7 +825,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 272";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1210;
 		vrLoc = 7197;
@@ -835,7 +835,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 270";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 7197;
@@ -845,7 +845,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 36";
 		rLen = 0;
-		rLoc = 2045;
+		rLoc = 2154;
 		rType = 0;
 		vrLen = 2105;
 		vrLoc = 196;
@@ -855,7 +855,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 59";
 		rLen = 0;
-		rLoc = 3357;
+		rLoc = 3498;
 		rType = 0;
 		vrLen = 2195;
 		vrLoc = 362;
@@ -875,7 +875,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 30";
 		rLen = 0;
-		rLoc = 1484;
+		rLoc = 1023;
 		rType = 0;
 		vrLen = 2166;
 		vrLoc = 101;
@@ -885,7 +885,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 270";
 		rLen = 0;
-		rLoc = 8438;
+		rLoc = 8196;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 7197;
@@ -895,7 +895,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 143";
 		rLen = 0;
-		rLoc = 3326;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 2912;
@@ -915,7 +915,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 30";
 		rLen = 0;
-		rLoc = 1484;
+		rLoc = 1023;
 		rType = 0;
 		vrLen = 2113;
 		vrLoc = 101;
@@ -935,7 +935,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 35";
 		rLen = 0;
-		rLoc = 1761;
+		rLoc = 1300;
 		rType = 0;
 		vrLen = 2190;
 		vrLoc = 386;
@@ -945,7 +945,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 289";
 		rLen = 0;
-		rLoc = 7806;
+		rLoc = 7564;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 7516;
@@ -955,7 +955,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 206";
 		rLen = 0;
-		rLoc = 5503;
+		rLoc = 5515;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 4413;
@@ -965,7 +965,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 156";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4120;
 		rType = 0;
 		vrLen = 1251;
 		vrLoc = 3324;
@@ -975,7 +975,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 127";
 		rLen = 0;
-		rLoc = 3215;
+		rLoc = 3227;
 		rType = 0;
 		vrLen = 1369;
 		vrLoc = 2748;
@@ -985,7 +985,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 156";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4120;
 		rType = 0;
 		vrLen = 1356;
 		vrLoc = 3445;
@@ -995,7 +995,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 156";
 		rLen = 0;
-		rLoc = 4108;
+		rLoc = 4120;
 		rType = 0;
 		vrLen = 1370;
 		vrLoc = 3445;
@@ -1005,7 +1005,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 35";
 		rLen = 0;
-		rLoc = 1761;
+		rLoc = 1300;
 		rType = 0;
 		vrLen = 2190;
 		vrLoc = 386;
@@ -1015,7 +1015,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 313";
 		rLen = 0;
-		rLoc = 8439;
+		rLoc = 8197;
 		rType = 0;
 		vrLen = 1287;
 		vrLoc = 7516;
@@ -1026,7 +1026,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 0;
-		rLoc = 198;
+		rLoc = 194;
 		rType = 1;
 	};
 	00B9F37A1396E06000BF8B5E /* PBXTextBookmark */ = {
@@ -1034,7 +1034,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 217";
 		rLen = 0;
-		rLoc = 5827;
+		rLoc = 5585;
 		rType = 0;
 		vrLen = 326;
 		vrLoc = 5830;
@@ -1044,7 +1044,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 318";
 		rLen = 0;
-		rLoc = 8583;
+		rLoc = 8341;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 7543;
@@ -1054,7 +1054,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 42";
 		rLen = 0;
-		rLoc = 2045;
+		rLoc = 2154;
 		rType = 0;
 		vrLen = 2362;
 		vrLoc = 798;
@@ -1064,7 +1064,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 62";
 		rLen = 0;
-		rLoc = 3138;
+		rLoc = 3279;
 		rType = 0;
 		vrLen = 2370;
 		vrLoc = 798;
@@ -1074,7 +1074,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 39";
 		rLen = 0;
-		rLoc = 1898;
+		rLoc = 2009;
 		rType = 0;
 		vrLen = 2437;
 		vrLoc = 798;
@@ -1084,7 +1084,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 150";
 		rLen = 0;
-		rLoc = 3940;
+		rLoc = 3952;
 		rType = 0;
 		vrLen = 1142;
 		vrLoc = 1860;
@@ -1094,7 +1094,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 286";
 		rLen = 0;
-		rLoc = 7799;
+		rLoc = 7557;
 		rType = 0;
 		vrLen = 1257;
 		vrLoc = 7565;
@@ -1104,7 +1104,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 234";
 		rLen = 0;
-		rLoc = 6359;
+		rLoc = 6117;
 		rType = 0;
 		vrLen = 1168;
 		vrLoc = 6154;
@@ -1114,7 +1114,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 90";
 		rLen = 0;
-		rLoc = 2316;
+		rLoc = 2328;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 3068;
@@ -1124,7 +1124,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 241";
 		rLen = 0;
-		rLoc = 6670;
+		rLoc = 6428;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 6156;
@@ -1134,7 +1134,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 229";
 		rLen = 0;
-		rLoc = 6014;
+		rLoc = 5772;
 		rType = 0;
 		vrLen = 1164;
 		vrLoc = 6107;
@@ -1144,7 +1144,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 229";
 		rLen = 0;
-		rLoc = 6014;
+		rLoc = 5772;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 6107;
@@ -1154,7 +1154,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 39";
 		rLen = 0;
-		rLoc = 1898;
+		rLoc = 2009;
 		rType = 0;
 		vrLen = 2368;
 		vrLoc = 798;
@@ -1164,7 +1164,7 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 62";
 		rLen = 0;
-		rLoc = 3138;
+		rLoc = 3279;
 		rType = 0;
 		vrLen = 2686;
 		vrLoc = 897;
@@ -1174,7 +1174,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 118";
 		rLen = 0;
-		rLoc = 3328;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 2871;
@@ -1204,7 +1204,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 90";
 		rLen = 0;
-		rLoc = 2316;
+		rLoc = 2328;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 1860;
@@ -1214,7 +1214,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 30";
 		rLen = 0;
-		rLoc = 603;
+		rLoc = 601;
 		rType = 0;
 		vrLen = 909;
 		vrLoc = 0;
@@ -1224,7 +1224,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 30";
 		rLen = 0;
-		rLoc = 643;
+		rLoc = 655;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 0;
@@ -1234,7 +1234,7 @@
 		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
 		name = "SfmlController.mm: 89";
 		rLen = 0;
-		rLoc = 2255;
+		rLoc = 2267;
 		rType = 0;
 		vrLen = 1313;
 		vrLoc = 1495;
@@ -1244,7 +1244,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 118";
 		rLen = 0;
-		rLoc = 3328;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 1257;
 		vrLoc = 2871;
@@ -1254,7 +1254,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 138";
 		rLen = 0;
-		rLoc = 3812;
+		rLoc = 3570;
 		rType = 0;
 		vrLen = 3632;
 		vrLoc = 3398;
@@ -1274,7 +1274,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 138";
 		rLen = 0;
-		rLoc = 3812;
+		rLoc = 3570;
 		rType = 0;
 		vrLen = 3632;
 		vrLoc = 3398;
@@ -1284,7 +1284,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 121";
 		rLen = 0;
-		rLoc = 3577;
+		rLoc = 3335;
 		rType = 0;
 		vrLen = 2220;
 		vrLoc = 2983;
@@ -1294,7 +1294,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 120";
 		rLen = 0;
-		rLoc = 3414;
+		rLoc = 3175;
 		rType = 0;
 		vrLen = 2219;
 		vrLoc = 2983;
@@ -1304,7 +1304,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 122";
 		rLen = 0;
-		rLoc = 3577;
+		rLoc = 3335;
 		rType = 0;
 		vrLen = 2350;
 		vrLoc = 2983;
@@ -1314,7 +1314,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 121";
 		rLen = 0;
-		rLoc = 3577;
+		rLoc = 3335;
 		rType = 0;
 		vrLen = 2467;
 		vrLoc = 2983;
@@ -1324,7 +1324,7 @@
 		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
 		name = "Bezier.cpp: 109";
 		rLen = 0;
-		rLoc = 3134;
+		rLoc = 3106;
 		rType = 0;
 		vrLen = 2927;
 		vrLoc = 2986;
@@ -1374,10 +1374,79 @@
 		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
 		name = "Bezier.h: 23";
 		rLen = 0;
-		rLoc = 824;
+		rLoc = 799;
 		rType = 0;
 		vrLen = 2789;
 		vrLoc = 101;
+	};
+	00B9F3CC1396EB2000BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
+		name = "Bezier.h: 25";
+		rLen = 0;
+		rLoc = 910;
+		rType = 0;
+		vrLen = 2433;
+		vrLoc = 0;
+	};
+	00B9F3CD1396EB2000BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */;
+		name = "Bezier.cpp: 104";
+		rLen = 0;
+		rLoc = 3106;
+		rType = 0;
+		vrLen = 2606;
+		vrLoc = 2778;
+	};
+	00B9F3CE1396EB2000BF8B5E /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "No matching function for call to 'BezierCurve::BezierCurve(sf::RenderWindow*&, double&)'";
+		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 29;
+		rType = 1;
+	};
+	00B9F3CF1396EB2000BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
+		name = "SfmlController.mm: 30";
+		rLen = 0;
+		rLoc = 655;
+		rType = 0;
+		vrLen = 1025;
+		vrLoc = 117;
+	};
+	00B9F3D11396EB6B00BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A73138C343D0099A63B /* SfmlController.mm */;
+		name = "SfmlController.mm: 30";
+		rLen = 0;
+		rLoc = 655;
+		rType = 0;
+		vrLen = 1100;
+		vrLoc = 117;
+	};
+	00B9F3D21396EB6B00BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
+		name = "Bezier.h: 25";
+		rLen = 0;
+		rLoc = 910;
+		rType = 0;
+		vrLen = 2433;
+		vrLoc = 0;
+	};
+	00B9F3D31396EB6B00BF8B5E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00ED4A6B138C33FF0099A63B /* Bezier.h */;
+		name = "Bezier.h: 21";
+		rLen = 0;
+		rLoc = 801;
+		rType = 0;
+		vrLen = 2535;
+		vrLoc = 0;
 	};
 	00D25C4413900FFE0012C3C3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1454,18 +1523,18 @@
 	};
 	00ED4A6A138C33FF0099A63B /* Bezier.cpp */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{69, 679}\";\n            s = 0;\n        },\n                {\n            r = \"{794, 845}\";\n            s = 0;\n        },\n                {\n            r = \"{3893, 39}\";\n            s = 0;\n        },\n                {\n            r = \"{3997, 460}\";\n            s = 0;\n        },\n                {\n            r = \"{4508, 462}\";\n            s = 0;\n        },\n                {\n            r = \"{5028, 20}\";\n            s = 0;\n        },\n                {\n            r = \"{5103, 18}\";\n            s = 0;\n        },\n                {\n            r = \"{5179, 52}\";\n            s = 0;\n        },\n                {\n            r = \"{5267, 20}\";\n            s = 0;\n        },\n                {\n            r = \"{5342, 46}\";\n            s = 0;\n        },\n                {\n            r = \"{5424, 17}\";\n            s = 0;\n        },\n                {\n            r = \"{5503, 53}\";\n            s = 0;\n        },\n                {\n            r = \"{5599, 24}\";\n            s = 0;\n        },\n                {\n            r = \"{5690, 58}\";\n            s = 0;\n        },\n                {\n            r = \"{5796, 29}\";\n            s = 0;\n        },\n                {\n            r = \"{5896, 898}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 8583}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1083, 2171}}";
-			sepNavSelRange = "{802, 0}";
-			sepNavVisRange = "{0, 1548}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{69, 679}\";\n            s = 0;\n        },\n                {\n            r = \"{794, 845}\";\n            s = 0;\n        },\n                {\n            r = \"{3651, 39}\";\n            s = 0;\n        },\n                {\n            r = \"{3755, 460}\";\n            s = 0;\n        },\n                {\n            r = \"{4266, 462}\";\n            s = 0;\n        },\n                {\n            r = \"{4786, 20}\";\n            s = 0;\n        },\n                {\n            r = \"{4861, 18}\";\n            s = 0;\n        },\n                {\n            r = \"{4937, 52}\";\n            s = 0;\n        },\n                {\n            r = \"{5025, 20}\";\n            s = 0;\n        },\n                {\n            r = \"{5100, 46}\";\n            s = 0;\n        },\n                {\n            r = \"{5182, 17}\";\n            s = 0;\n        },\n                {\n            r = \"{5261, 53}\";\n            s = 0;\n        },\n                {\n            r = \"{5357, 24}\";\n            s = 0;\n        },\n                {\n            r = \"{5448, 58}\";\n            s = 0;\n        },\n                {\n            r = \"{5554, 29}\";\n            s = 0;\n        },\n                {\n            r = \"{5654, 898}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 8341}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1251, 1950}}";
+			sepNavSelRange = "{1584, 0}";
+			sepNavVisRange = "{1256, 1406}";
 			sepNavWindowFrame = "{{-1265, 26}, {628, 1024}}";
 		};
 	};
 	00ED4A6B138C33FF0099A63B /* Bezier.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1930, 819}}";
-			sepNavSelRange = "{824, 0}";
-			sepNavVisRange = "{101, 2789}";
+			sepNavIntBoundsRect = "{{0, 0}, {1930, 858}}";
+			sepNavSelRange = "{801, 0}";
+			sepNavVisRange = "{0, 2535}";
 			sepNavWindowFrame = "{{-1265, 26}, {628, 1024}}";
 		};
 	};
@@ -1478,9 +1547,9 @@
 	};
 	00ED4A73138C343D0099A63B /* SfmlController.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {970, 2795}}";
-			sepNavSelRange = "{2255, 0}";
-			sepNavVisRange = "{1495, 1313}";
+			sepNavIntBoundsRect = "{{0, 0}, {970, 2873}}";
+			sepNavSelRange = "{655, 0}";
+			sepNavVisRange = "{117, 1100}";
 			sepNavWindowFrame = "{{-1265, 26}, {628, 1024}}";
 		};
 	};
@@ -1773,6 +1842,13 @@
 			00B9F3C51396E9A500BF8B5E /* PBXTextBookmark */ = 00B9F3C51396E9A500BF8B5E /* PBXTextBookmark */;
 			00B9F3C61396E9A500BF8B5E /* PBXTextBookmark */ = 00B9F3C61396E9A500BF8B5E /* PBXTextBookmark */;
 			00B9F3C71396E9A500BF8B5E /* PBXTextBookmark */ = 00B9F3C71396E9A500BF8B5E /* PBXTextBookmark */;
+			00B9F3CC1396EB2000BF8B5E /* PBXTextBookmark */ = 00B9F3CC1396EB2000BF8B5E /* PBXTextBookmark */;
+			00B9F3CD1396EB2000BF8B5E /* PBXTextBookmark */ = 00B9F3CD1396EB2000BF8B5E /* PBXTextBookmark */;
+			00B9F3CE1396EB2000BF8B5E /* XCBuildMessageTextBookmark */ = 00B9F3CE1396EB2000BF8B5E /* XCBuildMessageTextBookmark */;
+			00B9F3CF1396EB2000BF8B5E /* PBXTextBookmark */ = 00B9F3CF1396EB2000BF8B5E /* PBXTextBookmark */;
+			00B9F3D11396EB6B00BF8B5E /* PBXTextBookmark */ = 00B9F3D11396EB6B00BF8B5E /* PBXTextBookmark */;
+			00B9F3D21396EB6B00BF8B5E /* PBXTextBookmark */ = 00B9F3D21396EB6B00BF8B5E /* PBXTextBookmark */;
+			00B9F3D31396EB6B00BF8B5E /* PBXTextBookmark */ = 00B9F3D31396EB6B00BF8B5E /* PBXTextBookmark */;
 			00D25C4413900FFE0012C3C3 = 00D25C4413900FFE0012C3C3 /* PBXTextBookmark */;
 			00D25C86139017C30012C3C3 = 00D25C86139017C30012C3C3 /* PBXTextBookmark */;
 			00ED4A90138C36C80099A63B = 00ED4A90138C36C80099A63B /* PBXTextBookmark */;

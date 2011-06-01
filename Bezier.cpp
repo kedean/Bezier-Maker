@@ -102,12 +102,8 @@ void BezierCurve::Generate(){
 	}
 }
 
-BezierCurve::BezierCurve()
-: _throttle(0.00001), _color(0,0,0), _controlColor(255, 0, 0), _boundingLineColor(0, 0, 255), _animatedLineColor(0, 255, 0), _scaleOffsets(0,0), _scaleFactor(1), _canvas(NULL), _canvasTime(0){
-}
-BezierCurve::BezierCurve(sf::RenderWindow* canvas, double throttle)
-: _color(0,0,0), _controlColor(255, 0, 0), _boundingLineColor(0, 0, 255), _animatedLineColor(0, 255, 0), _scaleOffsets(0,0), _scaleFactor(1), _canvasTime(0){
-	_throttle = throttle;
+BezierCurve::BezierCurve(sf::RenderWindow* canvas)
+: _color(0,0,0), _controlColor(255, 0, 0), _boundingLineColor(0, 0, 255), _animatedLineColor(0, 255, 0), _throttle(0.00001), _scaleOffsets(0,0), _scaleFactor(1), _canvasTime(0){
 	_canvas = canvas;
 }
 BezierCurve& BezierCurve::AddPoint(sf::Vector2f p){
