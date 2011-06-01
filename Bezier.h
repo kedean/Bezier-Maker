@@ -3,34 +3,40 @@
 #include <vector>
 using namespace std;
 
-class BezierCurve : public sf::Image{
+class BezierCurve{
 private:
-	vector<sf::Vector2f> _controls;
-	vector<sf::Vector2f> _points;
-	int _width, _height;
-	double _stepSize;
-	sf::Color _color, _animatedLineColor;
-	sf::Sprite _asSprite;
-	bool _hasGradient;
-	sf::RenderWindow* _canvas;
-	double _canvasTime;
+	vector<sf::Vector2f> _controls; //list of control points
+	vector<sf::Vector2f> _points; //list of points that define the curve itself
 	
+	double _throttle; //controls detail level of the curve, setting this very low results in a series of angled lines. Very high gives the illusion of round corners
+	
+	sf::Color _color, _animatedLineColor, _boundingLineColor, _controlColor;
+	
+	sf::RenderWindow* _canvas; //the canvas object to draw to. Setting this to NULL disables drawing
+	double _canvasTime; //time interval of the most recent call to DrawFrame() that was not interrupted by DrawCurve()
+	
+	/*variables for controlling the zoom/scale*/
 	double _scaleFactor;
 	sf::Vector2f _scaleOffsets;
 	
-	void DrawLine(sf::Vector2f origin, sf::Vector2f slope); //draws a straight line across the image, with the given slope, that goes through 'origin'
-	sf::Vector2f DrawLineLayer(vector<sf::Vector2f> &controlSet, double t);
-	
+	/*line calculation*/
+	sf::Vector2f DrawLineLayer(vector<sf::Vector2f> &controlSet, double t); //calculate the point at time interval t by recursively (technically used a do/while instead of recursion) performing intersections of lines in the control set. The final intersection is the result.
 	sf::Vector2f Interpolate(double i); //Calculates the point located at the time interval i
 	sf::Vector2f Derive(double i); //Calculates the point located at time interval i on the first derivative of the curve
-	void Generate(); //Regenerates the curve and gradient
+	
+	void Generate(); //Regenerates the points of the curve
 	
 public:
 	BezierCurve();
-	BezierCurve(int width, int height, bool gradient, sf::Color color=sf::Color(255,0,0), double throttle=0.00001); //constructor
+	BezierCurve(sf::RenderWindow* canvas, double throttle=0.00001); //constructor
 	
-	void AddPoint(sf::Vector2f p); //add the point p as a control
-	void AddPoint(int x, int y); //add the point (x, y) as a control
+	BezierCurve& DrawCurve(); //draw the current curve to the canvas
+	BezierCurve& DrawControls(); //draw the control points to the canvas as 5px radius circles
+	BezierCurve& DrawBoundingLines(); //draw the lines connecting the control points to the canvas
+	BezierCurve& DrawFrame(double t=1.1); //same as drawcurve, except only draws up to the given time interval, and includes an illustration of how the last point was reached
+	
+	BezierCurve& AddPoint(sf::Vector2f p); //add the point p as a control
+	BezierCurve& AddPoint(int x, int y); //add the point (x, y) as a control
 	
 	sf::Vector2f RemovePoint(sf::Vector2f p, int range=0); //Removes the closest point within the given range of p
 	sf::Vector2f RemovePoint(int x, int y, int range=0); //Removes the closet point within the given range of (x, y)
@@ -39,16 +45,20 @@ public:
 	const vector<sf::Vector2f>& GetControls(); //returns a vector of the control points
 	const vector<sf::Vector2f>& GetPoints(); //returns a vector of all pixels currently occupied by the curve
 	
-	void SetThrottle(double throttle); //alter the 'throttle', in the form 1/n, where n is the number of points on the curve to be drawn
+	BezierCurve& SetThrottle(double throttle); //alter the 'throttle', in the form 1/n, where n is the number of points on the curve to be drawn
 	double GetThrottle();
-	void SetColor(sf::Color color); //alter the color of the curve drawn
+	
+	BezierCurve& SetColor(sf::Color color); //alter the color of the curve drawn
 	sf::Color GetColor();
-	void SetSize(int width, int height); //alter the size of the canvas
-	void Scale(double factor, sf::Vector2f center=sf::Vector2f(0,0)); //scale the image by the given factor and centered on the given center, good for zooming
 	
-	void Animate(sf::RenderWindow* canvas, double t=1.1);
+	BezierCurve& SetControlColor(sf::Color color);
+	sf::Color GetControlColor();
 	
-//	void EnableGradient(bool status); //enable or disable gradient drawing
+	BezierCurve& SetBoundingLineColor(sf::Color color);
+	sf::Color GetBoundingLineColor();
 	
-	void Clear(); //erase all control points and curve points
+	BezierCurve& SetSize(int width, int height); //alter the size of the canvas
+	BezierCurve& Scale(double factor, sf::Vector2f center=sf::Vector2f(0,0)); //scale the points by the given factor and centered on the given center, used for zooming. The factor is relative to the original set of points
+	
+	BezierCurve& Clear(); //erase all control points and curve points
 };

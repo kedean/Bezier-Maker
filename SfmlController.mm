@@ -27,11 +27,9 @@
 	for(int i = 0; i < detailValue+3; i++){
 		throttle /= 10;
 	}
-	mainCurve = BezierCurve(sfmlView->GetWidth(), sfmlView->GetHeight(), false, sf::Color(255, 0, 0), throttle);
-	spriteCurve = sf::Sprite(mainCurve);
+	mainCurve = BezierCurve(sfmlView, throttle).SetColor(sf::Color(255, 0, 0));
 	mode.Vertices = true;
 	mode.Lines = true;
-	mode.Gradient = false;
 	animationMeter = 1.0f;
 	pausedAnimationMeterVal = -1;
 	currentScale = 1.0f;
@@ -62,12 +60,6 @@
 - (IBAction)onToggleLines:(id)sender{
 //	[renderProgressIndicator startAnimation:self];
 	mode.Lines = !mode.Lines;
-	[renderProgressIndicator stopAnimation:self];
-}
-- (IBAction)onToggleGradient:(id)sender{
-//	[renderProgressIndicator startAnimation:self];
-	mode.Gradient = !mode.Gradient;
-//	mainCurve.EnableGradient(mode.Gradient);
 	[renderProgressIndicator stopAnimation:self];
 }
 - (IBAction)onSetDetail:(id)sender{
@@ -129,7 +121,7 @@
 		sf::Event Event;
 		sfmlView->GetEvent(Event); //pull any events so as to ignore them.
 		
-		mainCurve.Animate(sfmlView, animationMeter);
+		mainCurve.DrawFrame(animationMeter);
 		animationMeter += mainCurve.GetThrottle();
 		
 		if(animationMeter >= 1.0){
@@ -161,7 +153,7 @@
 				}
 			}
 		}
-		mainCurve.Animate(sfmlView, pausedAnimationMeterVal);
+		mainCurve.DrawFrame(pausedAnimationMeterVal);
 	}
 	else if(animationMeter < 2.0){ //Handles normal drawing mode
 		sf::Event Event; 
@@ -206,42 +198,12 @@
 			}
 		}
 		
-		// Do the general SFML display process
-		sfmlView->SetActive();
-		
 		sfmlView->Clear(sf::Color(255,255,255));
-		sfmlView->Draw(spriteCurve);
-		
-		std::vector<sf::Vector2f>::iterator controlIt; //this will be used to iterate over the points for drawing lines, then drawing circles to represent the points
-		std::vector<sf::Vector2f> controls = mainCurve.GetControls(); //array of the control points
-		
-		//Draw the circles to represent points
-		
-		if(controls.size() != 0){
-			for(controlIt = controls.begin(); controlIt < controls.end()-1; controlIt++){
-				if(mode.Lines)
-					sfmlView->Draw(sf::Shape::Line(controlIt->x, controlIt->y, (controlIt+1)->x, (controlIt+1)->y, 1, sf::Color(0, 0, 200)));
-				if(mode.Vertices)
-					sfmlView->Draw(sf::Shape::Circle(controlIt->x, controlIt->y, 5, sf::Color(0, 0, 255)));
-			}
-			if(mode.Vertices)
-				sfmlView->Draw(sf::Shape::Circle(controls.back().x, controls.back().y, 5, sf::Color(255, 0, 0))); //last point is specially colored
-		}
-		
-		//Display an indicator of the vertex that the mouse is on, if any
-		
-		if(mode.Vertices){
-			int mouseX = sfmlView->GetInput().GetMouseX();
-			int mouseY = sfmlView->GetInput().GetMouseY();
-			
-			vector<sf::Vector2f>::iterator it;
-			for(it = controls.begin(); it < controls.end(); it++){
-				if(((*it).x - mouseX)*((*it).x - mouseX) + ((*it).y - mouseY)*((*it).y - mouseY) <= 25){ //distance formula. If the distance between this point and the clicked spot is less than 5, its within threshold
-					
-					break;
-				}
-			}
-		}
+		mainCurve.DrawCurve();
+		if(mode.Vertices)
+			mainCurve.DrawControls();
+		if(mode.Lines)
+			mainCurve.DrawBoundingLines();
 		
 		
 		sfmlView->Display();

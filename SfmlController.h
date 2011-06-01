@@ -11,12 +11,10 @@
 	IBOutlet NSView* contextView;
 	IBOutlet NSProgressIndicator *renderProgressIndicator;
 	IBOutlet NSButton *animateButton;
-	sf::RenderWindow *sfmlView; 
-	sf::Sprite spriteCurve;
+	sf::RenderWindow *sfmlView;
 	int detailValue;
-	bool gradientOn;
 	struct DrawMode{
-		bool Lines, Vertices, Gradient;
+		bool Lines, Vertices;
 	} mode;
 	
 	BezierCurve mainCurve;
@@ -32,7 +30,6 @@
 - (IBAction)onUndo:(id)sender;
 - (IBAction)onToggleVertices:(id)sender;
 - (IBAction)onToggleLines:(id)sender;
-- (IBAction)onToggleGradient:(id)sender;
 - (IBAction)onSetDetail:(id)sender;
 - (IBAction)onAnimate:(id)sender;
 - (IBAction)onZoomIn:(id)sender;
