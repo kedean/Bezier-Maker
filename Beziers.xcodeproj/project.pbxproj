@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002003F31398130A00F1A5AE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002003F21398130A00F1A5AE /* OpenGL.framework */; };
 		0083696C138ED2C100CB2EF2 /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0083696B138ED2C100CB2EF2 /* sfml-system.framework */; };
 		0083696E138ED2CA00CB2EF2 /* sfml-system.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0083696B138ED2C100CB2EF2 /* sfml-system.framework */; };
 		00ED4A6C138C33FF0099A63B /* Bezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00ED4A6A138C33FF0099A63B /* Bezier.cpp */; };
@@ -48,6 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		002003F21398130A00F1A5AE /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		0083696B138ED2C100CB2EF2 /* sfml-system.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-system.framework"; path = "/Library/Frameworks/sfml-system.framework"; sourceTree = "<absolute>"; };
 		00ED4A6A138C33FF0099A63B /* Bezier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bezier.cpp; sourceTree = "<group>"; };
 		00ED4A6B138C33FF0099A63B /* Bezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bezier.h; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				00ED4A7E138C36270099A63B /* sfml-graphics.framework in Frameworks */,
 				00ED4A80138C36270099A63B /* sfml-window.framework in Frameworks */,
 				0083696C138ED2C100CB2EF2 /* sfml-system.framework in Frameworks */,
+				002003F31398130A00F1A5AE /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +130,7 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				002003F21398130A00F1A5AE /* OpenGL.framework */,
 			);
 			name = bezier_cocoa;
 			sourceTree = "<group>";

@@ -9,7 +9,7 @@
 
 - (void)awakeFromNib 
 { 
-	sfmlView = new sf::RenderWindow(contextView); 
+	sfmlView = new sf::RenderWindow(contextView);
 	
 	[NSTimer scheduledTimerWithTimeInterval:(1.f/FPS)
 									 target:self
@@ -19,7 +19,7 @@
 	
 	[self onInit];
 	[renderProgressIndicator setUsesThreadedAnimation: YES];
-} 
+}
 
 - (void)onInit 
 {
@@ -27,7 +27,7 @@
 	for(int i = 0; i < detailValue+3; i++){
 		throttle /= 10;
 	}
-	mainCurve = BezierCurve(sfmlView).SetColor(sf::Color(255, 0, 0)).SetThrottle(throttle);
+	mainCurve = BezierCurve().SetColor(Color3f(255, 0, 0)).SetThrottle(throttle);
 	mode.Vertices = true;
 	mode.Lines = true;
 	animationMeter = 1.0f;
@@ -98,7 +98,7 @@
 		++currentScale;
 	else
 		currentScale *= 2;
-	mainCurve.Scale(currentScale, sf::Vector2f(sfmlView->GetWidth()/2, sfmlView->GetHeight()/2));
+	mainCurve.Scale(currentScale, sfmlView->GetWidth()/2, sfmlView->GetHeight()/2);
 }
 - (IBAction)onZoomOut:(id)sender{
 	if(currentScale > 1)
@@ -106,7 +106,7 @@
 	else
 		currentScale /= 2;
 
-	mainCurve.Scale(currentScale, sf::Vector2f(sfmlView->GetWidth()/2, sfmlView->GetHeight()/2));
+	mainCurve.Scale(currentScale, sfmlView->GetWidth()/2, sfmlView->GetHeight()/2);
 }
 
 - (void)display:(NSTimer *)theTimer
@@ -120,8 +120,14 @@
 	else if(animationMeter < 1.0){ //Handle the animation process
 		sf::Event Event;
 		sfmlView->GetEvent(Event); //pull any events so as to ignore them.
+		sfmlView->Clear(sf::Color(255, 255, 255));
+		mainCurve.CalcFrame(animationMeter).DrawCalcLines();
+		if(mode.Vertices)
+			mainCurve.DrawControls();
+		if(mode.Lines)
+			mainCurve.DrawBoundingLines();
 		
-		mainCurve.DrawFrame(animationMeter);
+		sfmlView->Display();
 		animationMeter += mainCurve.GetThrottle();
 		
 		if(animationMeter >= 1.0){
@@ -130,6 +136,15 @@
 		}
 	}
 	else if(animationMeter == 2){ //Handle clicking when animation is paused
+		sfmlView->Clear(sf::Color(255, 255, 255));
+		mainCurve.CalcFrame(pausedAnimationMeterVal).DrawCalcLines();
+		if(mode.Vertices)
+			mainCurve.DrawControls();
+		if(mode.Lines)
+			mainCurve.DrawBoundingLines();
+		sfmlView->Display();
+		
+		//event processing is done after displaying the current point to avoid a misrepresented curve
 		sf::Event Event; 
 		while (sfmlView->GetEvent(Event)) {
 			if (Event.Type == sf::Event::Closed) {
@@ -153,7 +168,6 @@
 				}
 			}
 		}
-		mainCurve.DrawFrame(pausedAnimationMeterVal);
 	}
 	else if(animationMeter < 2.0){ //Handles normal drawing mode
 		sf::Event Event; 
@@ -173,8 +187,8 @@
 			}
 			else if(Event.Type == sf::Event::MouseMoved){
 				if(mouseClicked == true){
-					sf::Vector2f removed = mainCurve.RemovePoint(-1);
-					if(removed.x == -1 && removed.y == -1){ //no point was found, shift the screen instead
+					Vector2f removed = mainCurve.RemovePoint(-1);
+					if(removed.first == -1 && removed.second == -1){ //no point was found, shift the screen instead
 						
 					}
 					else{
@@ -204,8 +218,7 @@
 			mainCurve.DrawControls();
 		if(mode.Lines)
 			mainCurve.DrawBoundingLines();
-		
-		
+		sfmlView->Draw(sf::Shape::Line(0, 0, 1, 1, 1, sf::Color(0, 0, 0)));
 		sfmlView->Display();
 	}
 } 
