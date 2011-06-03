@@ -121,11 +121,11 @@
 		sf::Event Event;
 		sfmlView->GetEvent(Event); //pull any events so as to ignore them.
 		sfmlView->Clear(sf::Color(255, 255, 255));
-		mainCurve.CalcFrame(animationMeter).DrawCalcLines();
-		if(mode.Vertices)
-			mainCurve.DrawControls();
+		mainCurve.CalcFrame(animationMeter).DrawCalcLines().DrawCurve();
 		if(mode.Lines)
 			mainCurve.DrawBoundingLines();
+		if(mode.Vertices)
+			mainCurve.DrawControls();
 		
 		sfmlView->Display();
 		animationMeter += mainCurve.GetThrottle();
@@ -137,11 +137,12 @@
 	}
 	else if(animationMeter == 2){ //Handle clicking when animation is paused
 		sfmlView->Clear(sf::Color(255, 255, 255));
-		mainCurve.CalcFrame(pausedAnimationMeterVal).DrawCalcLines();
-		if(mode.Vertices)
-			mainCurve.DrawControls();
+		mainCurve.CalcFrame(pausedAnimationMeterVal).DrawCalcLines().DrawCurve();
 		if(mode.Lines)
 			mainCurve.DrawBoundingLines();
+		if(mode.Vertices)
+			mainCurve.DrawControls();
+		
 		sfmlView->Display();
 		
 		//event processing is done after displaying the current point to avoid a misrepresented curve
@@ -214,10 +215,10 @@
 		
 		sfmlView->Clear(sf::Color(255,255,255));
 		mainCurve.DrawCurve();
-		if(mode.Vertices)
-			mainCurve.DrawControls();
 		if(mode.Lines)
 			mainCurve.DrawBoundingLines();
+		if(mode.Vertices)
+			mainCurve.DrawControls();
 		sfmlView->Draw(sf::Shape::Line(0, 0, 1, 1, 1, sf::Color(0, 0, 0)));
 		sfmlView->Display();
 	}

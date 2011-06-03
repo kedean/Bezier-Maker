@@ -1,8 +1,19 @@
 #include "Bezier.h"
 
-Vector2f BezierCurve::Interpolate(double i){
+inline int Factorial(int k){
+	int result = 1;
+	int i;
+	for (i = 1; i <= k; i++){
+		result *= i;
+	}
 	
-	//incorrect implementation
+	return result;
+}
+double BinomialCoefficient(int n, int i){
+	return Factorial(n) / (double)(Factorial(i) * Factorial(n - i));
+}
+
+Vector2f BezierCurve::Interpolate(double i){
 	
 	int n = _controls.size() - 1; //n should actually be one less than the number of coords
 	
@@ -14,8 +25,9 @@ Vector2f BezierCurve::Interpolate(double i){
 	double jN = 1;
 	for(int k = 0; k < n; k++) //jN is j to the nth power, will be 1 by the end
 		jN *= j;
+	
 	for(int k = 0; k <= n; k++){
-		double multiplier = ((k > 0 && k < n) ? n : 1) * iN * jN; //middle values are multiplied by n, then in any case by the current powers of i and j
+		double multiplier = BinomialCoefficient(n, k) * iN * jN; //middle values are multiplied by n, then in any case by the current powers of i and j
 		iN *= i;
 		jN /= j;
 		
@@ -46,7 +58,7 @@ Vector2f BezierCurve::Derive(double i){
 	for(int k = 0; k < n; k++) //jN is j to the nth power, will be 1 by the end
 		jN *= j;
 	for(int k = 0; k <= n; k++){
-		double multiplier = ((k > 0 && k < n) ? n : 1) * iN * jN; //middle values are multiplied by n, then in any case by the current powers of i and j
+		double multiplier = BinomialCoefficient(n, k) * iN * jN; //middle values are multiplied by n, then in any case by the current powers of i and j
 		iN *= i;
 		jN /= j;
 		
@@ -57,6 +69,8 @@ Vector2f BezierCurve::Derive(double i){
 }
 
 Vector2f BezierCurve::CalcLineLayer(double t, bool draw){
+	//alternate implementation of Interpolate()
+	
 	int maxControl = _controls.size()-1; //do not operate on the last control, since it will be just an endpoint to a line
 	if(maxControl == 0) //only one control, so there are no control sets
 		return _controls[0];
@@ -98,7 +112,6 @@ void BezierCurve::Generate(){
 				_points.push_back(p);
 			}
 		}
-		
 		_canvasTime = 0;
 		
 		/*if(_canvas){

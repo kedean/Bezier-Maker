@@ -36,7 +36,7 @@ private:
 	double _scaleFactor;
 	Vector2f _scaleOffsets;
 	
-	void Generate(); //Regenerates the points of the curve
+	void Generate(); //Regenerates the points of the curve. Internal only, foruse after calls that alter the control point structure
 	
 public:
 	BezierCurve();
@@ -52,7 +52,7 @@ public:
 	
 	BezierCurve& CalcFrame(double t=1.1); //same function as generate, except only up to the given time t. If drawing is enabled, it will also illustrate the steps used to animate
 	Vector2f CalcLineLayer(double t, bool draw=false); //calculate the point at time interval t by recursively (technically used a for loop instead of recursion) performing intersections of lines in the control set. The final intersection is the result.
-	Vector2f Interpolate(double i); //Mathematically calculates the point located at the time interval i
+	Vector2f Interpolate(double i); //Mathematically calculates the point located at the time interval i using the Bezier formula
 	Vector2f Derive(double i); //Mathematically calculates the point located at time interval i on the first derivative of the curve
 	
 	/*control point manipulation*/
