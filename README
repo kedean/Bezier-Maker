@@ -1,0 +1,8 @@
+Python version of my Bezier demo. There will be GUI controls at a later date, but currently the controls include:
+
+left mouse click - add a control point
+a - animate the calculations over 1 second.
+p - pause or resume animation
+s - perform an animation step, can be done without starting animation
+shift+s - reverse an animation step
+c - clear the control points
