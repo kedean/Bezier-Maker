@@ -1,8 +1,24 @@
-Python version of my Bezier demo. There will be GUI controls at a later date, but currently the controls include:
+Kevin Dean  
+Copyright 2013  
+----------  
+  
+Python version of my Bezier demo. There will be GUI controls at a later date, but currently the controls include:  
+  
+left mouse click - add a control point  
+a - animate the calculations over 1 second.  
+p - pause or resume animation  
+s - perform an animation step, can be done without starting animation  
+shift+s - reverse an animation step  
+c - clear the control points  
+  
+  
+----------  
+Requirements  
+----------  
+  
+Runs and tested on Python 2.7, requires an installation of Pyglet.  
+It must be run in 32-bit python due to pyglet use. On Mac OSX this requires  
 
-left mouse click - add a control point
-a - animate the calculations over 1 second.
-p - pause or resume animation
-s - perform an animation step, can be done without starting animation
-shift+s - reverse an animation step
-c - clear the control points
+    arch -i386 python main.py
+
+where 'python' is the absolute path to your python interpreter. Just 'python' will work if using the OSX included version.
