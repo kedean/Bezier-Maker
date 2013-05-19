@@ -1,870 +1,0 @@
-TBeziers
-v7
-r0
-t328210026.688473
-cCheck dependencies
-cProcessInfoPlistFile /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Info.plist Beziers-Info.plist
-cCopyStringsFile /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
-cCompileXIB /Users/kevindean/Downloads/bezier_cocoa/English.lproj/MainMenu.xib
-cProcessPCH /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-ficdvvotwuivdwagavrarhalifvb/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 objective-c com.apple.compilers.gcc.4_2
-cProcessPCH++ /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-evzrdrljzvqwrxacbxwqpktlxrnq/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 c++ com.apple.compilers.gcc.4_2
-cProcessPCH++ /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-dpzwuwyrfspscecsvjjiyozzektt/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 objective-c++ com.apple.compilers.gcc.4_2
-cCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o /Users/kevindean/Downloads/bezier_cocoa/main.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o /Users/kevindean/Downloads/bezier_cocoa/Bezier.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
-cCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o /Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm normal x86_64 objective-c++ com.apple.compilers.gcc.4_2
-cLd /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers normal x86_64
-cPBXCp build/Debug/Beziers.app/Contents/Frameworks/sfml-system.framework /Library/Frameworks/sfml-system.framework
-cPBXCp build/Debug/Beziers.app/Contents/Frameworks/sfml-window.framework /Library/Frameworks/sfml-window.framework
-cPBXCp build/Debug/Beziers.app/Contents/Frameworks/sfml-graphics.framework /Library/Frameworks/sfml-graphics.framework
-cTouch /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app
-
-N/Developer/SDKs/MacOSX10.6.sdk
-c000000004A769DAB00000000000000EE
-t1249287595
-s238
-
-N/Developer/SDKs/MacOSX10.6.sdk/Library/Frameworks/SFML.framework/Headers/Graphics.hpp
-c000000004BBA050700000000000006DA
-t1270482183
-s1754
-
-N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Cocoa.framework/Headers/Cocoa.h
-c0000000040C4AA6800000000000001E5
-t1086630504
-s485
-
-N/Library/Frameworks/sfml-graphics.framework
-c000000004BBA050600000000000000AA
-t1270482182
-s170
-
-N/Library/Frameworks/sfml-graphics.framework/sfml-graphics
-c000000004BBA050600000000004FCC40
-t1270482182
-s5229632
-
-N/Library/Frameworks/sfml-system.framework
-c000000004BBA050600000000000000AA
-t1270482182
-s170
-
-N/Library/Frameworks/sfml-system.framework/sfml-system
-c000000004BBA050700000000001C45D8
-t1270482183
-s1852888
-
-N/Library/Frameworks/sfml-window.framework
-c000000004BBA050700000000000000AA
-t1270482183
-s170
-
-N/Library/Frameworks/sfml-window.framework/sfml-window
-c000000004BBA050700000000001FC530
-t1270482183
-s2082096
-
-N/System/Library/Frameworks/Cocoa.framework/Cocoa
-c000000004A1F2D63000000000000A5E0
-t1243557219
-s42464
-
-N/Users/kevin/Downloads/bezier_cocoa/Bezier.cpp
-c000000004DDEEA8F00000000000028EC
-t1306454671
-s10476
-i"Bezier.h"
-i<iostream>
-
-N/Users/kevin/Downloads/bezier_cocoa/Bezier.h
-c000000004DDEE59400000000000008E3
-t1306453396
-s2275
-i<SFML/Graphics.hpp>
-i<vector>
-
-N/Users/kevin/Downloads/bezier_cocoa/Beziers_Prefix.pch
-c000000004DDBFC3E000000000000009B
-t1306262590
-s155
-i<Cocoa/Cocoa.h>
-
-N/Users/kevin/Downloads/bezier_cocoa/English.lproj/InfoPlist.strings
-c000000004DDBFC3E000000000000002D
-t1306262590
-s45
-
-N/Users/kevin/Downloads/bezier_cocoa/English.lproj/MainMenu.xib
-c000000004DDEEBD80000000000034A8C
-t1306455000
-s215692
-
-N/Users/kevin/Downloads/bezier_cocoa/SfmlController.h
-c000000004DDEE6EB00000000000003A2
-t1306453739
-s930
-i<Cocoa/Cocoa.h>
-i<SFML/Graphics.hpp>
-i"Bezier.h"
-
-N/Users/kevin/Downloads/bezier_cocoa/SfmlController.mm
-c000000004DDEEBF40000000000001B19
-t1306455028
-s6937
-i"SfmlController.h"
-i<vector>
-i<sstream>
-i<cstdio>
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o
-t1306454672
-s352172
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Beziers.LinkFileList
-c000000004DDEDB260000000000000147
-t1306450726
-s327
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o
-t1306455030
-s279924
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o
-t1306450735
-s4984
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app
-t1306455031
-s102
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks/sfml-graphics.framework
-t1306450714
-s170
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks/sfml-system.framework
-t1306450714
-s170
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks/sfml-window.framework
-t1306450714
-s170
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Info.plist
-t1306440492
-s1284
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers
-t1306455031
-s151928
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/PkgInfo
-t1306440492
-s8
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/InfoPlist.strings
-t1306440492
-s92
-
-N/Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/MainMenu.nib
-t1306455003
-s40930
-
-N/Users/kevin/Downloads/bezier_cocoa/main.m
-c000000004DDBFC3E0000000000000100
-t1306262590
-s256
-i<Cocoa/Cocoa.h>
-
-N/Users/kevindean/Documents/bezier_cocoa/Bezier.cpp
-c000000004DDECDCB0000000000002697
-t1306447307
-s9879
-i"Bezier.h"
-i<iostream>
-
-N/Users/kevindean/Documents/bezier_cocoa/Bezier.h
-c000000004DDEC7EF0000000000000912
-t1306445807
-s2322
-i<SFML/Graphics.hpp>
-i<vector>
-
-N/Users/kevindean/Documents/bezier_cocoa/Beziers_Prefix.pch
-c000000004DDBFC3D000000000000009B
-t1306262589
-s155
-i<Cocoa/Cocoa.h>
-
-N/Users/kevindean/Documents/bezier_cocoa/English.lproj/InfoPlist.strings
-c000000004DDBFC3D000000000000002D
-t1306262589
-s45
-
-N/Users/kevindean/Documents/bezier_cocoa/English.lproj/MainMenu.xib
-c000000004DDEC0B1000000000003483A
-t1306443953
-s215098
-
-N/Users/kevindean/Documents/bezier_cocoa/SfmlController.h
-c000000004DDEC782000000000000041F
-t1306445698
-s1055
-i<Cocoa/Cocoa.h>
-i<SFML/Graphics.hpp>
-i"Bezier.h"
-
-N/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm
-c000000004DDECD210000000000001B08
-t1306447137
-s6920
-i"SfmlController.h"
-i<vector>
-i<sstream>
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o
-t1306447308
-s351324
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Beziers.LinkFileList
-c000000004DDEB32C0000000000000153
-t1306440492
-s339
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o
-t1306447139
-s285036
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o
-t1306440497
-s5000
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app
-t1306447309
-s102
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks/sfml-graphics.framework
-t1306440498
-s170
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks/sfml-system.framework
-t1306440498
-s170
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks/sfml-window.framework
-t1306440498
-s170
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Info.plist
-t1306440492
-s1284
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers
-t1306447309
-s153720
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/PkgInfo
-t1306440492
-s8
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/InfoPlist.strings
-t1306440492
-s92
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/MainMenu.nib
-t1306443957
-s40841
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/sfml-graphics.framework
-t1306269054
-s170
-
-N/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/sfml-window.framework
-t1306269054
-s170
-
-N/Users/kevindean/Documents/bezier_cocoa/main.m
-c000000004DDBFC3D0000000000000100
-t1306262589
-s256
-i<Cocoa/Cocoa.h>
-
-N/Users/kevindean/Documents/bezier_cocoa/sfml-system.framework
-c000000004BBA050600000000000000AA
-t1270482182
-s170
-
-N/Users/kevindean/Documents/bezier_cocoa/sfml-system.framework/sfml-system
-c000000004BBA050700000000001C45D8
-t1270482183
-s1852888
-
-N/Users/kevindean/Downloads/bezier_cocoa/Bezier.cpp
-c000000004DDFDD880000000000002629
-t1306516872
-s9769
-i"Bezier.h"
-
-N/Users/kevindean/Downloads/bezier_cocoa/Bezier.h
-c000000004DDFD7CB00000000000008C0
-t1306515403
-s2240
-i<SFML/Graphics.hpp>
-i<vector>
-
-N/Users/kevindean/Downloads/bezier_cocoa/Beziers_Prefix.pch
-c000000004DDBFC3E000000000000009B
-t1306262590
-s155
-i<Cocoa/Cocoa.h>
-
-N/Users/kevindean/Downloads/bezier_cocoa/English.lproj/InfoPlist.strings
-c000000004DDBFC3E000000000000002D
-t1306262590
-s45
-
-N/Users/kevindean/Downloads/bezier_cocoa/English.lproj/MainMenu.xib
-c000000004DDEEBD80000000000034A8C
-t1306455000
-s215692
-
-N/Users/kevindean/Downloads/bezier_cocoa/SfmlController.h
-c000000004DDEE6EC00000000000003A2
-t1306453740
-s930
-i<Cocoa/Cocoa.h>
-i<SFML/Graphics.hpp>
-i"Bezier.h"
-
-N/Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm
-c000000004DDFDF270000000000001BD6
-t1306517287
-s7126
-i"SfmlController.h"
-i<vector>
-i<sstream>
-i<cstdio>
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o
-t1306516873
-s338572
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Beziers.LinkFileList
-c000000004DDFD11B0000000000000153
-t1306513691
-s339
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o
-t1306517226
-s281004
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o
-t1306513696
-s5000
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app
-t1306517226
-s102
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks/sfml-graphics.framework
-t1306513673
-s170
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks/sfml-system.framework
-t1306513673
-s170
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks/sfml-window.framework
-t1306513673
-s170
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Info.plist
-t1306440492
-s1284
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers
-t1306517226
-s153656
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/PkgInfo
-t1306440492
-s8
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/InfoPlist.strings
-t1306440492
-s92
-
-N/Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/MainMenu.nib
-t1306455004
-s40930
-
-N/Users/kevindean/Downloads/bezier_cocoa/main.m
-c000000004DDBFC3E0000000000000100
-t1306262590
-s256
-i<Cocoa/Cocoa.h>
-
-N/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-azlfwwhgkkdbpdasxrirwixnpvdb/Beziers_Prefix.pch.gch
-t1306268778
-s2523504
-
-N/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-birituxkllaeszgzdynitfluqwfj/Beziers_Prefix.pch.gch
-t1306440496
-s54306576
-
-N/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-dpzwuwyrfspscecsvjjiyozzektt/Beziers_Prefix.pch.gch
-t1306513695
-s58648208
-
-N/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-evzrdrljzvqwrxacbxwqpktlxrnq/Beziers_Prefix.pch.gch
-t1306513691
-s2523504
-
-N/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-ficdvvotwuivdwagavrarhalifvb/Beziers_Prefix.pch.gch
-t1306513695
-s54306576
-
-N/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-frxspknfukayfkekkzatpffuyona/Beziers_Prefix.pch.gch
-t1306440493
-s2523504
-
-N/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-fzqmrlnzuhmjdfbndzobheujoenc/Beziers_Prefix.pch.gch
-t1306268781
-s54306576
-
-N/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-gcmptvuixrofkidahudcqmhkvpqc/Beziers_Prefix.pch.gch
-t1306268782
-s58648208
-
-N/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-gramffqmrfticxbaimyobbgxgdwh/Beziers_Prefix.pch.gch
-t1306440497
-s58648208
-
-N/var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-ankkhxmbvtwegdfopfaffbpmdwts/Beziers_Prefix.pch.gch
-t1306450726
-s2523504
-
-N/var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-caxvpuivfvktuaflstvmzqrmzjop/Beziers_Prefix.pch.gch
-t1306450734
-s58648208
-
-N/var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-fckelndiktxcyegngecbdozsjwnk/Beziers_Prefix.pch.gch
-t1306450735
-s54306576
-
-NBeziers-Info.plist
-c000000004DDBFC3E00000000000003EA
-t1306262590
-s1002
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies328210025#328210025#0(0"0(0#1#0"8615722016#0"0#
-
-CCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o /Users/kevin/Downloads/bezier_cocoa/Bezier.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
-s328147471.643761
-e328147472.768354
-r1
-xCompileC
-xbuild/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o
-x/Users/kevin/Downloads/bezier_cocoa/Bezier.cpp
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@54"Compile /Users/kevin/Downloads/bezier_cocoa/Bezier.cpp328147471#328147472#0(0"0(0#0#46"/Users/kevin/Downloads/bezier_cocoa/Bezier.cpp8611456256#1470"    cd /Users/kevin/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevin/Downloads/bezier_cocoa/build/Debug -F/Users/kevin/Downloads/bezier_cocoa -I/Users/kevin/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -include /var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-ankkhxmbvtwegdfopfaffbpmdwts/Beziers_Prefix.pch -c /Users/kevin/Downloads/bezier_cocoa/Bezier.cpp -o /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o0#
-
-CCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o /Users/kevindean/Documents/bezier_cocoa/Bezier.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
-s328140107.706438
-e328140108.964572
-r1
-xCompileC
-xbuild/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o
-x/Users/kevindean/Documents/bezier_cocoa/Bezier.cpp
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@58"Compile /Users/kevindean/Documents/bezier_cocoa/Bezier.cpp328140107#328140108#0(0"0(0#0#50"/Users/kevindean/Documents/bezier_cocoa/Bezier.cpp8625422208#1518"    cd /Users/kevindean/Documents/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Documents/bezier_cocoa/build/Debug -F/Users/kevindean/Documents/bezier_cocoa -I/Users/kevindean/Documents/bezier_cocoa/build/Debug/include -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -include /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-frxspknfukayfkekkzatpffuyona/Beziers_Prefix.pch -c /Users/kevindean/Documents/bezier_cocoa/Bezier.cpp -o /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o0#
-
-CCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o /Users/kevindean/Downloads/bezier_cocoa/Bezier.cpp normal x86_64 c++ com.apple.compilers.gcc.4_2
-s328209672.548597
-e328209673.765924
-r1
-xCompileC
-xbuild/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o
-x/Users/kevindean/Downloads/bezier_cocoa/Bezier.cpp
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@58"Compile /Users/kevindean/Downloads/bezier_cocoa/Bezier.cpp328209672#328209673#0(0"0(0#0#50"/Users/kevindean/Downloads/bezier_cocoa/Bezier.cpp8611602080#1518"    cd /Users/kevindean/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Downloads/bezier_cocoa/build/Debug -F/Users/kevindean/Downloads/bezier_cocoa -I/Users/kevindean/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -include /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-evzrdrljzvqwrxacbxwqpktlxrnq/Beziers_Prefix.pch -c /Users/kevindean/Downloads/bezier_cocoa/Bezier.cpp -o /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Bezier.o0#
-
-CCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o /Users/kevin/Downloads/bezier_cocoa/SfmlController.mm normal x86_64 objective-c++ com.apple.compilers.gcc.4_2
-s328147829.942864
-e328147830.970169
-r1
-xCompileC
-xbuild/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o
-x/Users/kevin/Downloads/bezier_cocoa/SfmlController.mm
-xnormal
-xx86_64
-xobjective-c++
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@61"Compile /Users/kevin/Downloads/bezier_cocoa/SfmlController.mm328147829#328147830#0(0"0(0#0#53"/Users/kevin/Downloads/bezier_cocoa/SfmlController.mm8612874432#1495"    cd /Users/kevin/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevin/Downloads/bezier_cocoa/build/Debug -F/Users/kevin/Downloads/bezier_cocoa -I/Users/kevin/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -include /var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-caxvpuivfvktuaflstvmzqrmzjop/Beziers_Prefix.pch -c /Users/kevin/Downloads/bezier_cocoa/SfmlController.mm -o /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o0#
-
-CCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o /Users/kevindean/Documents/bezier_cocoa/SfmlController.mm normal x86_64 objective-c++ com.apple.compilers.gcc.4_2
-s328139938.925486
-e328139939.913921
-r1
-xCompileC
-xbuild/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o
-x/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm
-xnormal
-xx86_64
-xobjective-c++
-xcom.apple.compilers.gcc.4_2
-o/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm: In function 'void AnimateInstance(sf::RenderWindow*)':
-o/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm:58: warning: 'SfmlController' may not respond to '+renderProgressIndicator'
-o/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm:58: warning: (Messages without a matching method signature
-o/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm:58: warning: will be assumed to return 'id' and accept
-o/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm:58: warning: '...' as arguments.)
-lSLF07#2@65"Compile /Users/kevindean/Documents/bezier_cocoa/SfmlController.mm328139938#328139939#0(570"/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm: In function 'void AnimateInstance(sf::RenderWindow*)':/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm:58: warning: 'SfmlController' may not respond to '+renderProgressIndicator'/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm:58: warning: (Messages without a matching method signature/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm:58: warning: will be assumed to return 'id' and accept/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm:58: warning: '...' as arguments.)2(22@62"'SfmlController' may not respond to '+renderProgressIndicator'328139939#114#134#0(6@57"/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm328139937#58#0#58#0#26"'*' may not respond to '*'0(13@108"(Messages without a matching method signature will be assumed to return 'id' and accept '...' as arguments.)328139939#248#117#0(6@57"/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm328139937#58#0#58#0#0"0(0#0#57"/Users/kevindean/Documents/bezier_cocoa/SfmlController.mm8619054016#1543"    cd /Users/kevindean/Documents/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Documents/bezier_cocoa/build/Debug -F/Users/kevindean/Documents/bezier_cocoa -I/Users/kevindean/Documents/bezier_cocoa/build/Debug/include -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -include /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-gramffqmrfticxbaimyobbgxgdwh/Beziers_Prefix.pch -c /Users/kevindean/Documents/bezier_cocoa/SfmlController.mm -o /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o0#
-
-CCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o /Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm normal x86_64 objective-c++ com.apple.compilers.gcc.4_2
-s328210025.652432
-e328210026.628526
-r1
-xCompileC
-xbuild/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o
-x/Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm
-xnormal
-xx86_64
-xobjective-c++
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@65"Compile /Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm328210025#328210026#0(0"0(0#0#57"/Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm8604995264#1543"    cd /Users/kevindean/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Downloads/bezier_cocoa/build/Debug -F/Users/kevindean/Downloads/bezier_cocoa -I/Users/kevindean/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -include /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-dpzwuwyrfspscecsvjjiyozzektt/Beziers_Prefix.pch -c /Users/kevindean/Downloads/bezier_cocoa/SfmlController.mm -o /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/SfmlController.o0#
-
-CCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o /Users/kevin/Downloads/bezier_cocoa/main.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
-s328143535.336140
-e328143535.563502
-r1
-xCompileC
-xbuild/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o
-x/Users/kevin/Downloads/bezier_cocoa/main.m
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@50"Compile /Users/kevin/Downloads/bezier_cocoa/main.m328143535#328143535#0(0"0(0#0#42"/Users/kevin/Downloads/bezier_cocoa/main.m8601849280#1455"    cd /Users/kevin/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevin/Downloads/bezier_cocoa/build/Debug -F/Users/kevin/Downloads/bezier_cocoa -I/Users/kevin/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -include /var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-fckelndiktxcyegngecbdozsjwnk/Beziers_Prefix.pch -c /Users/kevin/Downloads/bezier_cocoa/main.m -o /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o0#
-
-CCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o /Users/kevindean/Documents/bezier_cocoa/main.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
-s328133297.429649
-e328133297.597584
-r1
-xCompileC
-xbuild/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o
-x/Users/kevindean/Documents/bezier_cocoa/main.m
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@54"Compile /Users/kevindean/Documents/bezier_cocoa/main.m328133297#328133297#0(0"0(0#0#46"/Users/kevindean/Documents/bezier_cocoa/main.m8619230592#1503"    cd /Users/kevindean/Documents/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Documents/bezier_cocoa/build/Debug -F/Users/kevindean/Documents/bezier_cocoa -I/Users/kevindean/Documents/bezier_cocoa/build/Debug/include -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -include /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-birituxkllaeszgzdynitfluqwfj/Beziers_Prefix.pch -c /Users/kevindean/Documents/bezier_cocoa/main.m -o /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o0#
-
-CCompileC build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o /Users/kevindean/Downloads/bezier_cocoa/main.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
-s328206495.965420
-e328206496.124260
-r1
-xCompileC
-xbuild/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o
-x/Users/kevindean/Downloads/bezier_cocoa/main.m
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@54"Compile /Users/kevindean/Downloads/bezier_cocoa/main.m328206495#328206496#0(0"0(0#0#46"/Users/kevindean/Downloads/bezier_cocoa/main.m8603431040#1503"    cd /Users/kevindean/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Downloads/bezier_cocoa/build/Debug -F/Users/kevindean/Downloads/bezier_cocoa -I/Users/kevindean/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -include /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-ficdvvotwuivdwagavrarhalifvb/Beziers_Prefix.pch -c /Users/kevindean/Downloads/bezier_cocoa/main.m -o /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/main.o0#
-
-CCompileXIB /Users/kevin/Downloads/bezier_cocoa/English.lproj/MainMenu.xib
-s328147803.459543
-e328147803.902479
-r1
-xCompileXIB
-x/Users/kevin/Downloads/bezier_cocoa/English.lproj/MainMenu.xib
-o/* com.apple.ibtool.document.warnings */
-o/Users/kevin/Downloads/bezier_cocoa/English.lproj/MainMenu.xib:494: warning: The 'window' outlet of 'Bezier cocoa App Delegate' is connected to 'Window (Beziers)' but 'window' is no longer defined on bezier_cocoaAppDelegate.
-lSLF07#2@37"CompileXIB English.lproj/MainMenu.xib328147803#328147803#0(266"/* com.apple.ibtool.document.warnings *//Users/kevin/Downloads/bezier_cocoa/English.lproj/MainMenu.xib:494: warning: The 'window' outlet of 'Bezier cocoa App Delegate' is connected to 'Window (Beziers)' but 'window' is no longer defined on bezier_cocoaAppDelegate.1(22@147"The 'window' outlet of 'Bezier cocoa App Delegate' is connected to 'Window (Beziers)' but 'window' is no longer defined on bezier_cocoaAppDelegate.328147803#18446744073709551615#0#0(6@62"/Users/kevin/Downloads/bezier_cocoa/English.lproj/MainMenu.xib328147800#494#0#494#0#0"0(0#0#62"/Users/kevin/Downloads/bezier_cocoa/English.lproj/MainMenu.xib8617830496#355"    cd /Users/kevin/Downloads/bezier_cocoa    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/MainMenu.nib /Users/kevin/Downloads/bezier_cocoa/English.lproj/MainMenu.xib --sdk /Developer/SDKs/MacOSX10.6.sdk0#
-
-CCompileXIB /Users/kevindean/Documents/bezier_cocoa/English.lproj/MainMenu.xib
-s328136756.760381
-e328136757.133837
-r1
-xCompileXIB
-x/Users/kevindean/Documents/bezier_cocoa/English.lproj/MainMenu.xib
-o/* com.apple.ibtool.document.warnings */
-o/Users/kevindean/Documents/bezier_cocoa/English.lproj/MainMenu.xib:494: warning: The 'window' outlet of 'Bezier cocoa App Delegate' is connected to 'Window (Beziers)' but 'window' is no longer defined on bezier_cocoaAppDelegate.
-lSLF07#2@37"CompileXIB English.lproj/MainMenu.xib328136756#328136757#0(270"/* com.apple.ibtool.document.warnings *//Users/kevindean/Documents/bezier_cocoa/English.lproj/MainMenu.xib:494: warning: The 'window' outlet of 'Bezier cocoa App Delegate' is connected to 'Window (Beziers)' but 'window' is no longer defined on bezier_cocoaAppDelegate.1(22@147"The 'window' outlet of 'Bezier cocoa App Delegate' is connected to 'Window (Beziers)' but 'window' is no longer defined on bezier_cocoaAppDelegate.328136757#18446744073709551615#0#0(6@66"/Users/kevindean/Documents/bezier_cocoa/English.lproj/MainMenu.xib328136753#494#0#494#0#0"0(0#0#66"/Users/kevindean/Documents/bezier_cocoa/English.lproj/MainMenu.xib8619118272#367"    cd /Users/kevindean/Documents/bezier_cocoa    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/MainMenu.nib /Users/kevindean/Documents/bezier_cocoa/English.lproj/MainMenu.xib --sdk /Developer/SDKs/MacOSX10.6.sdk0#
-
-CCompileXIB /Users/kevindean/Downloads/bezier_cocoa/English.lproj/MainMenu.xib
-r0
-
-CCopyStringsFile /Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
-r0
-
-CCopyStringsFile /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
-s328133292.760192
-e328133292.799191
-r1
-xCopyStringsFile
-x/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/InfoPlist.strings
-xEnglish.lproj/InfoPlist.strings
-lSLF07#2@36"Copy English.lproj/InfoPlist.strings328133292#328133292#0(0"0(0#0#71"/Users/kevindean/Documents/bezier_cocoa/English.lproj/InfoPlist.strings8622029120#367"    cd /Users/kevindean/Documents/bezier_cocoa    setenv ICONV /usr/bin/iconv    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copystrings --validate --inputencoding utf-8 --outputencoding UTF-16 English.lproj/InfoPlist.strings --outdir /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj0#
-
-CCopyStringsFile /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
-r0
-
-CCpResource build/Debug/Beziers.app/Contents/Resources/sfml-graphics.framework /Library/Frameworks/sfml-graphics.framework
-s327961854.233934
-e327961854.424366
-r1
-xCpResource
-xbuild/Debug/Beziers.app/Contents/Resources/sfml-graphics.framework
-x/Library/Frameworks/sfml-graphics.framework
-lSLF07#2@48"Copy /Library/Frameworks/sfml-graphics.framework327961854#327961854#0(0"0(0#0#43"/Library/Frameworks/sfml-graphics.framework8612430176#336"    cd /Users/kevindean/Documents/bezier_cocoa    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Library/Frameworks/sfml-graphics.framework /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources0#
-
-CCpResource build/Debug/Beziers.app/Contents/Resources/sfml-window.framework /Library/Frameworks/sfml-window.framework
-s327961854.234894
-e327961854.355400
-r1
-xCpResource
-xbuild/Debug/Beziers.app/Contents/Resources/sfml-window.framework
-x/Library/Frameworks/sfml-window.framework
-lSLF07#2@46"Copy /Library/Frameworks/sfml-window.framework327961854#327961854#0(0"0(0#0#41"/Library/Frameworks/sfml-window.framework8611421312#334"    cd /Users/kevindean/Documents/bezier_cocoa    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Library/Frameworks/sfml-window.framework /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Resources0#
-
-CLd /Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers normal x86_64
-s328147830.970261
-e328147831.023655
-r1
-xLd
-x/Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers
-xnormal
-xx86_64
-lSLF07#2@87"Link /Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers328147830#328147831#0(0"0(0#0#0"8618127904#636"    cd /Users/kevin/Downloads/bezier_cocoa    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/g++-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/kevin/Downloads/bezier_cocoa/build/Debug -F/Users/kevin/Downloads/bezier_cocoa/build/Debug -F/Users/kevin/Downloads/bezier_cocoa -filelist /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Beziers.LinkFileList -mmacosx-version-min=10.6 -framework Cocoa -framework sfml-graphics -framework sfml-window -framework sfml-system -o /Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers0#
-
-CLd /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers normal x86_64
-s328140108.964665
-e328140109.070570
-r1
-xLd
-x/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers
-xnormal
-xx86_64
-lSLF07#2@91"Link /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers328140108#328140109#0(0"0(0#0#0"8621709440#660"    cd /Users/kevindean/Documents/bezier_cocoa    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/g++-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/kevindean/Documents/bezier_cocoa/build/Debug -F/Users/kevindean/Documents/bezier_cocoa/build/Debug -F/Users/kevindean/Documents/bezier_cocoa -filelist /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Beziers.LinkFileList -mmacosx-version-min=10.6 -framework Cocoa -framework sfml-graphics -framework sfml-window -framework sfml-system -o /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers0#
-
-CLd /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers normal x86_64
-s328210026.628608
-e328210026.685470
-r1
-xLd
-x/Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers
-xnormal
-xx86_64
-lSLF07#2@91"Link /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers328210026#328210026#0(0"0(0#0#0"8619730688#660"    cd /Users/kevindean/Downloads/bezier_cocoa    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/g++-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/kevindean/Downloads/bezier_cocoa/build/Debug -F/Users/kevindean/Downloads/bezier_cocoa/build/Debug -F/Users/kevindean/Downloads/bezier_cocoa -filelist /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Objects-normal/x86_64/Beziers.LinkFileList -mmacosx-version-min=10.6 -framework Cocoa -framework sfml-graphics -framework sfml-window -framework sfml-system -o /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/MacOS/Beziers0#
-
-CPBXCp build/Debug/Beziers.app/Contents/Frameworks/sfml-graphics.framework /Library/Frameworks/sfml-graphics.framework
-s328133298.274350
-e328133298.412644
-r1
-xPBXCp
-xbuild/Debug/Beziers.app/Contents/Frameworks/sfml-graphics.framework
-x/Library/Frameworks/sfml-graphics.framework
-lSLF07#2@48"Copy /Library/Frameworks/sfml-graphics.framework328133298#328133298#0(0"0(0#0#43"/Library/Frameworks/sfml-graphics.framework8622612288#337"    cd /Users/kevindean/Documents/bezier_cocoa    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Library/Frameworks/sfml-graphics.framework /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks0#
-
-CPBXCp build/Debug/Beziers.app/Contents/Frameworks/sfml-system.framework /Library/Frameworks/sfml-system.framework
-s328133298.272761
-e328133298.323204
-r1
-xPBXCp
-xbuild/Debug/Beziers.app/Contents/Frameworks/sfml-system.framework
-x/Library/Frameworks/sfml-system.framework
-lSLF07#2@46"Copy /Library/Frameworks/sfml-system.framework328133298#328133298#0(0"0(0#0#41"/Library/Frameworks/sfml-system.framework8626201504#335"    cd /Users/kevindean/Documents/bezier_cocoa    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Library/Frameworks/sfml-system.framework /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks0#
-
-CPBXCp build/Debug/Beziers.app/Contents/Frameworks/sfml-system.framework sfml-system.framework
-s327962319.390412
-e327962319.399669
-r1
-xPBXCp
-xbuild/Debug/Beziers.app/Contents/Frameworks/sfml-system.framework
-xsfml-system.framework
-lSLF07#2@26"Copy sfml-system.framework327962319#327962319#0(0"0(0#0#61"/Users/kevindean/Documents/bezier_cocoa/sfml-system.framework8630208384#355"    cd /Users/kevindean/Documents/bezier_cocoa    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Users/kevindean/Documents/bezier_cocoa/sfml-system.framework /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks0#
-
-CPBXCp build/Debug/Beziers.app/Contents/Frameworks/sfml-window.framework /Library/Frameworks/sfml-window.framework
-s328133298.273728
-e328133298.312459
-r1
-xPBXCp
-xbuild/Debug/Beziers.app/Contents/Frameworks/sfml-window.framework
-x/Library/Frameworks/sfml-window.framework
-lSLF07#2@46"Copy /Library/Frameworks/sfml-window.framework328133298#328133298#0(0"0(0#0#41"/Library/Frameworks/sfml-window.framework8623958848#335"    cd /Users/kevindean/Documents/bezier_cocoa    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks /Library/Frameworks/sfml-window.framework /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Frameworks0#
-
-CProcessInfoPlistFile /Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Info.plist Beziers-Info.plist
-r0
-
-CProcessInfoPlistFile /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Info.plist Beziers-Info.plist
-s328133292.756413
-e328133292.760104
-r1
-xProcessInfoPlistFile
-x/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Info.plist
-xBeziers-Info.plist
-lSLF07#2@26"Process Beziers-Info.plist328133292#328133292#0(0"0(0#0#58"/Users/kevindean/Documents/bezier_cocoa/Beziers-Info.plist8615337408#313"    cd /Users/kevindean/Documents/bezier_cocoa    builtin-infoPlistUtility Beziers-Info.plist -genpkginfo /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app/Contents/Info.plist0#
-
-CProcessInfoPlistFile /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app/Contents/Info.plist Beziers-Info.plist
-r0
-
-CProcessPCH /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-birituxkllaeszgzdynitfluqwfj/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 objective-c com.apple.compilers.gcc.4_2
-s328133293.131563
-e328133296.873066
-r1
-xProcessPCH
-x/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-birituxkllaeszgzdynitfluqwfj/Beziers_Prefix.pch.gch
-xBeziers_Prefix.pch
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@29"Precompile Beziers_Prefix.pch328133293#328133296#0(0"0(0#0#58"/Users/kevindean/Documents/bezier_cocoa/Beziers_Prefix.pch8619754432#1408"    cd /Users/kevindean/Documents/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Documents/bezier_cocoa/build/Debug -F/Users/kevindean/Documents/bezier_cocoa -I/Users/kevindean/Documents/bezier_cocoa/build/Debug/include -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -c /Users/kevindean/Documents/bezier_cocoa/Beziers_Prefix.pch -o /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-birituxkllaeszgzdynitfluqwfj/Beziers_Prefix.pch.gch0#
-
-CProcessPCH /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-ficdvvotwuivdwagavrarhalifvb/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 objective-c com.apple.compilers.gcc.4_2
-s328206491.861867
-e328206495.302394
-r1
-xProcessPCH
-x/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-ficdvvotwuivdwagavrarhalifvb/Beziers_Prefix.pch.gch
-xBeziers_Prefix.pch
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@29"Precompile Beziers_Prefix.pch328206491#328206495#0(0"0(0#0#58"/Users/kevindean/Downloads/bezier_cocoa/Beziers_Prefix.pch8237188667905763328#1408"    cd /Users/kevindean/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Downloads/bezier_cocoa/build/Debug -F/Users/kevindean/Downloads/bezier_cocoa -I/Users/kevindean/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -c /Users/kevindean/Downloads/bezier_cocoa/Beziers_Prefix.pch -o /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-ficdvvotwuivdwagavrarhalifvb/Beziers_Prefix.pch.gch0#
-
-CProcessPCH /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-fzqmrlnzuhmjdfbndzobheujoenc/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CProcessPCH /var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-fckelndiktxcyegngecbdozsjwnk/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 objective-c com.apple.compilers.gcc.4_2
-s328143526.145359
-e328143535.336037
-r1
-xProcessPCH
-x/var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-fckelndiktxcyegngecbdozsjwnk/Beziers_Prefix.pch.gch
-xBeziers_Prefix.pch
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@29"Precompile Beziers_Prefix.pch328143526#328143535#0(0"0(0#0#54"/Users/kevin/Downloads/bezier_cocoa/Beziers_Prefix.pch8237188667905763328#1364"    cd /Users/kevin/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevin/Downloads/bezier_cocoa/build/Debug -F/Users/kevin/Downloads/bezier_cocoa -I/Users/kevin/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -c /Users/kevin/Downloads/bezier_cocoa/Beziers_Prefix.pch -o /var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-fckelndiktxcyegngecbdozsjwnk/Beziers_Prefix.pch.gch0#
-
-CProcessPCH++ /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-azlfwwhgkkdbpdasxrirwixnpvdb/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 c++ com.apple.compilers.gcc.4_2
-r0
-
-CProcessPCH++ /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-dpzwuwyrfspscecsvjjiyozzektt/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 objective-c++ com.apple.compilers.gcc.4_2
-s328206491.866213
-e328206495.965305
-r1
-xProcessPCH++
-x/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-dpzwuwyrfspscecsvjjiyozzektt/Beziers_Prefix.pch.gch
-xBeziers_Prefix.pch
-xnormal
-xx86_64
-xobjective-c++
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@29"Precompile Beziers_Prefix.pch328206491#328206495#0(0"0(0#0#58"/Users/kevindean/Downloads/bezier_cocoa/Beziers_Prefix.pch8604809600#1427"    cd /Users/kevindean/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c++-header -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Downloads/bezier_cocoa/build/Debug -F/Users/kevindean/Downloads/bezier_cocoa -I/Users/kevindean/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -c /Users/kevindean/Downloads/bezier_cocoa/Beziers_Prefix.pch -o /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-dpzwuwyrfspscecsvjjiyozzektt/Beziers_Prefix.pch.gch0#
-
-CProcessPCH++ /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-evzrdrljzvqwrxacbxwqpktlxrnq/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 c++ com.apple.compilers.gcc.4_2
-s328206491.865475
-e328206491.936470
-r1
-xProcessPCH++
-x/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-evzrdrljzvqwrxacbxwqpktlxrnq/Beziers_Prefix.pch.gch
-xBeziers_Prefix.pch
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@29"Precompile Beziers_Prefix.pch328206491#328206491#0(0"0(0#0#58"/Users/kevindean/Downloads/bezier_cocoa/Beziers_Prefix.pch8604961664#1417"    cd /Users/kevindean/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++-header -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Downloads/bezier_cocoa/build/Debug -F/Users/kevindean/Downloads/bezier_cocoa -I/Users/kevindean/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -c /Users/kevindean/Downloads/bezier_cocoa/Beziers_Prefix.pch -o /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-evzrdrljzvqwrxacbxwqpktlxrnq/Beziers_Prefix.pch.gch0#
-
-CProcessPCH++ /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-frxspknfukayfkekkzatpffuyona/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 c++ com.apple.compilers.gcc.4_2
-s328133293.132553
-e328133293.239761
-r1
-xProcessPCH++
-x/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-frxspknfukayfkekkzatpffuyona/Beziers_Prefix.pch.gch
-xBeziers_Prefix.pch
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@29"Precompile Beziers_Prefix.pch328133293#328133293#0(0"0(0#0#58"/Users/kevindean/Documents/bezier_cocoa/Beziers_Prefix.pch8619691872#1417"    cd /Users/kevindean/Documents/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++-header -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Documents/bezier_cocoa/build/Debug -F/Users/kevindean/Documents/bezier_cocoa -I/Users/kevindean/Documents/bezier_cocoa/build/Debug/include -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -c /Users/kevindean/Documents/bezier_cocoa/Beziers_Prefix.pch -o /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-frxspknfukayfkekkzatpffuyona/Beziers_Prefix.pch.gch0#
-
-CProcessPCH++ /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-gcmptvuixrofkidahudcqmhkvpqc/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 objective-c++ com.apple.compilers.gcc.4_2
-r0
-
-CProcessPCH++ /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-gramffqmrfticxbaimyobbgxgdwh/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 objective-c++ com.apple.compilers.gcc.4_2
-s328133293.133620
-e328133297.429540
-r1
-xProcessPCH++
-x/var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-gramffqmrfticxbaimyobbgxgdwh/Beziers_Prefix.pch.gch
-xBeziers_Prefix.pch
-xnormal
-xx86_64
-xobjective-c++
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@29"Precompile Beziers_Prefix.pch328133293#328133297#0(0"0(0#0#58"/Users/kevindean/Documents/bezier_cocoa/Beziers_Prefix.pch8619552544#1427"    cd /Users/kevindean/Documents/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c++-header -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevindean/Documents/bezier_cocoa/build/Debug -F/Users/kevindean/Documents/bezier_cocoa -I/Users/kevindean/Documents/bezier_cocoa/build/Debug/include -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevindean/Documents/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -c /Users/kevindean/Documents/bezier_cocoa/Beziers_Prefix.pch -o /var/folders/+h/+huVKFwaEOe0ZDZuXbowsk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-gramffqmrfticxbaimyobbgxgdwh/Beziers_Prefix.pch.gch0#
-
-CProcessPCH++ /var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-ankkhxmbvtwegdfopfaffbpmdwts/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 c++ com.apple.compilers.gcc.4_2
-s328143526.156039
-e328143526.278636
-r1
-xProcessPCH++
-x/var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-ankkhxmbvtwegdfopfaffbpmdwts/Beziers_Prefix.pch.gch
-xBeziers_Prefix.pch
-xnormal
-xx86_64
-xc++
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@29"Precompile Beziers_Prefix.pch328143526#328143526#0(0"0(0#0#54"/Users/kevin/Downloads/bezier_cocoa/Beziers_Prefix.pch8604692320#1373"    cd /Users/kevin/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++-header -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevin/Downloads/bezier_cocoa/build/Debug -F/Users/kevin/Downloads/bezier_cocoa -I/Users/kevin/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -c /Users/kevin/Downloads/bezier_cocoa/Beziers_Prefix.pch -o /var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-ankkhxmbvtwegdfopfaffbpmdwts/Beziers_Prefix.pch.gch0#
-
-CProcessPCH++ /var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-caxvpuivfvktuaflstvmzqrmzjop/Beziers_Prefix.pch.gch Beziers_Prefix.pch normal x86_64 objective-c++ com.apple.compilers.gcc.4_2
-s328143526.278753
-e328143534.930653
-r1
-xProcessPCH++
-x/var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-caxvpuivfvktuaflstvmzqrmzjop/Beziers_Prefix.pch.gch
-xBeziers_Prefix.pch
-xnormal
-xx86_64
-xobjective-c++
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@29"Precompile Beziers_Prefix.pch328143526#328143534#0(0"0(0#0#54"/Users/kevin/Downloads/bezier_cocoa/Beziers_Prefix.pch8604475392#1383"    cd /Users/kevin/Downloads/bezier_cocoa    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c++-header -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -fvisibility-inlines-hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-generated-files.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-own-target-headers.hmap -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-all-target-headers.hmap -iquote /Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/Beziers-project-headers.hmap -F/Users/kevin/Downloads/bezier_cocoa/build/Debug -F/Users/kevin/Downloads/bezier_cocoa -I/Users/kevin/Downloads/bezier_cocoa/build/Debug/include -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources/x86_64 -I/Users/kevin/Downloads/bezier_cocoa/build/Beziers.build/Debug/Beziers.build/DerivedSources -c /Users/kevin/Downloads/bezier_cocoa/Beziers_Prefix.pch -o /var/folders/TC/TCKjwqOXHUiem-zglnLkcU+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Beziers_Prefix-caxvpuivfvktuaflstvmzqrmzjop/Beziers_Prefix.pch.gch0#
-
-CTouch /Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app
-s328147831.023936
-e328147831.026631
-r1
-xTouch
-x/Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app
-lSLF07#2@65"Touch /Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app328147831#328147831#0(0"0(0#0#0"8617654464#125"    cd /Users/kevin/Downloads/bezier_cocoa    /usr/bin/touch -c /Users/kevin/Downloads/bezier_cocoa/build/Debug/Beziers.app0#
-
-CTouch /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app
-s328140109.071072
-e328140109.074175
-r1
-xTouch
-x/Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app
-lSLF07#2@69"Touch /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app328140109#328140109#0(0"0(0#0#0"8626347392#133"    cd /Users/kevindean/Documents/bezier_cocoa    /usr/bin/touch -c /Users/kevindean/Documents/bezier_cocoa/build/Debug/Beziers.app0#
-
-CTouch /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app
-s328210026.685781
-e328210026.688439
-r1
-xTouch
-x/Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app
-lSLF07#2@69"Touch /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app328210026#328210026#0(0"0(0#0#0"8615954400#133"    cd /Users/kevindean/Downloads/bezier_cocoa    /usr/bin/touch -c /Users/kevindean/Downloads/bezier_cocoa/build/Debug/Beziers.app0#
-

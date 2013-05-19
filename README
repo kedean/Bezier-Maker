@@ -1,3 +1,0 @@
-Project is built in XCode, using cocoa to interact with the operating system (Mac OSX).
-Requires SFML 1.6 for drawing and event handling.
-All .m and .mm files are objective c and mix with Cocoa, but Bezier.cpp and Bezier.h are OS-independent C++ that should be portable to other operating systems. The contents are a single class that should be useful in other projects.
