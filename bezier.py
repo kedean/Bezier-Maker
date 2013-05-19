@@ -70,9 +70,9 @@ class BezierBase(object):
 			max_t = self._canvasTime
 			t = 0
 			while t < max_t:
-				self.calcFrame(t)
+				self.calc_frame(t)
 				t += self._throttle
-			self.calcFrame(max_t)
+			self.calc_frame(max_t)
 		else:
 			pass
 
@@ -117,6 +117,15 @@ class BezierBase(object):
 					
 			max_control -= 1 #loop iteration
 		return sub_controls[0]
+	def calc_frame(self, t):
+		if len(self._controls) != 0:
+			if t == 0:
+				self._points = []
+			elif t < 1:
+				p = self.calc_line_layer(t)
+				if len(self._points) == 0 or p != self._points[-1]:
+					self._points.append(p)
+		self._canvasTime = t
 	def clear_curve(self):
 		self._scaleFactor = 1
 		self._scaleOffsets = (0,0)
@@ -134,24 +143,25 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self.animating = False
 		self.animating_paused = False
 		self.stepping = 0
+		self.animation_length = 2.0
 		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
 	def update(self, dt):
 		if self.invalidated:
 			self.generate()
 			self.invalidated = False
 		if self.animating and not self.animating_paused:
-			if self._canvasTime > 1:
-				self.animating = False
-				self._canvasTime = 0
+			self._canvasTime += dt / self.animation_length
+			if self._canvasTime >= 1.0:
+				self.stop_animating()
 			else:
-				self._canvasTime += dt
+				self.calc_frame(self._canvasTime)
 		elif self.stepping != 0:
-			self._canvasTime += self.stepping * 0.01
+			self._canvasTime += (self.stepping * 0.01) / self.animation_length
+			self.calc_frame(self._canvasTime)
 			if self._canvasTime < 0:
 				self._canvasTime = 0
-			if self._canvasTime > 1:
-				self.animating = self.animating_paused = False
-				self._canvasTime = 0
+			if self._canvasTime > 1.0:
+				self.stop_animating()
 	def clear_to_2d(self):
 		self.clear()
 
@@ -206,7 +216,15 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 	def start_animating(self):
 		self._canvasTime = 0
 		self.animating = True
+		self.calc_frame(0)
 		self.animating_paused = False
+	def stop_animating(self):
+		self.animating = False
+		self.animating_paused = False
+		self._canvasTime = 0
+		self.calc_frame(1)
+		self.invalidated = True
+		self.stepping = 0
 	def pause_animating(self):
 		self.animating_paused = not self.animating_paused
 	def on_mouse_press(self, x, y, button, modifiers):
@@ -226,9 +244,8 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		elif symbol == key.S:
 			if modifiers in (0, 1) and not (self.animating and not self.animating_paused):
 				if not self.animating:
-					self.animating = True
+					self.start_animating()
 					self.animating_paused = True
-					self._canvasTime = 0
 
 				if modifiers == 1:
 					self.stepping = -1
