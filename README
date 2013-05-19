@@ -4,12 +4,14 @@ Copyright 2013
   
 Python version of my Bezier demo. There will be GUI controls at a later date, but currently the controls include:  
   
-left mouse click - add a control point  
+left mouse click - add a control point 
+right mouse click - remove the closest point within n pixels, hardcoded to 5 currently
 a - animate the calculations over 1 second.  
 p - pause or resume animation  
 s - perform an animation step, can be done without starting animation  
 shift+s - reverse an animation step  
-c - clear the control points  
+c - clear the control points 
+r - remove the last added point  
   
   
 ----------  

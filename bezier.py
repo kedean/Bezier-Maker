@@ -33,10 +33,10 @@ class BezierBase(object):
 			a = int(a)
 			b = int(b)
 			self._controls.append((a, b))
-	def remove_point(self, range, a, b=None):
+	def pop_point(self, range, a, b=None):
 		if b is None: #assume a is a two-tuple value
 			assert(len(a) == 2)
-			return self.remove_point(range, a[0], a[1])
+			return self.pop_point(range, a[0], a[1])
 
 		#else
 		x = int(a)
@@ -45,7 +45,7 @@ class BezierBase(object):
 		for c in self._controls:
 			if (c[0] - x)**2 + (c[1] - y)**2 <= range_2:
 				self._controls.remove(c)
-				return self.POINT_REMOVED
+				return c
 
 		return self.POINT_NOT_FOUND
 	def pop_point_at_index(self, index):
@@ -145,10 +145,14 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self.stepping = 0
 		self.animation_length = 2.0
 		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
+	def invalidate(self):
+		self.invalidated = True
+	def validate(self):
+		self.invalidated = False
 	def update(self, dt):
 		if self.invalidated:
 			self.generate()
-			self.invalidated = False
+			self.validate()
 		if self.animating and not self.animating_paused:
 			self._canvasTime += dt / self.animation_length
 			if self._canvasTime >= 1.0:
@@ -163,8 +167,8 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			if self._canvasTime > 1.0:
 				self.stop_animating()
 	def clear_to_2d(self):
+		glClearColor(1, 1, 1, 1)
 		self.clear()
-
 		width, height = self.get_size()
 		glDisable(GL_DEPTH_TEST)
 		glViewport(0, 0, width, height)
@@ -211,7 +215,6 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		glVertex2f(p[0], p[1] + 5)
 		glEnd()
 	def run(self):
-		glClearColor(1, 1, 1, 1)
 		pyglet.app.run()
 	def start_animating(self):
 		self._canvasTime = 0
@@ -223,13 +226,17 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self.animating_paused = False
 		self._canvasTime = 0
 		self.calc_frame(1)
-		self.invalidated = True
+		self.invalidate()
 		self.stepping = 0
 	def pause_animating(self):
 		self.animating_paused = not self.animating_paused
 	def on_mouse_press(self, x, y, button, modifiers):
-		self.invalidated = True
-		self.add_point(x, y)
+		if button == mouse.LEFT:
+			self.add_point(x, y)
+			self.invalidate()
+		elif button == mouse.RIGHT:
+			self.pop_point(5, x, y)
+			self.invalidate()
 
 	def on_mouse_motion(self, x, y, dx, dy):
 		pass
@@ -251,6 +258,9 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 					self.stepping = -1
 				elif modifiers == 0:
 					self.stepping = 1
+		elif symbol == key.R:
+			self.pop_point_at_index(-1)
+			self.invalidate()
 
 	def on_key_release(self, symbol, modifiers):
 		if symbol == key.S:
