@@ -143,13 +143,14 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self.animation_length = 2.0
 		self.control_batch = pyglet.graphics.Batch()
 		self.curve_batch = pyglet.graphics.Batch()
-		self.old_vertices = []
+		self.control_vertices = {}
+		self.curve_vertices = None
 		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
 	def invalidate(self):
 		self.invalidated = True
 	def validate(self):
 		self.invalidated = False
-	def control_vertices(self, (x,y)):
+	def make_control_vertices(self, (x,y)):
 		return [x-5, y, 0,
 				x, y - 5, 0,
 				x + 5, y, 0,
@@ -159,26 +160,17 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			self.generate()
 			self.control_batch = pyglet.graphics.Batch()
 			self.curve_batch = pyglet.graphics.Batch()
-			"""
-			THIS IS TERRIBLE AND YOU SHOULD FEEL BAD
-			FIX IT
-			"""
-
+			
 			if len(self._controls) > 0:
-				[c.delete() for c in self.old_vertices]
-				self.old_vertices = [self.control_batch.add(4, GL_QUADS, None, ('v3f/static', self.control_vertices(c))) for c in self._controls]
+				[vert.delete() for c, vert in self.control_vertices.iteritems() if c not in self._controls]
+				self.control_vertices = {}
+				for c in self._controls:
+					if c not in self.control_vertices:
+						self.control_vertices[c] = self.control_batch.add(4, GL_QUADS, None, ('v3f/static', self.make_control_vertices(c)))
 				curve_points = []
 				[curve_points.extend([c[0], c[1], 0]) for c in self._points]
-				self.old_vertices.append(
-					self.curve_batch.add(len(curve_points) / 3, GL_LINE_STRIP, None, ('v3f/static', curve_points))
-					)
-			"""
-						glBegin(GL_LINE_STRIP)
-					glColor3f(self._color[0], self._color[1], self._color[2])
-					for p in self._points:
-						glVertex2f(p[0], p[1])
-					glEnd()
-			"""
+				self.curve_vertices.delete() if (self.curve_vertices is not None) else None
+				self.curve_vertices = self.curve_batch.add(len(curve_points) / 3, GL_LINE_STRIP, None, ('v3f/static', curve_points))
 			self.validate()
 		if self.animating and not self.animating_paused:
 			self._canvasTime += dt / self.animation_length
@@ -271,6 +263,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		if symbol == key.A: #animate it!
 			self.start_animating()
 		elif symbol == key.C:
+			self.stop_animating()
 			self.clear_curve()
 			self.invalidate()
 		elif symbol == key.P:
