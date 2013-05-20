@@ -14,10 +14,10 @@ class BezierBase(object):
 
 	def __init__(self, *args, **kwargs):
 		super(BezierBase, self).__init__(*args, **kwargs)
-		self._color = (0,0,0)
-		self._controlColor = (0,0,0)
-		self._boundingLineColor = (0,0,0)
-		self._animatedLineColor = (0,255,0)
+		self._color = (0,0,0, 255)
+		self._controlColor = (0,0,0, 255)
+		self._boundingLineColor = (0,0,0, 255)
+		self._animatedLineColor = (0,255,0, 255)
 		self._throttle = 0.00001
 		self._scaleOffsets = (0,0)
 		self._scaleFactor = 1
@@ -140,10 +140,13 @@ class Button(pyglet.text.Label):
 			return True
 		else:
 			return False
+	def hovering(self, x, y):
+		return (x > self.x and x < self.x + self.content_width and y < self.y and y > self.y - self.content_height)
 
 class BezierCurve(BezierBase, pyglet.window.Window):
 	def __init__(self, *args, **kwargs):
 		super(BezierCurve, self).__init__(*args, **kwargs)
+		self.show = {"curve":True, "controls":True, "bounds":True}
 		self.invalidated = False
 		self._throttle = 0.0001
 		self.animating = False
@@ -253,9 +256,13 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		glLoadIdentity()
 	def on_draw(self):
 		self.clear_to_2d()
-		self.draw_curve()
-		self.draw_controls()
-		self.draw_bounding_lines()
+		if self.show["curve"]:
+			self.draw_curve()
+		if self.show["controls"]:
+			self.draw_controls()
+		if self.show["bounds"]:
+			self.draw_bounding_lines()
+
 		if self.animating:
 			self.draw_calc_lines()
 		if self.show_fps:
@@ -265,9 +272,10 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		if self.show_buttons:
 			[button.draw() for button in self.buttons]
 	def draw_curve(self):
+		glColor3f(self._color[0], self._color[1], self._color[2])
 		self.curve_batch.draw()
 	def draw_controls(self):
-		glColor3f(self._color[0], self._color[1], self._color[2])
+		glColor3f(self._controlColor[0], self._controlColor[1], self._controlColor[2], self._controlColor[3])
 		self.control_batch.draw()
 	def draw_bounding_lines(self):
 		glBegin(GL_LINE_STRIP)
@@ -304,6 +312,8 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self.stop_animating()
 		self.clear_curve()
 		self.invalidate()
+
+	#event bindings
 	def on_mouse_press(self, x, y, button, modifiers):
 		if self.show_buttons:
 			for b in self.buttons:
@@ -319,9 +329,13 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		elif button == mouse.RIGHT:
 			self.pop_point(5, x, y)
 			self.invalidate()
-
 	def on_mouse_motion(self, x, y, dx, dy):
-		pass
+		if self.show_buttons:
+			for b in self.buttons:
+				if b.hovering(x, y):
+					b.color = (0, 0, 100, 255)
+				else:
+					b.color = (0, 0, 0, 255)
 
 	def on_key_press(self, symbol, modifiers):
 		if symbol == key.A: #animate it!
@@ -345,10 +359,50 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			self.invalidate()
 		elif symbol == key.D:
 			self.debug()
-
 	def on_key_release(self, symbol, modifiers):
 		if symbol == key.S:
 			self.stepping = 0
-
 	def on_resize(self, width, height):
 		pass
+
+	#visual toggles
+	def toggle_curve(self, val=None):
+		if val is None:
+			self.show["curve"] = not self.show["curve"]
+		else:
+			self.show["curve"] = bool(val)
+	def toggle_controls(self, val=None):
+		if val is None:
+			self.show["controls"] = not self.show["controls"]
+		else:
+			self.show["controls"] = bool(val)
+	def toggle_bounds(self, val=None):
+		if val is None:
+			self.show["bounds"] = not self.show["bounds"]
+		else:
+			self.show["bounds"] = bool(val)
+
+	def set_curve_color(self, color):
+		color = list(color)
+		assert len(color) == 3 or len(color) == 4
+		if len(color) == 3:
+			color.append(255)
+		self._color = color
+	def set_control_color(self, color):
+		color = list(color)
+		assert len(color) == 3 or len(color) == 4
+		if len(color) == 3:
+			color.append(255)
+		self._controlColor = color
+	def set_bounds_color(self, color):
+		color = list(color)
+		assert len(color) == 3 or len(color) == 4
+		if len(color) == 3:
+			color.append(255)
+		self._boundingLineColor = color
+	def set_animation_color(self, color):
+		color = list(color)
+		assert len(color) == 3 or len(color) == 4
+		if len(color) == 3:
+			color.append(255)
+		self._animatedLineColor = color
