@@ -90,29 +90,23 @@ class BezierBase(object):
 				t += self._throttle
 			self._canvasTime = 0
 	def calc_line_layer(self, t, draw=False):
-		max_control = len(self._controls) - 1
-		if max_control == 0:
+		base_max_control = len(self._controls) - 1
+		if base_max_control == 0:
 			return self._controls[0]
-		elif max_control == -1:
+		elif base_max_control == -1:
 			return (0,0)
 
 		sub_controls = list(self._controls)
 
-		while max_control > 0:
+		for max_control in range(base_max_control, 0, -1):
 			for i in range(0, max_control):
 				sub_controls[i] = (
 					sub_controls[i][0] + (sub_controls[i+1][0] - sub_controls[i][0]) * t,
 					sub_controls[i][1] + (sub_controls[i+1][1] - sub_controls[i][1]) * t
 					)
 				if draw and i != 0:
-					
-					glBegin(GL_LINES);
 					glColor3f(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2]);
-					glVertex2f(sub_controls[i-1][0], sub_controls[i-1][1]);
-					glVertex2f(sub_controls[i][0], sub_controls[i][1]);
-					glEnd();
-					
-			max_control -= 1 #loop iteration
+					pyglet.graphics.draw(2, GL_LINES, ('v2f', (sub_controls[i-1][0], sub_controls[i-1][1], sub_controls[i][0], sub_controls[i][1])))
 		return sub_controls[0]
 	def calc_frame(self, t):
 		if len(self._controls) != 0:
@@ -128,9 +122,6 @@ class BezierBase(object):
 		self._scaleOffsets = (0,0)
 		self._controls = []
 		self._points = []
-
-
-	#draw functions, abstract these out later
 
 class BezierCurve(BezierBase, pyglet.window.Window):
 	def __init__(self, *args, **kwargs):
@@ -208,15 +199,6 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 	def draw_controls(self):
 		glColor3f(self._color[0], self._color[1], self._color[2])
 		self.control_batch.draw()
-
-		"""
-		glBegin(GL_QUADS)
-		for c in self._controls:
-			glVertex2f(c[0] - 5, c[1])
-			glVertex2f(c[0], c[1] - 5)
-			glVertex2f(c[0] + 5, c[1])
-			glVertex2f(c[0], c[1] + 5)
-		glEnd()"""
 	def draw_bounding_lines(self):
 		glBegin(GL_LINE_STRIP)
 		glColor3f(self._boundingLineColor[0], self._boundingLineColor[1], self._boundingLineColor[2])
