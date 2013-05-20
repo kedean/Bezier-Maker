@@ -136,11 +136,20 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self.curve_batch = pyglet.graphics.Batch()
 		self.control_vertices = {}
 		self.curve_vertices = None
+		self.fps_label = pyglet.text.Label('', font_name='Arial', font_size=18,
+		            x=10, y=self.height - 10, anchor_x='left', anchor_y='top',
+		            color=(0, 0, 0, 255))
+		self.show_fps = False
 		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
 	def invalidate(self):
 		self.invalidated = True
 	def validate(self):
 		self.invalidated = False
+	def debug(self, val=None):
+		if val is None:
+			self.show_fps = not self.show_fps
+		else:
+			self.show_fps = bool(val)
 	def make_control_vertices(self, (x,y)):
 		return [x-5, y, 0,
 				x, y - 5, 0,
@@ -194,6 +203,9 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self.draw_bounding_lines()
 		if self.animating:
 			self.draw_calc_lines()
+		if self.show_fps:
+			self.fps_label.text = "{0:.02f}".format(pyglet.clock.get_fps())
+			self.fps_label.draw()
 	def draw_curve(self):
 		self.curve_batch.draw()
 	def draw_controls(self):
@@ -263,6 +275,8 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		elif symbol == key.R:
 			self.pop_point_at_index(-1)
 			self.invalidate()
+		elif symbol == key.D:
+			self.debug()
 
 	def on_key_release(self, symbol, modifiers):
 		if symbol == key.S:
