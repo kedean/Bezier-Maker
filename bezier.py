@@ -4,6 +4,7 @@ from pyglet.gl import *
 #from pyglet.graphics import TextureGroup
 from pyglet.window import key, mouse
 from time import time
+import sys
 
 TICKS_PER_SEC = 60
 
@@ -44,7 +45,7 @@ class BezierBase(object):
 		for c in self._controls:
 			if (c[0] - x)**2 + (c[1] - y)**2 <= range_2:
 				self._controls.remove(c)
-				return cf
+				return c
 
 		return self.POINT_NOT_FOUND
 	def pop_point_at_index(self, index):
@@ -123,6 +124,23 @@ class BezierBase(object):
 		self._controls = []
 		self._points = []
 
+class Button(pyglet.text.Label):
+	left_click_event = lambda:None
+	right_click_event = lambda:None
+	middle_click_event = lambda:None
+
+	def parse_click(self, x, y, mouse_button):
+		if x > self.x and x < self.x + self.content_width and y < self.y and y > self.y - self.content_height:
+			if mouse_button == mouse.LEFT:
+				self.left_click_event()
+			elif mouse_button == mouse.RIGHT:
+				self.right_click_event()
+			elif mouse_button == mouse.MIDDLE:
+				self.middle_click_event()
+			return True
+		else:
+			return False
+
 class BezierCurve(BezierBase, pyglet.window.Window):
 	def __init__(self, *args, **kwargs):
 		super(BezierCurve, self).__init__(*args, **kwargs)
@@ -136,11 +154,48 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self.curve_batch = pyglet.graphics.Batch()
 		self.control_vertices = {}
 		self.curve_vertices = None
-		self.fps_label = pyglet.text.Label('', font_name='Arial', font_size=18,
-		            x=10, y=self.height - 10, anchor_x='left', anchor_y='top',
-		            color=(0, 0, 0, 255))
+		self.fps_label = pyglet.text.Label(
+						'', font_name='Arial', font_size=18,
+			            x=20, y=40, anchor_x='left', anchor_y='top',
+			            color=(0, 0, 0, 255)
+			            )
 		self.show_fps = False
+		self.show_buttons = True
+
+		#set up the gui buttons
+		self.show_button = Button('-', font_name='Arial', font_size=18,
+			            x=5, y=self.height - 18, anchor_x='left', anchor_y='top',
+			            color=(0, 0, 0, 255)
+			            )
+		self.show_button.left_click_event = lambda: (self.toggle_buttons())
+
+
+		exit_button = Button('Exit', font_name='Arial', font_size=18,
+			            x=30, y=self.height - 20, anchor_x='left', anchor_y='top',
+			            color=(0, 0, 0, 255)
+			            )
+		exit_button.left_click_event = lambda: (sys.exit(0))
+
+		animate_button = Button('Animate', font_name='Arial', font_size=18,
+			            x=30, y=self.height - 60, anchor_x='left', anchor_y='top',
+			            color=(0, 0, 0, 255)
+			            )
+		animate_button.left_click_event = lambda: (self.start_animating())
+
+		clear_button = Button('Clear', font_name='Arial', font_size=18,
+			            x=30, y=self.height - 100, anchor_x='left', anchor_y='top',
+			            color=(0, 0, 0, 255)
+			            )
+		clear_button.left_click_event = lambda: (self.run_clear())
+
+		self.buttons = [exit_button, animate_button, clear_button]
+
+		#the update loop runs at up to 60fps
 		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
+	def toggle_buttons(self):
+		self.show_buttons = not self.show_buttons
+		self.show_button.text = "-" if self.show_buttons else "+"
+
 	def invalidate(self):
 		self.invalidated = True
 	def validate(self):
@@ -206,6 +261,9 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		if self.show_fps:
 			self.fps_label.text = "{0:.02f}".format(pyglet.clock.get_fps())
 			self.fps_label.draw()
+		self.show_button.draw()
+		if self.show_buttons:
+			[button.draw() for button in self.buttons]
 	def draw_curve(self):
 		self.curve_batch.draw()
 	def draw_controls(self):
@@ -242,7 +300,19 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self.stepping = 0
 	def pause_animating(self):
 		self.animating_paused = not self.animating_paused
+	def run_clear(self):
+		self.stop_animating()
+		self.clear_curve()
+		self.invalidate()
 	def on_mouse_press(self, x, y, button, modifiers):
+		if self.show_buttons:
+			for b in self.buttons:
+				if b.parse_click(x, y, button):
+					return
+
+		if self.show_button.parse_click(x, y, button):
+			return
+
 		if button == mouse.LEFT:
 			self.add_point(x, y)
 			self.invalidate()
@@ -257,9 +327,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		if symbol == key.A: #animate it!
 			self.start_animating()
 		elif symbol == key.C:
-			self.stop_animating()
-			self.clear_curve()
-			self.invalidate()
+			self.run_clear()
 		elif symbol == key.P:
 			self.pause_animating()
 		elif symbol == key.S:
