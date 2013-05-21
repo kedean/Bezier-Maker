@@ -25,20 +25,9 @@ class BezierBase(object):
 
 		self._controls = []
 		self._points = []
-	def add_point(self, a, b=None):
-		if b is None: #assume a is a two-tuple value
-			assert(len(a) == 2)
-			self._controls.append(a)
-		else:
-			a = int(a)
-			b = int(b)
-			self._controls.append((a, b))
-	def pop_point(self, range, a, b=None):
-		if b is None: #assume a is a two-tuple value
-			assert(len(a) == 2)
-			return self.pop_point(range, a[0], a[1])
-
-		#else
+	def add_point(self, a, b):
+		self._controls.append((int(a), int(b)))	
+	def pop_point(self, range, a, b):
 		x = int(a)
 		y = int(b)
 		range_2 = range**2
@@ -198,6 +187,8 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 	def toggle_buttons(self):
 		self.show_buttons = not self.show_buttons
 		self.show_button.text = "-" if self.show_buttons else "+"
+	def set_throttle(self, throttle):
+		self._throttle = float(throttle)
 
 	def invalidate(self):
 		self.invalidated = True
