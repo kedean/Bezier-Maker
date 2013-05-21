@@ -1,3 +1,4 @@
+----------
 Kevin Dean  
 Copyright 2013  
 ----------  
@@ -12,8 +13,7 @@ s - perform an animation step, can be done without starting animation
 shift+s - reverse an animation step  
 c - clear the control points 
 r - remove the last added point  
-d - toggle debug mode  
-  
+d - toggle debug mode    
   
 ----------  
 Requirements  
@@ -25,3 +25,12 @@ It must be run in 32-bit python due to pyglet use. On Mac OSX this requires
     arch -i386 python main.py
 
 where 'python' is the absolute path to your python interpreter. Just 'python' will work if using the OSX included version.
+
+----------
+Future
+----------
+
+- turn it into a module, maybe multiple options for drawing API
+- zooming in/out (scaling)
+- detail slider
+- possible 3d mode with rotation
