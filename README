@@ -3,15 +3,15 @@ Kevin Dean
 Copyright 2013  
 ----------  
   
-Python version of my Bezier demo. There will be GUI controls at a later date, but currently the controls include:  
+Python version of my Bezier demo. Keyboard and mouse controls:  
   
 left mouse click - add a control point 
 right mouse click - remove the closest point within n pixels, hardcoded to 5 currently
-a - animate the calculations over 1 second.  
+a - animate the calculations over 1 second. Button exists.
 p - pause or resume animation  
 s - perform an animation step, can be done without starting animation  
 shift+s - reverse an animation step  
-c - clear the control points 
+c - clear the control points. Button exists.
 r - remove the last added point  
 d - toggle debug mode    
   
@@ -32,5 +32,7 @@ Future
 
 - turn it into a module, maybe multiple options for drawing API
 - zooming in/out (scaling)
-- detail slider
+- detail slider instead of buttons
 - possible 3d mode with rotation
+- ability to save designs and extract the coordinates of points
+- ability to have multiple curves
