@@ -139,10 +139,10 @@ class BezierBase(object):
 	----------
 	t : float
 		Time interval to calculate at. 0 is the start of the curve and 1 is the end.
-	draw : bool
-		If true, pyglet is used to draw out the lines that were used to calculate the point.
+	verbose : bool
+		If true, the return value is a tuple that includes the normal return value as well as a list of point pairs that form the lines that calculate the point. This can be fed straight into something like opengl's GL_LINES.
 	"""
-	def calc_line_layer(self, t, draw=False):
+	def calc_line_layer(self, t, verbose=False):
 		base_max_control = len(self._controls) - 1
 		if base_max_control == 0:
 			return self._controls[0]
@@ -151,16 +151,20 @@ class BezierBase(object):
 
 		sub_controls = list(self._controls)
 
+		sub_points = []
+
 		for max_control in range(base_max_control, 0, -1):
 			for i in range(0, max_control):
 				sub_controls[i] = (
 					sub_controls[i][0] + (sub_controls[i+1][0] - sub_controls[i][0]) * t,
 					sub_controls[i][1] + (sub_controls[i+1][1] - sub_controls[i][1]) * t
 					)
-				if draw and i != 0:
-					glColor3f(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2]);
-					pyglet.graphics.draw(2, GL_LINES, ('v2f', (sub_controls[i-1][0], sub_controls[i-1][1], sub_controls[i][0], sub_controls[i][1])))
-		return sub_controls[0]
+				if i != 0:
+					sub_points.extend([sub_controls[i-1][0], sub_controls[i-1][1], sub_controls[i][0], sub_controls[i][1]])
+		if verbose:
+			return sub_controls[0], sub_points
+		else:
+			return sub_controls[0]
 	""" 
 	Calculates for the given time and progressively adds it to the points list. Used for animating, as successive calls with increasing t's will construct the curve.
 
@@ -388,7 +392,9 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			glVertex2f(c[0], c[1])
 		glEnd()
 	def draw_calc_lines(self):
-		p = self.calc_line_layer(self._canvasTime, True)
+		p, line_points = self.calc_line_layer(self._canvasTime, True)
+		glColor3f(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2]);
+		pyglet.graphics.draw(len(line_points)/2, GL_LINES, ('v2f', line_points))
 		#draw the control for it
 		glBegin(GL_QUADS)
 		glVertex2f(p[0] - 5, p[1])
