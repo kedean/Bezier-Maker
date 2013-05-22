@@ -25,11 +25,33 @@ class BezierBase(object):
 
 		self._controls = []
 		self._points = []
-	def add_point(self, a, b):
-		self._controls.append((int(a), int(b)))	
-	def pop_point(self, range, a, b):
-		x = int(a)
-		y = int(b)
+	""" 
+	Adds a control point to the curve parameters. Regeneration is not performed automatically.
+
+	Parameters
+	----------
+	x : int
+		The x coordinate of the control point.
+	y : int
+		The y coordinate of the control point.
+	"""
+	def add_point(self, x, y):
+		self._controls.append((int(x), int(y)))	
+	""" 
+	Removes a control point from the curve parameters, within a given variation of space. Regeneration is not performed automatically.
+
+	Parameters
+	----------
+	range : int
+		The first coordinate with this radius is the point that is removed. Ordering is outward from the x,y center. For points the same distance from the center, a FIFO ordering is used.
+	x : int
+		The x coordinate of the control point.
+	y : int
+		The y coordinate of the control point.
+	"""
+	def pop_point(self, range, x, y):
+		x = int(x)
+		y = int(y)
 		range_2 = range**2
 		for c in self._controls:
 			if (c[0] - x)**2 + (c[1] - y)**2 <= range_2:
@@ -37,6 +59,14 @@ class BezierBase(object):
 				return c
 
 		return self.POINT_NOT_FOUND
+	""" 
+	Removes the indexed control point from the curve parameters. Regeneration is not performed.
+
+	Parameters
+	----------
+	index : int
+		Index of the controls list at which to remove. Negative numbers are treated as a distance from the end of the last, so -1 will be the last item added.
+	"""
 	def pop_point_at_index(self, index):
 		if abs(index) >= len(self._controls):
 			return self.POINT_NOT_FOUND
@@ -44,7 +74,19 @@ class BezierBase(object):
 			index = len(self._controls) + index
 		p = self._controls.pop(index)
 		return p
-	def scale(self, factor, (centerX, centerY)):
+	""" 
+	Shifts all control points out or in by a given factor, with shifting relative to the given center. Regeneration is not performed.
+
+	Parameters
+	----------
+	factor : float
+		Multiplicative factor by which to shift.
+	centerX : int
+		The x coordinate of the center point.
+	centerY : int
+		The y coordinate of the center point.
+	"""
+	def scale(self, factor, centerX, centerY):
 		offsetX = centerX * (factor-1)
 		offsetY = centerY * (factor-1)
 		self._controls = [
@@ -68,6 +110,13 @@ class BezierBase(object):
 		self._scaleFactor = factor
 		self._scaleOffsets = (offsetX, offsetY)
 	#math methods
+	""" 
+	Recalculates and stores the points that form the curve itself, based on the current set of control points.
+
+	Parameters
+	----------
+	
+	"""
 	def generate(self): #this can probably be optimized, its currently a copy of the c++ implementation
 		if len(self._controls) > 0:
 			#maybe use list comps?
@@ -83,6 +132,16 @@ class BezierBase(object):
 				if len(self._points) == 0 or p != self._points[-1]:
 					self._points.append(p)
 			self._canvasTime = 0
+	""" 
+	Calculates the point along the curve at drawing time t, where 0 <= t <= 1.
+
+	Parameters
+	----------
+	t : float
+		Time interval to calculate at. 0 is the start of the curve and 1 is the end.
+	draw : bool
+		If true, pyglet is used to draw out the lines that were used to calculate the point.
+	"""
 	def calc_line_layer(self, t, draw=False):
 		base_max_control = len(self._controls) - 1
 		if base_max_control == 0:
@@ -102,6 +161,14 @@ class BezierBase(object):
 					glColor3f(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2]);
 					pyglet.graphics.draw(2, GL_LINES, ('v2f', (sub_controls[i-1][0], sub_controls[i-1][1], sub_controls[i][0], sub_controls[i][1])))
 		return sub_controls[0]
+	""" 
+	Calculates for the given time and progressively adds it to the points list. Used for animating, as successive calls with increasing t's will construct the curve.
+
+	Parameters
+	----------
+	t : float
+		Time interval to calculate at. 0 is the start of the curve and 1 is the end.
+	"""
 	def calc_frame(self, t):
 		if len(self._controls) != 0:
 			if t == 0:
@@ -111,6 +178,12 @@ class BezierBase(object):
 				if len(self._points) == 0 or p != self._points[-1]:
 					self._points.append(p)
 		self._canvasTime = t
+	""" 
+	Removes all values, equivalent to deleting the BezierBase object and making a new one.
+
+	Parameters
+	----------
+	"""
 	def clear_curve(self):
 		self._scaleFactor = 1
 		self._scaleOffsets = (0,0)
@@ -172,48 +245,48 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self.curve_vertices = None
 		self.fps_label = pyglet.text.Label(
 						'', font_name='Arial', font_size=18,
-			            x=20, y=40, anchor_x='left', anchor_y='top',
-			            color=(0, 0, 0, 255)
-			            )
+						x=20, y=40, anchor_x='left', anchor_y='top',
+						color=(0, 0, 0, 255)
+						)
 		self.show_fps = False
 		self.show_buttons = True
 
 		#set up the gui buttons
 		self.show_button = Button('-', font_name='Arial', font_size=18,
-			            x=5, y=self.height - 18, anchor_x='left', anchor_y='top',
-			            color=(0, 0, 0, 255)
-			            )
+						x=5, y=self.height - 18, anchor_x='left', anchor_y='top',
+						color=(0, 0, 0, 255)
+						)
 		self.show_button.left_click_event = lambda: (self.toggle_buttons())
 		self.show_button.text = ""
 
 		exit_image = pyglet.image.load("exit.png")
 		exit_button = ImageButton(exit_image,
-			            x=0, y=self.height - exit_image.height
-			            )
+						x=0, y=self.height - exit_image.height
+						)
 		exit_button.left_click_event = lambda: (sys.exit(0))
 
 		animate_image = pyglet.image.load("animate.png")
 		animate_button = ImageButton(animate_image,
-			            x=0, y=exit_button.y - animate_image.height
-			            )
+						x=0, y=exit_button.y - animate_image.height
+						)
 		animate_button.left_click_event = lambda: (self.start_animating())
 
 		clear_image = pyglet.image.load("clear.png")
 		clear_button = ImageButton(clear_image,
-			            x=0, y=animate_button.y - clear_image.height
-			            )
+						x=0, y=animate_button.y - clear_image.height
+						)
 		clear_button.left_click_event = lambda: (self.run_clear())
 
 		more_detail_image = pyglet.image.load("more_detail.png")
 		more_detail_button = ImageButton(more_detail_image,
-			            x=0, y=clear_button.y - more_detail_image.height
-			            )
+						x=0, y=clear_button.y - more_detail_image.height
+						)
 		more_detail_button.left_click_event = lambda: (self.change_detail(-0.01))
 
 		less_detail_image = pyglet.image.load("less_detail.png")
 		less_detail_button = ImageButton(less_detail_image,
-			            x=0, y=more_detail_button.y - less_detail_image.height
-			            )
+						x=0, y=more_detail_button.y - less_detail_image.height
+						)
 		less_detail_button.left_click_event = lambda: (self.change_detail(0.01))
 
 		self.buttons = [exit_button, animate_button, clear_button, more_detail_button, less_detail_button]
