@@ -363,7 +363,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		glMatrixMode(GL_MODELVIEW)
 		glLoadIdentity()
 	def on_draw(self):
-		self.clear_to_2d()
+		self.clear()
 		if self.show["curve"]:
 			self.draw_curve()
 		if self.show["controls"]:
@@ -403,6 +403,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			p[0], p[1] + 5
 			]))
 	def run(self):
+		self.clear_to_2d()
 		pyglet.app.run()
 	def start_animating(self):
 		self._canvasTime = 0
