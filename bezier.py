@@ -53,10 +53,6 @@ class BezierBase(object):
 
 	def __init__(self, *args, **kwargs):
 		super(BezierBase, self).__init__(*args, **kwargs)
-		self._color = (0,0,0, 255)
-		self._controlColor = (0,0,0, 255)
-		self._boundingLineColor = (0,0,0, 255)
-		self._animatedLineColor = (0,255,0, 255)
 		self._throttle = 0.00001
 		self._scaleOffsets = (0,0)
 		self._scaleFactor = 1
@@ -64,7 +60,7 @@ class BezierBase(object):
 
 		self._controls = []
 		self._points = []
-		self.pool = multiprocessing.Pool()
+		self._pool = multiprocessing.Pool()
 	""" 
 	Adds a control point to the curve parameters. Regeneration is not performed automatically.
 
@@ -167,7 +163,7 @@ class BezierBase(object):
 				t += self._throttle
 			if t != 1:
 				intervals.append((self._controls, 1))
-			self._points = self.pool.map(static_calc_line_layer, intervals)
+			self._points = self._pool.map(static_calc_line_layer, intervals)
 
 	""" 
 	Calculates the point along the curve at drawing time t, where 0 <= t <= 1.
@@ -252,32 +248,37 @@ class ImageButton(pyglet.sprite.Sprite):
 class BezierCurve(BezierBase, pyglet.window.Window):
 	def __init__(self, *args, **kwargs):
 		super(BezierCurve, self).__init__(*args, **kwargs)
-		self.show = {"curve":True, "controls":True, "bounds":True}
-		self.invalidated = False
+		self._color = (0,0,0, 255)
+		self._controlColor = (0,0,0, 255)
+		self._boundingLineColor = (0,0,0, 255)
+		self._animatedLineColor = (0,255,0, 255)
+
+		self._show = {"curve":True, "controls":True, "bounds":True}
+		self._invalidated = False
 		self._throttle = 0.0001
-		self.animating = False
-		self.animating_paused = False
-		self.stepping = 0
-		self.animation_length = 2.0
-		self.control_batch = pyglet.graphics.Batch()
-		self.curve_batch = pyglet.graphics.Batch()
-		self.control_vertices = {}
-		self.curve_vertices = None
-		self.fps_label = pyglet.text.Label(
+		self._animating = False
+		self._animating_paused = False
+		self._stepping = 0
+		self._animation_length = 2.0
+		self._control_batch = pyglet.graphics.Batch()
+		self._curve_batch = pyglet.graphics.Batch()
+		self._control_vertices = {}
+		self._curve_vertices = None
+		self._fps_label = pyglet.text.Label(
 						'', font_name='Arial', font_size=18,
 						x=20, y=40, anchor_x='left', anchor_y='top',
 						color=(0, 0, 0, 255)
 						)
-		self.show_fps = False
-		self.show_buttons = True
+		self._show_fps = False
+		self._show_buttons = True
 
 		#set up the gui buttons
-		self.show_button = Button('-', font_name='Arial', font_size=18,
+		self._show_button = Button('-', font_name='Arial', font_size=18,
 						x=5, y=self.height - 18, anchor_x='left', anchor_y='top',
 						color=(0, 0, 0, 255)
 						)
-		self.show_button.left_click_event = lambda: (self.toggle_buttons())
-		self.show_button.text = ""
+		self._show_button.left_click_event = lambda: (self.toggle_buttons())
+		self._show_button.text = ""
 
 		exit_image = pyglet.image.load("exit.png")
 		exit_button = ImageButton(exit_image,
@@ -314,8 +315,8 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		#the update loop runs at up to 60fps
 		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
 	def toggle_buttons(self):
-		self.show_buttons = not self.show_buttons
-		self.show_button.text = "-" if self.show_buttons else "+"
+		self._show_buttons = not self._show_buttons
+		self._show_button.text = "-" if self._show_buttons else "+"
 	def set_throttle(self, throttle):
 		self._throttle = float(throttle)
 	def change_detail(self, amount):
@@ -324,44 +325,44 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			self._throttle = 0.01
 		self.invalidate()
 	def invalidate(self):
-		self.invalidated = True
+		self._invalidated = True
 	def validate(self):
-		self.invalidated = False
+		self._invalidated = False
 	def debug(self, val=None):
 		if val is None:
-			self.show_fps = not self.show_fps
+			self._show_fps = not self._show_fps
 		else:
-			self.show_fps = bool(val)
+			self._show_fps = bool(val)
 	def make_control_vertices(self, (x,y)):
 		return [x-5, y,
 				x, y - 5,
 				x + 5, y,
 				x, y + 5]
 	def update(self, dt):
-		if self.invalidated:
+		if self._invalidated:
 			self.generate()
-			self.control_batch = pyglet.graphics.Batch()
-			self.curve_batch = pyglet.graphics.Batch()
+			self._control_batch = pyglet.graphics.Batch()
+			self._curve_batch = pyglet.graphics.Batch()
 			
 			if len(self._controls) > 0:
-				[vert.delete() for c, vert in self.control_vertices.iteritems() if c not in self._controls]
-				self.control_vertices = {}
+				[vert.delete() for c, vert in self._control_vertices.iteritems() if c not in self._controls]
+				self._control_vertices = {}
 				for c in self._controls:
-					if c not in self.control_vertices:
-						self.control_vertices[c] = self.control_batch.add(4, GL_QUADS, None, ('v2f/static', self.make_control_vertices(c)))
+					if c not in self._control_vertices:
+						self._control_vertices[c] = self._control_batch.add(4, GL_QUADS, None, ('v2f/static', self.make_control_vertices(c)))
 				curve_points = []
 				[curve_points.extend([c[0], c[1]]) for c in self._points]
-				self.curve_vertices.delete() if (self.curve_vertices is not None) else None
-				self.curve_vertices = self.curve_batch.add(len(curve_points) / 2, GL_LINE_STRIP, None, ('v2f/static', curve_points))
+				self._curve_vertices.delete() if (self._curve_vertices is not None) else None
+				self._curve_vertices = self._curve_batch.add(len(curve_points) / 2, GL_LINE_STRIP, None, ('v2f/static', curve_points))
 			self.validate()
-		if self.animating and not self.animating_paused:
-			self._canvasTime += dt / self.animation_length
+		if self._animating and not self._animating_paused:
+			self._canvasTime += dt / self._animation_length
 			if self._canvasTime >= 1.0:
 				self.stop_animating()
 			else:
 				self.calc_frame(self._canvasTime)
-		elif self.stepping != 0:
-			self._canvasTime += (self.stepping * 0.01) / self.animation_length
+		elif self._stepping != 0:
+			self._canvasTime += (self._stepping * 0.01) / self._animation_length
 			self.calc_frame(self._canvasTime)
 			if self._canvasTime < 0:
 				self._canvasTime = 0
@@ -380,27 +381,27 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		glLoadIdentity()
 	def on_draw(self):
 		self.clear()
-		if self.show["curve"]:
+		if self._show["curve"]:
 			self.draw_curve()
-		if self.show["controls"]:
+		if self._show["controls"]:
 			self.draw_controls()
-		if self.show["bounds"]:
+		if self._show["bounds"]:
 			self.draw_bounding_lines()
 
-		if self.animating:
+		if self._animating:
 			self.draw_calc_lines()
-		if self.show_fps:
-			self.fps_label.text = "{0:.02f}".format(pyglet.clock.get_fps())
-			self.fps_label.draw()
-		self.show_button.draw()
-		if self.show_buttons:
+		if self._show_fps:
+			self._fps_label.text = "{0:.02f}".format(pyglet.clock.get_fps())
+			self._fps_label.draw()
+		self._show_button.draw()
+		if self._show_buttons:
 			[button.draw() for button in self.buttons]
 	def draw_curve(self):
 		glColor3f(self._color[0], self._color[1], self._color[2])
-		self.curve_batch.draw()
+		self._curve_batch.draw()
 	def draw_controls(self):
 		glColor3f(self._controlColor[0], self._controlColor[1], self._controlColor[2], self._controlColor[3])
-		self.control_batch.draw()
+		self._control_batch.draw()
 	def draw_bounding_lines(self):
 		glBegin(GL_LINE_STRIP)
 		glColor3f(self._boundingLineColor[0], self._boundingLineColor[1], self._boundingLineColor[2])
@@ -423,18 +424,18 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		pyglet.app.run()
 	def start_animating(self):
 		self._canvasTime = 0
-		self.animating = True
+		self._animating = True
 		self.calc_frame(0)
-		self.animating_paused = False
+		self._animating_paused = False
 	def stop_animating(self):
-		self.animating = False
-		self.animating_paused = False
+		self._animating = False
+		self._animating_paused = False
 		self._canvasTime = 0
 		self.calc_frame(1)
 		self.invalidate()
-		self.stepping = 0
+		self._stepping = 0
 	def pause_animating(self):
-		self.animating_paused = not self.animating_paused
+		self._animating_paused = not self._animating_paused
 	def run_clear(self):
 		self.stop_animating()
 		self.clear_curve()
@@ -442,12 +443,12 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 
 	#event bindings
 	def on_mouse_press(self, x, y, button, modifiers):
-		if self.show_buttons:
+		if self._show_buttons:
 			for b in self.buttons:
 				if b.parse_click(x, y, button):
 					return
 
-		if self.show_button.parse_click(x, y, button):
+		if self._show_button.parse_click(x, y, button):
 			return
 
 		if button == mouse.LEFT:
@@ -457,7 +458,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			self.pop_point(5, x, y)
 			self.invalidate()
 	def on_mouse_motion(self, x, y, dx, dy):
-		"""if self.show_buttons:
+		"""if self._show_buttons:
 			for b in self.buttons:
 				if b.hovering(x, y):
 					b.color = (0, 0, 100, 255)
@@ -473,15 +474,15 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		elif symbol == key.P:
 			self.pause_animating()
 		elif symbol == key.S:
-			if modifiers in (0, 1) and not (self.animating and not self.animating_paused):
-				if not self.animating:
+			if modifiers in (0, 1) and not (self._animating and not self._animating_paused):
+				if not self._animating:
 					self.start_animating()
-					self.animating_paused = True
+					self._animating_paused = True
 
 				if modifiers == 1:
-					self.stepping = -1
+					self._stepping = -1
 				elif modifiers == 0:
-					self.stepping = 1
+					self._stepping = 1
 		elif symbol == key.R:
 			self.pop_point_at_index(-1)
 			self.invalidate()
@@ -489,26 +490,26 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			self.debug()
 	def on_key_release(self, symbol, modifiers):
 		if symbol == key.S:
-			self.stepping = 0
+			self._stepping = 0
 	def on_resize(self, width, height):
 		pass
 
 	#visual toggles
 	def toggle_curve(self, val=None):
 		if val is None:
-			self.show["curve"] = not self.show["curve"]
+			self._show["curve"] = not self._show["curve"]
 		else:
-			self.show["curve"] = bool(val)
+			self._show["curve"] = bool(val)
 	def toggle_controls(self, val=None):
 		if val is None:
-			self.show["controls"] = not self.show["controls"]
+			self._show["controls"] = not self._show["controls"]
 		else:
-			self.show["controls"] = bool(val)
+			self._show["controls"] = bool(val)
 	def toggle_bounds(self, val=None):
 		if val is None:
-			self.show["bounds"] = not self.show["bounds"]
+			self._show["bounds"] = not self._show["bounds"]
 		else:
-			self.show["bounds"] = bool(val)
+			self._show["bounds"] = bool(val)
 
 	def set_curve_color(self, color):
 		color = list(color)
