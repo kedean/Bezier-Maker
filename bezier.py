@@ -153,7 +153,7 @@ class BezierBase(object):
 	----------
 	
 	"""
-	def generate(self): #this can probably be optimized, its currently a copy of the c++ implementation
+	def regenerate(self): #this can probably be optimized, its currently a copy of the c++ implementation
 		if len(self._controls) > 0:
 			self._canvasTime = 0
 			intervals = []
@@ -340,7 +340,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 				x, y + 5]
 	def update(self, dt):
 		if self._invalidated:
-			self.generate()
+			self.regenerate()
 			self._control_batch = pyglet.graphics.Batch()
 			self._curve_batch = pyglet.graphics.Batch()
 			
