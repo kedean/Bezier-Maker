@@ -5,8 +5,48 @@ from pyglet.gl import *
 from pyglet.window import key, mouse
 from time import time
 import sys
+import multiprocessing
 
 TICKS_PER_SEC = 60
+
+""" 
+	Calculates the point along the curve at drawing time t, where 0 <= t <= 1.
+
+	Parameters
+	----------
+	controls : list of tuples of int
+		List of the control coordinates to calculate with.
+	t : float
+		Time interval to calculate at. 0 is the start of the curve and 1 is the end.
+	verbose : bool
+		If true, the return value is a tuple that includes the normal return value as well as a list of point pairs that form the lines that calculate the point. This can be fed straight into something like opengl's GL_LINES.
+	"""
+def static_calc_line_layer((controls, t), verbose=False):
+	control_count = len(controls) - 1
+	if control_count == 1:
+		return controls[0]
+	elif control_count == 0:
+		return (0,0)
+
+	sub_controls = list(controls)
+
+	sub_points = []
+	max_control = control_count
+
+	for max_control in range(control_count, 0, -1):
+		for i in range(0, max_control):
+			sub_controls[i] = (
+				sub_controls[i][0] + (sub_controls[i+1][0] - sub_controls[i][0]) * t,
+				sub_controls[i][1] + (sub_controls[i+1][1] - sub_controls[i][1]) * t
+				)
+			if i != 0:
+				sub_points.extend([sub_controls[i-1][0], sub_controls[i-1][1], sub_controls[i][0], sub_controls[i][1]])
+		
+	if verbose:
+		return sub_controls[0], sub_points
+	else:
+		return sub_controls[0]
+
 
 class BezierBase(object):
 	POINT_REMOVED = 1
@@ -25,6 +65,7 @@ class BezierBase(object):
 
 		self._controls = []
 		self._points = []
+		self.pool = multiprocessing.Pool()
 	""" 
 	Adds a control point to the curve parameters. Regeneration is not performed automatically.
 
@@ -119,19 +160,16 @@ class BezierBase(object):
 	"""
 	def generate(self): #this can probably be optimized, its currently a copy of the c++ implementation
 		if len(self._controls) > 0:
-			#maybe use list comps?
-			self._points = []
+			self._canvasTime = 0
+			intervals = []
 			t = 0
 			while t < 1:
-				p = self.calc_line_layer(t)
-				if len(self._points) == 0 or p != self._points[-1]:
-					self._points.append(p)
+				intervals.append((self._controls, t))
 				t += self._throttle
 			if t != 1:
-				p = self.calc_line_layer(1)
-				if len(self._points) == 0 or p != self._points[-1]:
-					self._points.append(p)
-			self._canvasTime = 0
+				intervals.append((self._controls, 1))
+			self._points = self.pool.map(static_calc_line_layer, intervals)
+
 	""" 
 	Calculates the point along the curve at drawing time t, where 0 <= t <= 1.
 
@@ -143,28 +181,7 @@ class BezierBase(object):
 		If true, the return value is a tuple that includes the normal return value as well as a list of point pairs that form the lines that calculate the point. This can be fed straight into something like opengl's GL_LINES.
 	"""
 	def calc_line_layer(self, t, verbose=False):
-		base_max_control = len(self._controls) - 1
-		if base_max_control == 0:
-			return self._controls[0]
-		elif base_max_control == -1:
-			return (0,0)
-
-		sub_controls = list(self._controls)
-
-		sub_points = []
-
-		for max_control in range(base_max_control, 0, -1):
-			for i in range(0, max_control):
-				sub_controls[i] = (
-					sub_controls[i][0] + (sub_controls[i+1][0] - sub_controls[i][0]) * t,
-					sub_controls[i][1] + (sub_controls[i+1][1] - sub_controls[i][1]) * t
-					)
-				if i != 0:
-					sub_points.extend([sub_controls[i-1][0], sub_controls[i-1][1], sub_controls[i][0], sub_controls[i][1]])
-		if verbose:
-			return sub_controls[0], sub_points
-		else:
-			return sub_controls[0]
+		return static_calc_line_layer((self._controls, t), verbose)
 	""" 
 	Calculates for the given time and progressively adds it to the points list. Used for animating, as successive calls with increasing t's will construct the curve.
 
@@ -392,7 +409,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			glVertex2f(c[0], c[1])
 		glEnd()
 	def draw_calc_lines(self):
-		p, line_points = self.calc_line_layer(self._canvasTime, True)
+		p, line_points = static_calc_line_layer((self._controls, self._canvasTime), True)
 		glColor3f(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2]);
 		pyglet.graphics.draw(len(line_points)/2, GL_LINES, ('v2f', line_points))
 		#draw the control for it
