@@ -267,6 +267,14 @@ class ImageButton(pyglet.sprite.Sprite):
 			return False
 	def hovering(self, x, y):
 		return (x > self.x and x < self.x + self.width and y < self.y and y > self.y - self.height)
+	@staticmethod
+	def make_button(filename, y_pos, left_click=lambda:None, right_click=lambda:None, middle_click=lambda:None):
+		image = pyglet.image.load(filename)
+		button = ImageButton(image, x=0, y=y_pos - image.height)
+		button.left_click_event = left_click
+		button.right_click_event = right_click
+		button.middle_click_event = middle_click
+		return button
 
 
 class BezierCurve(BezierBase, pyglet.window.Window):
@@ -306,37 +314,15 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._show_button.left_click_event = lambda: (self.toggle_buttons())
 		self._show_button.text = ""
 
-		exit_image = pyglet.image.load("exit.png")
-		exit_button = ImageButton(exit_image,
-						x=0, y=self.height - exit_image.height
-						)
-		exit_button.left_click_event = lambda: (sys.exit(0))
-
-		animate_image = pyglet.image.load("animate.png")
-		animate_button = ImageButton(animate_image,
-						x=0, y=exit_button.y - animate_image.height
-						)
-		animate_button.left_click_event = lambda: (self.start_animating())
-
-		clear_image = pyglet.image.load("clear.png")
-		clear_button = ImageButton(clear_image,
-						x=0, y=animate_button.y - clear_image.height
-						)
-		clear_button.left_click_event = lambda: (self.run_clear())
-
-		more_detail_image = pyglet.image.load("more_detail.png")
-		more_detail_button = ImageButton(more_detail_image,
-						x=0, y=clear_button.y - more_detail_image.height
-						)
-		more_detail_button.left_click_event = lambda: (self.change_detail(-0.01))
-
-		less_detail_image = pyglet.image.load("less_detail.png")
-		less_detail_button = ImageButton(less_detail_image,
-						x=0, y=more_detail_button.y - less_detail_image.height
-						)
-		less_detail_button.left_click_event = lambda: (self.change_detail(0.01))
-
-		self.buttons = [exit_button, animate_button, clear_button, more_detail_button, less_detail_button]
+		exit_button = ImageButton.make_button("exit.png", self.height, lambda:(sys.exit(0)))
+		animate_button = ImageButton.make_button("animate.png", exit_button.y, lambda: (self.start_animating()))
+		clear_button = ImageButton.make_button("clear.png", animate_button.y, lambda:(self.run_clear()))
+		more_detail_button = ImageButton.make_button("more_detail.png", clear_button.y, lambda:(self.change_detail(-0.01)))
+		less_detail_button = ImageButton.make_button("less_detail.png", more_detail_button.y, lambda:(self.change_detail(0.01)))
+		more_zoom_button = ImageButton.make_button("more_zoom.png", less_detail_button.y, lambda:(self.zoom(self._zoom_factor)))
+		less_zoom_button = ImageButton.make_button("less_zoom.png", more_zoom_button.y, lambda:(self.zoom(1/self._zoom_factor)))
+ 
+		self.buttons = [exit_button, animate_button, clear_button, more_detail_button, less_detail_button, more_zoom_button, less_zoom_button]
 
 		#the update loop runs at up to 60fps
 		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
@@ -349,6 +335,10 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._throttle += amount
 		if self._throttle < 0.01:
 			self._throttle = 0.01
+		self.invalidate()
+	def zoom(self, amount):
+		self._zoom *= amount
+		self.scale(self._zoom, self.width/2, self.height/2)
 		self.invalidate()
 	def invalidate(self):
 		self._invalidated = True
@@ -518,13 +508,9 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		elif symbol == key.D:
 			self.debug()
 		elif symbol == key.BRACKETRIGHT:
-			self._zoom *= self._zoom_factor
-			self.scale(self._zoom, self.width/2, self.height/2)
-			self.invalidate()
+			self.zoom(self._zoom_factor)
 		elif symbol == key.BRACKETLEFT:
-			self._zoom /= self._zoom_factor
-			self.scale(self._zoom, self.width/2, self.height/2)
-			self.invalidate()
+			self.zoom(1/self._zoom_factor)
 	def on_key_release(self, symbol, modifiers):
 		if symbol == key.S:
 			self._stepping = 0
