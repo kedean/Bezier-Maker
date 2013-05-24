@@ -27,6 +27,12 @@ It must be run in 32-bit python due to pyglet use. On Mac OSX this requires
 where 'python' is the absolute path to your python interpreter. Just 'python' will work if using the OSX included version.
 
 ----------
+Implementation Details
+----------
+
+The usage of static_calc_line_layer is now somewhat of a relic, it's only used for the animation structure. Actual regeneration has been switched over to using a more standard interpolate() function that uses binomial coefficient multiplication to calculate the curve. In tests comparing the two, I found that the interpolate method is 3 to 4 times as fast, even with 1000 ponts of calculation.
+
+----------
 Future
 ----------
 

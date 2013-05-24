@@ -22,8 +22,8 @@ TICKS_PER_SEC = 60
 		If true, the return value is a tuple that includes the normal return value as well as a list of point pairs that form the lines that calculate the point. This can be fed straight into something like opengl's GL_LINES.
 	"""
 def static_calc_line_layer((controls, t), verbose=False):
-	if not verbose:
-		return interpolate(list(controls), t)
+	#if not verbose:
+	#	return interpolate(list(controls), t)
 
 	control_count = len(controls) - 1
 	if control_count == 1:
@@ -44,10 +44,14 @@ def static_calc_line_layer((controls, t), verbose=False):
 			if i != 0:
 				sub_points.extend([sub_controls[i-1][0], sub_controls[i-1][1], sub_controls[i][0], sub_controls[i][1]])
 	
-	return sub_controls[0], sub_points
+	if verbose:
+		return sub_controls[0], sub_points
+	else:
+		return sub_controls[0]
+
 def binomial_coefficient(n, i):
 	return math.factorial(n) / (math.factorial(i) * math.factorial(n - i))
-def interpolate(controls, i):
+def interpolate((controls, i)):
 	if i == 1:
 		return controls[-1]
 	n = len(controls) - 1
@@ -55,15 +59,14 @@ def interpolate(controls, i):
 	iN = 1.0
 	j = 1.0 - i
 	jN = float(math.pow(j, n))
-	
 	for k, c in enumerate(controls):
 		multiplier = binomial_coefficient(n, k) * iN * jN
+		
 		iN *= i
 		jN /= j
 
 		x += c[0] * multiplier
 		y += c[1] * multiplier
-	
 	return (x, y)
 
 class BezierBase(object):
@@ -174,7 +177,6 @@ class BezierBase(object):
 	"""
 	def regenerate(self): #this can probably be optimized, its currently a copy of the c++ implementation
 		if len(self._controls) > 0:
-			t1 = time()
 			self._canvasTime = 0
 			intervals = []
 			t = 0
@@ -183,9 +185,13 @@ class BezierBase(object):
 				t += self._throttle
 			if t != 1:
 				intervals.append((self._controls, 1))
-			self._points = self._pool.map(static_calc_line_layer, intervals)
+			print "point count = {0}".format(len(self._controls))
+			
+			t1 = time()
+			self._points = self._pool.map(interpolate, intervals)
 			t2 = time()
-			print "took {0}ms".format((t2 -  t1)*1000)
+			print "interpolate took {0}ms".format((t2 -  t1)*1000)
+			print ""
 
 	""" 
 	Calculates the point along the curve at drawing time t, where 0 <= t <= 1.
