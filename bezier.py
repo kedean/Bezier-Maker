@@ -58,7 +58,7 @@ def interpolate((controls, i)):
 	x, y = 0, 0
 	iN = 1.0
 	j = 1.0 - i
-	jN = float(math.pow(j, n))
+	jN = math.pow(j, n)
 	for k, c in enumerate(controls):
 		multiplier = binomial_coefficient(n, k) * iN * jN
 		
@@ -78,7 +78,7 @@ class BezierBase(object):
 		self._throttle = 0.00001
 		self._scaleOffsets = (0,0)
 		self._scaleFactor = 1
-		self._canvasTime = 0
+		self._canvas_time = 0
 
 		self._controls = []
 		self._points = []
@@ -155,8 +155,8 @@ class BezierBase(object):
 			for c in self._controls
 		]
 
-		if self._canvasTime != 0:
-			max_t = self._canvasTime
+		if self._canvas_time != 0:
+			max_t = self._canvas_time
 			t = 0
 			while t < max_t:
 				self.calc_frame(t)
@@ -177,7 +177,7 @@ class BezierBase(object):
 	"""
 	def regenerate(self): #this can probably be optimized, its currently a copy of the c++ implementation
 		if len(self._controls) > 0:
-			self._canvasTime = 0
+			self._canvas_time = 0
 			intervals = []
 			t = 0
 			while t < 1:
@@ -185,13 +185,8 @@ class BezierBase(object):
 				t += self._throttle
 			if t != 1:
 				intervals.append((self._controls, 1))
-			print "point count = {0}".format(len(self._controls))
 			
-			t1 = time()
 			self._points = self._pool.map(interpolate, intervals)
-			t2 = time()
-			print "interpolate took {0}ms".format((t2 -  t1)*1000)
-			print ""
 
 	""" 
 	Calculates the point along the curve at drawing time t, where 0 <= t <= 1.
@@ -221,7 +216,7 @@ class BezierBase(object):
 				p = self.calc_line_layer(t)
 				if len(self._points) == 0 or p != self._points[-1]:
 					self._points.append(p)
-		self._canvasTime = t
+		self._canvas_time = t
 	""" 
 	Removes all values, equivalent to deleting the BezierBase object and making a new one.
 
@@ -288,6 +283,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._animating_paused = False
 		self._stepping = 0
 		self._animation_length = 2.0
+		self._animation_time = 0.0
 		self._control_batch = pyglet.graphics.Batch()
 		self._curve_batch = pyglet.graphics.Batch()
 		self._control_vertices = {}
@@ -384,17 +380,19 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 				self._curve_vertices = self._curve_batch.add(len(curve_points) / 2, GL_LINE_STRIP, None, ('v2f/static', curve_points))
 			self.validate()
 		if self._animating and not self._animating_paused:
-			self._canvasTime += dt / self._animation_length
-			if self._canvasTime >= 1.0:
+			self._animation_time += dt / self._animation_length
+			self._canvas_time = math.floor(self._animation_time / self._throttle) * self._throttle
+			if self._canvas_time >= 1.0:
 				self.stop_animating()
 			else:
-				self.calc_frame(self._canvasTime)
+				self.calc_frame(self._canvas_time)
 		elif self._stepping != 0:
-			self._canvasTime += (self._stepping * 0.01) / self._animation_length
-			self.calc_frame(self._canvasTime)
-			if self._canvasTime < 0:
-				self._canvasTime = 0
-			if self._canvasTime > 1.0:
+			self._animation_time += (self._stepping * dt) / self._animation_length
+			self._canvas_time = math.floor(self._animation_time / self._throttle) * self._throttle
+			self.calc_frame(self._canvas_time)
+			if self._canvas_time < 0:
+				self._canvas_time = 0
+			if self._canvas_time > 1.0:
 				self.stop_animating()
 	def clear_to_2d(self):
 		glClearColor(1, 1, 1, 1)
@@ -437,7 +435,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			glVertex2f(c[0], c[1])
 		glEnd()
 	def draw_calc_lines(self):
-		p, line_points = static_calc_line_layer((self._controls, self._canvasTime), True)
+		p, line_points = static_calc_line_layer((self._controls, self._canvas_time), True)
 		glColor3f(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2]);
 		pyglet.graphics.draw(len(line_points)/2, GL_LINES, ('v2f', line_points))
 		#draw the control for it
@@ -451,14 +449,15 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self.clear_to_2d()
 		pyglet.app.run()
 	def start_animating(self):
-		self._canvasTime = 0
+		self._canvas_time = 0
 		self._animating = True
 		self.calc_frame(0)
 		self._animating_paused = False
 	def stop_animating(self):
 		self._animating = False
 		self._animating_paused = False
-		self._canvasTime = 0
+		self._animation_time = 0.0
+		self._canvas_time = 0
 		self.calc_frame(1)
 		self.invalidate()
 		self._stepping = 0
