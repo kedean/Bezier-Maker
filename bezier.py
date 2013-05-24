@@ -147,14 +147,15 @@ class BezierBase(object):
 	def scale(self, factor, centerX, centerY):
 		offsetX = centerX * (factor-1)
 		offsetY = centerY * (factor-1)
+		
 		self._controls = [
 			(
-				(c[0] + self._scaleOffsets[0]) / self._scaleFactor,
-				(c[1] + self._scaleOffsets[1]) / self._scaleFactor
+				(((c[0] + self._scaleOffsets[0]) / self._scaleFactor) * factor) - offsetX,
+				(((c[1] + self._scaleOffsets[1]) / self._scaleFactor) * factor) - offsetY
 			)
 			for c in self._controls
 		]
-
+		"""
 		if self._canvas_time != 0:
 			max_t = self._canvas_time
 			t = 0
@@ -164,7 +165,7 @@ class BezierBase(object):
 			self.calc_frame(max_t)
 		else:
 			pass
-
+		"""
 		self._scaleFactor = factor
 		self._scaleOffsets = (offsetX, offsetY)
 	#math methods
@@ -275,7 +276,8 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._controlColor = (0,0,0, 255)
 		self._boundingLineColor = (0,0,0, 255)
 		self._animatedLineColor = (0,255,0, 255)
-
+		self._zoom_factor = 1.3
+		self._zoom = 1.0
 		self._show = {"curve":True, "controls":True, "bounds":True}
 		self._invalidated = False
 		self._throttle = 0.0001
@@ -515,6 +517,14 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			self.invalidate()
 		elif symbol == key.D:
 			self.debug()
+		elif symbol == key.BRACKETRIGHT:
+			self._zoom *= self._zoom_factor
+			self.scale(self._zoom, self.width/2, self.height/2)
+			self.invalidate()
+		elif symbol == key.BRACKETLEFT:
+			self._zoom /= self._zoom_factor
+			self.scale(self._zoom, self.width/2, self.height/2)
+			self.invalidate()
 	def on_key_release(self, symbol, modifiers):
 		if symbol == key.S:
 			self._stepping = 0

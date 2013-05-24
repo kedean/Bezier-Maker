@@ -14,6 +14,8 @@ shift+s - reverse an animation step
 c - clear the control points. Button exists.
 r - remove the last added point  
 d - toggle debug mode    
+] - zoom in
+[ - zoom out
   
 ----------  
 Requirements  
@@ -33,12 +35,17 @@ Implementation Details
 The usage of static_calc_line_layer is now somewhat of a relic, it's only used for the animation structure. Actual regeneration has been switched over to using a more standard interpolate() function that uses binomial coefficient multiplication to calculate the curve. In tests comparing the two, I found that the interpolate method is 3 to 4 times as fast, even with 1000 ponts of calculation.
 
 ----------
+Todo
+----------
+
+- detail slider instead of buttons
+- zoom buttons instead of just keys
+
+----------
 Future
 ----------
 
 - turn it into a module, maybe multiple options for drawing API
-- zooming in/out (scaling)
-- detail slider instead of buttons
 - possible 3d mode with rotation
 - ability to save designs and extract the coordinates of points
 - ability to have multiple curves
