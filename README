@@ -48,3 +48,4 @@ Future
 - possible 3d mode with rotation
 - ability to save designs and extract the coordinates of points
 - ability to have multiple curves
+- antialiased lines

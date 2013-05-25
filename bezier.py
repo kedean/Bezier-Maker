@@ -108,15 +108,66 @@ class BezierBase(object):
 		The y coordinate of the control point.
 	"""
 	def pop_point(self, range, x, y):
+		i, c = self.find_point(range, x, y)
+		self._controls.remove(c)
+		return c
+	
+	""" 
+	Gets a control point from the curve parameters, within a given variation of space. Regeneration is not performed automatically.
+
+	Parameters
+	----------
+	range : int
+		The first coordinate with this radius is the point that is removed. Ordering is outward from the x,y center. For points the same distance from the center, a FIFO ordering is used.
+	x : int
+		The x coordinate of the control point.
+	y : int
+		The y coordinate of the control point.
+	"""
+	def find_point(self, range, x, y):
 		x = int(x)
 		y = int(y)
 		range_2 = range**2
-		for c in self._controls:
+		for i, c in enumerate(self._controls):
 			if (c[0] - x)**2 + (c[1] - y)**2 <= range_2:
-				self._controls.remove(c)
-				return c
+				return i, c
 
-		return self.POINT_NOT_FOUND
+		return -1, self.POINT_NOT_FOUND
+
+	""" 
+	Alters the point at the given index to have the given coordinates.
+
+	Parameters
+	----------
+	index : int
+		Index of the point to alter.
+	x : int
+		The x coordinate of the new control point.
+	y : int
+		The y coordinate of the new control point.
+	"""
+
+	def set_point(self, index, x, y):
+		try:
+			self._controls[index] = (int(x), int(y))
+			return True 
+		except:
+			return False
+
+	""" 
+	Gets a point at a given index.
+
+	Parameters
+	----------
+	index : int
+		index of the point to return
+	"""
+	def get_point(self, index):
+		try:
+			return self._controls[index]
+		except:
+			return None
+
 	""" 
 	Removes the indexed control point from the curve parameters. Regeneration is not performed.
 
@@ -298,12 +349,14 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._curve_batch = pyglet.graphics.Batch()
 		self._control_vertices = {}
 		self._curve_vertices = None
+		self.grabbed_index = -1
 		self._fps_label = pyglet.text.Label(
 						'', font_name='Arial', font_size=18,
 						x=20, y=40, anchor_x='left', anchor_y='top',
 						color=(0, 0, 0, 255)
 						)
 		self._show_fps = False
+		"""
 		self._show_buttons = True
 
 		#set up the gui buttons
@@ -313,6 +366,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 						)
 		self._show_button.left_click_event = lambda: (self.toggle_buttons())
 		self._show_button.text = ""
+		"""
 
 		exit_button = ImageButton.make_button("exit.png", self.height, lambda:(sys.exit(0)))
 		animate_button = ImageButton.make_button("animate.png", exit_button.y, lambda: (self.start_animating()))
@@ -411,9 +465,9 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		if self._show_fps:
 			self._fps_label.text = "{0:.02f}".format(pyglet.clock.get_fps())
 			self._fps_label.draw()
-		self._show_button.draw()
-		if self._show_buttons:
-			[button.draw() for button in self.buttons]
+		#self._show_button.draw()
+		#if self._show_buttons:
+		[button.draw() for button in self.buttons]
 	def draw_curve(self):
 		glColor3f(self._color[0], self._color[1], self._color[2])
 		self._curve_batch.draw()
@@ -462,28 +516,29 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 
 	#event bindings
 	def on_mouse_press(self, x, y, button, modifiers):
-		if self._show_buttons:
-			for b in self.buttons:
-				if b.parse_click(x, y, button):
-					return
-
-		if self._show_button.parse_click(x, y, button):
-			return
+		for b in self.buttons:
+			if b.parse_click(x, y, button):
+				return
 
 		if button == mouse.LEFT:
-			self.add_point(x, y)
-			self.invalidate()
+			self.grabbed_index, _ = self.find_point(5, x, y)
+			if self.grabbed_index == -1:
+				self.add_point(x, y)
+				self.invalidate()
 		elif button == mouse.RIGHT:
 			self.pop_point(5, x, y)
 			self.invalidate()
+	def on_mouse_release(self, x, y, button, modifiers):
+		if button == mouse.LEFT:
+			self.grabbed_index = -1
 	def on_mouse_motion(self, x, y, dx, dy):
-		"""if self._show_buttons:
-			for b in self.buttons:
-				if b.hovering(x, y):
-					b.color = (0, 0, 100, 255)
-				else:
-					b.color = (0, 0, 0, 255)"""
 		pass
+	def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
+		if self.grabbed_index != -1:
+			existing = self.get_point(self.grabbed_index)
+			if existing[0] != x or existing[1] != y:
+				self.set_point(self.grabbed_index, x, y)
+				self.invalidate()
 
 	def on_key_press(self, symbol, modifiers):
 		if symbol == key.A: #animate it!
