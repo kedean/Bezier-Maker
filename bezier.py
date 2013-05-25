@@ -337,7 +337,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._animatedLineColor = (0,255,0, 255)
 		self._zoom_factor = 1.3
 		self._zoom = 1.0
-		self._show = {"curve":True, "controls":True, "bounds":True}
+		self._show = {"curve":True, "controls":True, "bounds":True, "fps":False}
 		self._invalidated = False
 		self._throttle = 0.0001
 		self._animating = False
@@ -350,8 +350,8 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._control_vertices = {}
 		self._curve_vertices = None
 		self.grabbed_index = -1
-		self._fps_label = pyglet.text.Label('', font_name='Arial', font_size=18, x=20, y=40, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
-		self._show_fps = False
+		self._fps_label = pyglet.text.Label('', font_name='Courier', font_size=13, x=20, y=60, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
+		self._location_label = pyglet.text.Label('pos = 0, 0', font_name='Courier', font_size=13, x=20, y=40, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
 
 		exit_button = ImageButton.make_button("exit.png", self.height, lambda:(sys.exit(0)))
 		animate_button = ImageButton.make_button("animate.png", exit_button.y, lambda: (self.start_animating()))
@@ -382,15 +382,16 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._invalidated = False
 	def debug(self, val=None):
 		if val is None:
-			self._show_fps = not self._show_fps
+			self._show["fps"] = not self._show["fps"]
 		else:
-			self._show_fps = bool(val)
+			self._show["fps"] = bool(val)
 	def make_control_vertices(self, (x,y)):
 		return [x-5, y,
 				x, y - 5,
 				x + 5, y,
 				x, y + 5]
 	def update(self, dt):
+		self._fps_label.text = "fps = {0:.02f}".format(pyglet.clock.get_fps())
 		if self._invalidated:
 			self.regenerate()
 			self._control_batch = pyglet.graphics.Batch()
@@ -444,9 +445,9 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 
 		if self._animating:
 			self.draw_calc_lines()
-		if self._show_fps:
-			self._fps_label.text = "{0:.02f}".format(pyglet.clock.get_fps())
+		if self._show["fps"]:
 			self._fps_label.draw()
+			self._location_label.draw()
 		[button.draw() for button in self.buttons]
 	def draw_curve(self):
 		glColor3f(self._color[0], self._color[1], self._color[2])
@@ -512,8 +513,9 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		if button == mouse.LEFT:
 			self.grabbed_index = -1
 	def on_mouse_motion(self, x, y, dx, dy):
-		pass
+		self._location_label.text = "pos = {0}, {1}".format(x, y)
 	def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
+		self._location_label.text = "pos = {0}, {1}".format(x, y)
 		if self.grabbed_index != -1:
 			existing = self.get_point(self.grabbed_index)
 			if existing != (x, y):
@@ -550,8 +552,23 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		if symbol == key.S:
 			self._stepping = 0
 	def on_resize(self, width, height):
-		pass
+		self.clear_to_2d()
+		self.invalidate()
+		exit_button = self.buttons[0]
+		animate_button = self.buttons[1]
+		clear_button = self.buttons[2]
+		more_detail_button = self.buttons[3]
+		less_detail_button = self.buttons[4]
+		more_zoom_button = self.buttons[5]
+		less_zoom_button = self.buttons[6]
 
+		exit_button.y = height - exit_button.height
+		animate_button.y = exit_button.y - animate_button.height
+		clear_button.y = animate_button.y - clear_button.height
+		more_detail_button.y = clear_button.y - more_detail_button.height
+		less_detail_button.y = more_detail_button.y - less_detail_button.height
+		more_zoom_button.y = less_detail_button.y - more_zoom_button.height
+		less_zoom_button.y = more_zoom_button.y - less_zoom_button.height
 	#visual toggles
 	def toggle_curve(self, val=None):
 		if val is None:
