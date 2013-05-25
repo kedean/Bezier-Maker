@@ -49,3 +49,5 @@ Future
 - ability to save designs and extract the coordinates of points
 - ability to have multiple curves
 - antialiased lines
+- curve guessing (from hand drawn ones)
+- progessive curve drawing, using async map-reduce

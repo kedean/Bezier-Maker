@@ -350,23 +350,8 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._control_vertices = {}
 		self._curve_vertices = None
 		self.grabbed_index = -1
-		self._fps_label = pyglet.text.Label(
-						'', font_name='Arial', font_size=18,
-						x=20, y=40, anchor_x='left', anchor_y='top',
-						color=(0, 0, 0, 255)
-						)
+		self._fps_label = pyglet.text.Label('', font_name='Arial', font_size=18, x=20, y=40, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
 		self._show_fps = False
-		"""
-		self._show_buttons = True
-
-		#set up the gui buttons
-		self._show_button = Button('-', font_name='Arial', font_size=18,
-						x=5, y=self.height - 18, anchor_x='left', anchor_y='top',
-						color=(0, 0, 0, 255)
-						)
-		self._show_button.left_click_event = lambda: (self.toggle_buttons())
-		self._show_button.text = ""
-		"""
 
 		exit_button = ImageButton.make_button("exit.png", self.height, lambda:(sys.exit(0)))
 		animate_button = ImageButton.make_button("animate.png", exit_button.y, lambda: (self.start_animating()))
@@ -380,9 +365,6 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 
 		#the update loop runs at up to 60fps
 		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
-	def toggle_buttons(self):
-		self._show_buttons = not self._show_buttons
-		self._show_button.text = "-" if self._show_buttons else "+"
 	def set_throttle(self, throttle):
 		self._throttle = float(throttle)
 	def change_detail(self, amount):
@@ -465,8 +447,6 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		if self._show_fps:
 			self._fps_label.text = "{0:.02f}".format(pyglet.clock.get_fps())
 			self._fps_label.draw()
-		#self._show_button.draw()
-		#if self._show_buttons:
 		[button.draw() for button in self.buttons]
 	def draw_curve(self):
 		glColor3f(self._color[0], self._color[1], self._color[2])
@@ -536,7 +516,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 	def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
 		if self.grabbed_index != -1:
 			existing = self.get_point(self.grabbed_index)
-			if existing[0] != x or existing[1] != y:
+			if existing != (x, y):
 				self.set_point(self.grabbed_index, x, y)
 				self.invalidate()
 
