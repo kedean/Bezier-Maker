@@ -350,6 +350,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._control_vertices = {}
 		self._curve_vertices = None
 		self.grabbed_index = -1
+		self.clicked_index = -1
 		self._fps_label = pyglet.text.Label('', font_name='Courier', font_size=13, x=20, y=60, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
 		self._location_label = pyglet.text.Label('pos = 0, 0', font_name='Courier', font_size=13, x=20, y=40, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
 
@@ -400,8 +401,8 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			if len(self._controls) > 0:
 				[vert.delete() for c, vert in self._control_vertices.iteritems() if c not in self._controls]
 				self._control_vertices = {}
-				for c in self._controls:
-					if c not in self._control_vertices:
+				for i, c in enumerate(self._controls):
+					if c not in self._control_vertices and i != self.clicked_index:
 						self._control_vertices[c] = self._control_batch.add(4, GL_QUADS, None, ('v2f/static', self.make_control_vertices(c)))
 				curve_points = []
 				[curve_points.extend([c[0], c[1]]) for c in self._points]
@@ -453,8 +454,12 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		glColor3f(self._color[0], self._color[1], self._color[2])
 		self._curve_batch.draw()
 	def draw_controls(self):
-		glColor3f(self._controlColor[0], self._controlColor[1], self._controlColor[2], self._controlColor[3])
+		glColor4f(self._controlColor[0], self._controlColor[1], self._controlColor[2], self._controlColor[3])
 		self._control_batch.draw()
+		glColor3f(100, 0, 0)
+		if self.clicked_index != -1:
+			pyglet.graphics.draw(4, GL_QUADS, ('v2f/static', self.make_control_vertices(self._controls[self.clicked_index])))
+
 	def draw_bounding_lines(self):
 		glBegin(GL_LINE_STRIP)
 		glColor3f(self._boundingLineColor[0], self._boundingLineColor[1], self._boundingLineColor[2])
@@ -502,10 +507,15 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 				return
 
 		if button == mouse.LEFT:
-			self.grabbed_index, _ = self.find_point(5, x, y)
+			self.grabbed_index, point = self.find_point(5, x, y)
+			if self.grabbed_index != self.clicked_index:
+				self.invalidate()
+			self.clicked_index = self.grabbed_index
 			if self.grabbed_index == -1:
 				self.add_point(x, y)
 				self.invalidate()
+			else:
+				self._control_vertices[point].delete()
 		elif button == mouse.RIGHT:
 			self.pop_point(5, x, y)
 			self.invalidate()
@@ -540,7 +550,11 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 				elif modifiers == 0:
 					self._stepping = 1
 		elif symbol == key.R:
-			self.pop_point_at_index(-1)
+			if modifiers == key.MOD_SHIFT:
+				self.pop_point_at_index(-1)
+			elif self.clicked_index != -1:
+				self.pop_point_at_index(self.clicked_index)
+				self.clicked_index = -1
 			self.invalidate()
 		elif symbol == key.D:
 			self.debug()

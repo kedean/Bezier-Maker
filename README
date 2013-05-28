@@ -12,7 +12,8 @@ p - pause or resume animation
 s - perform an animation step, can be done without starting animation  
 shift+s - reverse an animation step  
 c - clear the control points. Button exists.
-r - remove the last added point  
+r - remove the selected point
+shift+r - remove the last added point  
 d - toggle debug mode    
 ] - zoom in
 [ - zoom out
