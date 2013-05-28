@@ -555,6 +555,8 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 
 				if modifiers == 1:
 					self._stepping = -1
+					if self._animation_time == 0:
+						self._animation_time = 1.0
 				elif modifiers == 0:
 					self._stepping = 1
 		elif symbol == key.R:
