@@ -352,7 +352,6 @@ class BezierCurve(pyglet.window.Window):
 		self._curve_batch = pyglet.graphics.Batch()
 		self._control_vertices = {}
 		self._curve_vertices = None
-		self.grabbed_index = -1
 		self.selected_indices = []
 		self._fps_label = pyglet.text.Label('', font_name='Courier', font_size=13, x=20, y=60, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
 		self._location_label = pyglet.text.Label('pos = 0, 0', font_name='Courier', font_size=13, x=20, y=40, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
@@ -366,6 +365,13 @@ class BezierCurve(pyglet.window.Window):
 		less_zoom_button = ImageButton.make_button("less_zoom.png", more_zoom_button.y, lambda:(self.zoom(1/self._zoom_factor)))
  
 		self.buttons = [exit_button, animate_button, clear_button, more_detail_button, less_detail_button, more_zoom_button, less_zoom_button]
+
+		self._doodle_mode = False
+		self._doodle_points = []
+		self._doodle_batch = pyglet.graphics.Batch()
+		self._doodle_vertices = []
+		
+		self._doodle_tolerance = 5 #pixels of difference in any direction between estimated curve and the drawn line
 
 		#the update loop runs at up to 60fps
 		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
@@ -396,21 +402,29 @@ class BezierCurve(pyglet.window.Window):
 				x, y + 5]
 	def update(self, dt):
 		self._fps_label.text = "fps = {0:.02f}".format(pyglet.clock.get_fps())
+		
 		if self._invalidated:
-			self.curve.regenerate()
-			self._control_batch = pyglet.graphics.Batch()
-			self._curve_batch = pyglet.graphics.Batch()
-			
-			if len(self.curve._controls) > 0:
-				#[vert.delete() for c, vert in self._control_vertices.iteritems() if c not in self.curve._controls]
-				self._control_vertices = {}
-				for i, c in enumerate(self.curve._controls):
-					if c not in self._control_vertices and i not in self.selected_indices:
-						self._control_vertices[c] = self._control_batch.add(4, GL_QUADS, None, ('v2f/static', self.make_control_vertices(c)))
-				curve_points = []
-				[curve_points.extend([c[0], c[1]]) for c in self.curve._points]
-				self._curve_vertices.delete() if (self._curve_vertices is not None) else None
-				self._curve_vertices = self._curve_batch.add(len(curve_points) / 2, GL_LINE_STRIP, None, ('v2f/static', curve_points))
+			if self._doodle_mode:
+				doodle_points = []
+				self._doodle_batch = pyglet.graphics.Batch()
+				[doodle_points.extend([c[0], c[1]]) for c in self._doodle_points]
+				if len(doodle_points) > 0:
+					self._doodle_vertices = self._doodle_batch.add(len(doodle_points) / 2, GL_LINE_STRIP, None, ('v2f/static', doodle_points))
+			else:
+				self.curve.regenerate()
+				self._control_batch = pyglet.graphics.Batch()
+				self._curve_batch = pyglet.graphics.Batch()
+				
+				if len(self.curve._controls) > 0:
+					#[vert.delete() for c, vert in self._control_vertices.iteritems() if c not in self.curve._controls]
+					self._control_vertices = {}
+					for i, c in enumerate(self.curve._controls):
+						if c not in self._control_vertices and i not in self.selected_indices:
+							self._control_vertices[c] = self._control_batch.add(4, GL_QUADS, None, ('v2f/static', self.make_control_vertices(c)))
+					curve_points = []
+					[curve_points.extend([c[0], c[1]]) for c in self.curve._points]
+					self._curve_vertices.delete() if (self._curve_vertices is not None) else None
+					self._curve_vertices = self._curve_batch.add(len(curve_points) / 2, GL_LINE_STRIP, None, ('v2f/static', curve_points))
 			self.validate()
 		if self._animating and not self._animating_paused:
 			self._animation_time += dt / self._animation_length
@@ -440,18 +454,23 @@ class BezierCurve(pyglet.window.Window):
 		glLoadIdentity()
 	def on_draw(self):
 		self.clear()
-		if self._show["curve"]:
-			self.draw_curve()
-		if self._show["controls"]:
-			self.draw_controls()
-		if self._show["bounds"]:
-			self.draw_bounding_lines()
 
-		if self._animating:
-			self.draw_calc_lines()
-		if self._show["fps"]:
-			self._fps_label.draw()
-			self._location_label.draw()
+		if self._doodle_mode:
+			glColor3f(0, 255, 0)
+			self._doodle_batch.draw()
+		else:
+			if self._show["curve"]:
+				self.draw_curve()
+			if self._show["controls"]:
+				self.draw_controls()
+			if self._show["bounds"]:
+				self.draw_bounding_lines()
+
+			if self._animating:
+				self.draw_calc_lines()
+			if self._show["fps"]:
+				self._fps_label.draw()
+				self._location_label.draw()
 		[button.draw() for button in self.buttons]
 	def draw_curve(self):
 		glColor3f(self._color[0], self._color[1], self._color[2])
@@ -501,47 +520,73 @@ class BezierCurve(pyglet.window.Window):
 	def run_clear(self):
 		self.stop_animating()
 		self.selected_indices = []
-		self.curve.clear_curve()
+		if self._doodle_mode:
+			self._doodle_points = []
+			self._doodle_batch = pyglet.graphics.Batch()
+		else:
+			self.curve.clear_curve()
 		self.invalidate()
+	def compare_curve_to_doodle(self):
+		pass
+	def undoodle(self):
+		start = self._doodle_points[0]
+		end = self._doodle_points[-1]
 
+		self.curve.add_point(*start)
+		self.curve.add_point(*end)
+
+		self.run_clear()
+		
 	#event bindings
 	def on_mouse_press(self, x, y, button, modifiers):
 		for b in self.buttons:
 			if b.parse_click(x, y, button):
 				return
 
-		if button == mouse.LEFT:
-			grabbed_index, point = self.curve.find_point(5, x, y)
-			#if modifiers == key.MOD_SHIFT:
-			if len(self.selected_indices) > 0 and grabbed_index != self.selected_indices[0]:
-				self.invalidate()
+		if self._doodle_mode:
+			if button == mouse.LEFT:
+				pass
+		else:
+			if button == mouse.LEFT:
+				grabbed_index, point = self.curve.find_point(5, x, y)
+				#if modifiers == key.MOD_SHIFT:
+				if len(self.selected_indices) > 0 and grabbed_index != self.selected_indices[0]:
+					self.invalidate()
 
-			if grabbed_index == -1:
-				self.selected_indices = []
-				self.curve.add_point(x, y)
-				self.invalidate()
-			else:
-				if modifiers == key.MOD_SHIFT:
-					self.selected_indices.append(grabbed_index)
+				if grabbed_index == -1:
+					self.selected_indices = []
+					self.curve.add_point(x, y)
+					self.invalidate()
 				else:
-					self.selected_indices = [grabbed_index]
+					if modifiers == key.MOD_SHIFT:
+						self.selected_indices.append(grabbed_index)
+					else:
+						self.selected_indices = [grabbed_index]
+					self.invalidate()
+			elif button == mouse.RIGHT:
+				self.curve.pop_point(5, x, y)
 				self.invalidate()
-		elif button == mouse.RIGHT:
-			self.curve.pop_point(5, x, y)
-			self.invalidate()
 	def on_mouse_release(self, x, y, button, modifiers):
-		if button == mouse.LEFT:
-			self.grabbed_index = -1
+		if self._doodle_mode:
+			if button == mouse.LEFT:
+				pass
+		else:
+			if button == mouse.LEFT:
+				self.grabbed_index = -1
 	def on_mouse_motion(self, x, y, dx, dy):
 		self._location_label.text = "pos = {0}, {1}".format(x, y)
 	def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
 		self._location_label.text = "pos = {0}, {1}".format(x, y)
 
-		for i in set(self.selected_indices):
-			existing = self.curve.get_point(i)
-			
-			self.curve.set_point(i, existing[0] + dx, existing[1] + dy)
+		if self._doodle_mode:
+			self._doodle_points.append((x,y))
 			self.invalidate()
+		else:
+			for i in set(self.selected_indices):
+				existing = self.curve.get_point(i)
+				
+				self.curve.set_point(i, existing[0] + dx, existing[1] + dy)
+				self.invalidate()
 
 	def on_key_press(self, symbol, modifiers):
 		if symbol == key.A: #animate it!
@@ -576,6 +621,10 @@ class BezierCurve(pyglet.window.Window):
 			self.zoom(self._zoom_factor)
 		elif symbol == key.BRACKETLEFT:
 			self.zoom(1/self._zoom_factor)
+		elif symbol == key.T:
+			if self._doodle_mode:
+				self.undoodle()
+			self._doodle_mode = not self._doodle_mode
 	def on_key_release(self, symbol, modifiers):
 		if symbol == key.S:
 			self._stepping = 0
