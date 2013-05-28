@@ -399,7 +399,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 			self._curve_batch = pyglet.graphics.Batch()
 			
 			if len(self._controls) > 0:
-				[vert.delete() for c, vert in self._control_vertices.iteritems() if c not in self._controls]
+				#[vert.delete() for c, vert in self._control_vertices.iteritems() if c not in self._controls]
 				self._control_vertices = {}
 				for i, c in enumerate(self._controls):
 					if c not in self._control_vertices and i not in self.clicked_index:
@@ -497,6 +497,7 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._animating_paused = not self._animating_paused
 	def run_clear(self):
 		self.stop_animating()
+		self.clicked_index = []
 		self.clear_curve()
 		self.invalidate()
 
@@ -507,22 +508,21 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 				return
 
 		if button == mouse.LEFT:
-			self.grabbed_index, point = self.find_point(5, x, y)
+			grabbed_index, point = self.find_point(5, x, y)
 			#if modifiers == key.MOD_SHIFT:
-			if len(self.clicked_index) > 0 and self.grabbed_index != self.clicked_index[0]:
+			if len(self.clicked_index) > 0 and grabbed_index != self.clicked_index[0]:
 				self.invalidate()
 
-			if self.grabbed_index == -1:
+			if grabbed_index == -1:
 				self.clicked_index = []
 				self.add_point(x, y)
 				self.invalidate()
 			else:
 				if modifiers == key.MOD_SHIFT:
-					self.clicked_index.append(self.grabbed_index)
+					self.clicked_index.append(grabbed_index)
 				else:
-					self.clicked_index = [self.grabbed_index]
-				if point in self._control_vertices:
-					self._control_vertices[point].delete()
+					self.clicked_index = [grabbed_index]
+				self.invalidate()
 		elif button == mouse.RIGHT:
 			self.pop_point(5, x, y)
 			self.invalidate()
@@ -533,11 +533,12 @@ class BezierCurve(BezierBase, pyglet.window.Window):
 		self._location_label.text = "pos = {0}, {1}".format(x, y)
 	def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
 		self._location_label.text = "pos = {0}, {1}".format(x, y)
-		if self.grabbed_index != -1:
-			existing = self.get_point(self.grabbed_index)
-			if existing != (x, y):
-				self.set_point(self.grabbed_index, x, y)
-				self.invalidate()
+
+		for i in set(self.clicked_index):
+			existing = self.get_point(i)
+			
+			self.set_point(i, existing[0] + dx, existing[1] + dy)
+			self.invalidate()
 
 	def on_key_press(self, symbol, modifiers):
 		if symbol == key.A: #animate it!
