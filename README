@@ -5,7 +5,9 @@ Copyright 2013
   
 Python version of my Bezier demo. Keyboard and mouse controls:  
   
-left mouse click - add a control point 
+left mouse click - add a control point, select an existing point, drag to move a point
+shift + left click - select more control points, drag to move them
+ctrl + left click - start a new curve with a control point at the click location
 right mouse click - remove the closest point within n pixels, hardcoded to 5 currently
 a - animate the calculations over 1 second. Button exists.
 p - pause or resume animation  
