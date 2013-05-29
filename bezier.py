@@ -417,6 +417,7 @@ class BezierCurve(pyglet.window.Window):
 				
 				if len(self.curve._controls) > 0:
 					#[vert.delete() for c, vert in self._control_vertices.iteritems() if c not in self.curve._controls]
+					"""
 					self._control_vertices = {}
 					for i, c in enumerate(self.curve._controls):
 						if c not in self._control_vertices and i not in self.selected_indices:
@@ -425,6 +426,7 @@ class BezierCurve(pyglet.window.Window):
 						for c in curve._controls:
 							if c not in self._control_vertices:
 								self._control_vertices[c] = self._control_batch.add(4, GL_QUADS, None, ('v2f/static', self.make_control_vertices(c)))
+					"""
 					"""
 					for curve in self.curves:
 						curve_points = []
@@ -488,11 +490,19 @@ class BezierCurve(pyglet.window.Window):
 			#self._curve_vertices.delete() if (self._curve_vertices is not None) else None
 			pyglet.graphics.draw(len(curve_points) / 2, GL_LINE_STRIP, ('v2f/static', curve_points))
 	def draw_controls(self):
+		#self._control_batch.draw()
 		glColor4f(self._controlColor[0], self._controlColor[1], self._controlColor[2], self._controlColor[3])
-		self._control_batch.draw()
-		glColor3f(100, 0, 0)
-		for i in self.selected_indices:
-			pyglet.graphics.draw(4, GL_QUADS, ('v2f/static', self.make_control_vertices(self.curve._controls[i])))
+		control_verts = []
+		for curve in self.curves:
+			for i, c in enumerate(curve._controls):
+				if curve == self.curve and i in self.selected_indices:
+					glColor3f(100, 0, 0)
+					pyglet.graphics.draw(4, GL_QUADS, ('v2f/static', self.make_control_vertices(c)))
+				else:
+					control_verts.extend(self.make_control_vertices(c))
+		glColor4f(self._controlColor[0], self._controlColor[1], self._controlColor[2], self._controlColor[3])
+		pyglet.graphics.draw(len(control_verts)/2, GL_QUADS, ('v2f/static', control_verts))
+			
 
 	def draw_bounding_lines(self):
 		glColor3f(self._boundingLineColor[0], self._boundingLineColor[1], self._boundingLineColor[2])
