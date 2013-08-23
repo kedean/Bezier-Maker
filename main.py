@@ -1,4 +1,4 @@
-from bezier import BezierCurve, interpolate, static_calc_line_layer
+from bezier_curve import BezierCurve
 import random
 from ConfigParser import *
 import json
