@@ -72,6 +72,7 @@ class BezierCurve(pyglet.window.Window):
 		self._zoom = 1.0
 		self._show = {"curve":True, "controls":True, "bounds":True, "fps":False}
 		self._invalidated = False
+		self._invalidated_all = False
 		self._animating = False
 		self._apply_all_curves = False
 		self._animating_paused = False
@@ -111,15 +112,20 @@ class BezierCurve(pyglet.window.Window):
 		self.curve._throttle += amount
 		if self.curve._throttle < 0.01:
 			self.curve._throttle = 0.01
-		self.invalidate()
+		self.invalidate_all()
 	def zoom(self, amount):
 		self._zoom *= amount
-		self.curve.scale(self._zoom, self.width/2, self.height/2)
-		self.invalidate()
+		for curve in self.curves:
+			curve.scale(self._zoom, self.width/2, self.height/2)
+		self.invalidate_all()
 	def invalidate(self):
 		self._invalidated = True
+	def invalidate_all(self):
+		self._invalidated = True
+		self._invalidated_all = True
 	def validate(self):
 		self._invalidated = False
+		self._invalidated_all = False
 	def debug(self, val=None):
 		if val is None:
 			self._show["fps"] = not self._show["fps"]
@@ -140,8 +146,12 @@ class BezierCurve(pyglet.window.Window):
 				[doodle_points.extend([c[0], c[1]]) for c in self._doodle_points]
 				if len(doodle_points) > 0:
 					self._doodle_vertices = self._doodle_batch.add(len(doodle_points) / 2, GL_LINE_STRIP, None, ('v2f/static', doodle_points))
-			else:
-				self.curve.regenerate()
+			else:	
+				if self._invalidated_all:
+					for curve in self.curves:
+						curve.regenerate()
+				else:
+					self.curve.regenerate()
 				self._control_batch = pyglet.graphics.Batch()
 				self._curve_batch = pyglet.graphics.Batch()
 				
@@ -298,12 +308,16 @@ class BezierCurve(pyglet.window.Window):
 		self._animating_paused = False
 	def stop_animating(self):
 		self._animating = False
-		self._apply_all_curves = False
+		
 		self._animating_paused = False
 		self._animation_time = 0.0
-		self.curve._canvas_time = 0
-		self.curve.calc_frame(1)
-		self.invalidate()
+		for curve in self.curves:
+			curve._canvas_time = 0
+			curve.calc_frame(1)
+
+		self.invalidate_all() if self._apply_all_curves else self.invalidate()
+
+		self._apply_all_curves = False
 		self._stepping = 0
 	def pause_animating(self):
 		self._animating_paused = not self._animating_paused
@@ -315,7 +329,7 @@ class BezierCurve(pyglet.window.Window):
 			self._doodle_batch = pyglet.graphics.Batch()
 		else:
 			self.curves = [BezierBase()]
-		self.invalidate()
+		self.invalidate_all()
 	def compare_curve_to_doodle(self):
 		pass
 	def undoodle(self):
@@ -344,7 +358,8 @@ class BezierCurve(pyglet.window.Window):
 					self.curve._throttle = self.curves[-2]._throttle
 					self.selected_indices = []
 					self.curve.add_point(x, y)
-					self.invalidate()
+					self.stop_animating()
+					self.invalidate_all()
 				else:
 					grabbed_index, point = self.curve.find_point(5, x, y)
 
@@ -431,7 +446,7 @@ class BezierCurve(pyglet.window.Window):
 			self._stepping = 0
 	def on_resize(self, width, height):
 		self.clear_to_2d()
-		self.invalidate()
+		self.invalidate_all()
 		exit_button = self.buttons[0]
 		animate_button = self.buttons[1]
 		clear_button = self.buttons[2]
