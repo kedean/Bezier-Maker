@@ -316,7 +316,7 @@ class BezierCurve(pyglet.window.Window):
 					self.invalidate()
 				else:
 					grabbed_index, point = self.curve.find_point(5, x, y)
-					#if modifiers == key.MOD_SHIFT:
+
 					if len(self.selected_indices) > 0 and grabbed_index != self.selected_indices[0]:
 						self.invalidate()
 
@@ -325,7 +325,7 @@ class BezierCurve(pyglet.window.Window):
 						self.curve.add_point(x, y)
 						self.invalidate()
 					else:
-						if modifiers == key.MOD_SHIFT:
+						if modifiers & key.MOD_SHIFT:
 							self.selected_indices.append(grabbed_index)
 						else:
 							self.selected_indices = [grabbed_index]
@@ -376,7 +376,7 @@ class BezierCurve(pyglet.window.Window):
 				elif modifiers == 0:
 					self._stepping = 1
 		elif symbol == key.R:
-			if modifiers == key.MOD_SHIFT:
+			if modifiers & key.MOD_SHIFT:
 				self.curve.pop_point_at_index(-1)
 			else:
 				for i in self.selected_indices:
