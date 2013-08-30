@@ -61,7 +61,32 @@ class BezierCurve(pyglet.window.Window):
 	def __init__(self, *args, **kwargs):
 		super(BezierCurve, self).__init__(*args, **kwargs)
 
-		self.curves = [BezierBase()]
+
+		self._fps_label = pyglet.text.Label('', font_name='Courier', font_size=13, x=20, y=60, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
+		self._location_label = pyglet.text.Label('pos = 0, 0', font_name='Courier', font_size=13, x=20, y=40, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
+
+		exit_button = ImageButton.make_button("exit.png", self.height, lambda:(sys.exit(0)))
+		animate_button = ImageButton.make_button("animate.png", exit_button.y, lambda: (self.start_animating()))
+		clear_button = ImageButton.make_button("clear.png", animate_button.y, lambda:(self.run_clear()))
+		more_detail_button = ImageButton.make_button("more_detail.png", clear_button.y, lambda:(self.change_detail(-0.01)))
+		less_detail_button = ImageButton.make_button("less_detail.png", more_detail_button.y, lambda:(self.change_detail(0.01)))
+		more_zoom_button = ImageButton.make_button("more_zoom.png", less_detail_button.y, lambda:(self.zoom(self._zoom_factor)))
+		less_zoom_button = ImageButton.make_button("less_zoom.png", more_zoom_button.y, lambda:(self.zoom(1/self._zoom_factor)))
+ 
+		self.buttons = [exit_button, animate_button, clear_button, more_detail_button, less_detail_button, more_zoom_button, less_zoom_button]
+		self._show = {"curve":True, "controls":True, "bounds":True, "fps":False}
+
+		self._throttle = 0.00001
+		
+		self.stuff = True
+		self.resetEverything()
+		self.stuff = False
+
+		#the update loop runs at up to 60fps
+		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
+		
+	def resetEverything(self):
+		self.curves = [BezierBase(self._throttle)]
 		self.curve = self.curves[0]
 		
 		self._color = (0,0,0, 255)
@@ -70,7 +95,7 @@ class BezierCurve(pyglet.window.Window):
 		self._animatedLineColor = (0,255,0, 255)
 		self._zoom_factor = 1.3
 		self._zoom = 1.0
-		self._show = {"curve":True, "controls":True, "bounds":True, "fps":False}
+		
 		self._invalidated = False
 		self._invalidated_all = False
 		self._animating = False
@@ -84,18 +109,6 @@ class BezierCurve(pyglet.window.Window):
 		self._control_vertices = {}
 		self._curve_vertices = None
 		self.selected_indices = []
-		self._fps_label = pyglet.text.Label('', font_name='Courier', font_size=13, x=20, y=60, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
-		self._location_label = pyglet.text.Label('pos = 0, 0', font_name='Courier', font_size=13, x=20, y=40, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
-
-		exit_button = ImageButton.make_button("exit.png", self.height, lambda:(sys.exit(0)))
-		animate_button = ImageButton.make_button("animate.png", exit_button.y, lambda: (self.start_animating()))
-		clear_button = ImageButton.make_button("clear.png", animate_button.y, lambda:(self.run_clear()))
-		more_detail_button = ImageButton.make_button("more_detail.png", clear_button.y, lambda:(self.change_detail(-0.01)))
-		less_detail_button = ImageButton.make_button("less_detail.png", more_detail_button.y, lambda:(self.change_detail(0.01)))
-		more_zoom_button = ImageButton.make_button("more_zoom.png", less_detail_button.y, lambda:(self.zoom(self._zoom_factor)))
-		less_zoom_button = ImageButton.make_button("less_zoom.png", more_zoom_button.y, lambda:(self.zoom(1/self._zoom_factor)))
- 
-		self.buttons = [exit_button, animate_button, clear_button, more_detail_button, less_detail_button, more_zoom_button, less_zoom_button]
 
 		self._doodle_mode = False
 		self._doodle_points = []
@@ -103,15 +116,16 @@ class BezierCurve(pyglet.window.Window):
 		self._doodle_vertices = []
 		
 		self._doodle_tolerance = 5 #pixels of difference in any direction between estimated curve and the drawn line
-
-		#the update loop runs at up to 60fps
-		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
 	def set_throttle(self, throttle):
-		self.curve._throttle = float(throttle)
+		self._throttle = float(throttle)
+		for curve in self.curves:
+			curve._throttle = self._throttle
 	def change_detail(self, amount):
-		self.curve._throttle += amount
-		if self.curve._throttle < 0.01:
-			self.curve._throttle = 0.01
+		self._throttle += amount
+		if self._throttle < 0.01:
+			self._throttle = 0.01
+		for curve in self.curves:
+			curve._throttle = self._throttle
 		self.invalidate_all()
 	def zoom(self, amount):
 		self._zoom *= amount
@@ -260,6 +274,7 @@ class BezierCurve(pyglet.window.Window):
 					pyglet.graphics.draw(4, GL_QUADS, ('v2f/static', self.make_control_vertices(c)))
 				else:
 					control_verts.extend(self.make_control_vertices(c))
+
 		glColor4f(self._controlColor[0], self._controlColor[1], self._controlColor[2], self._controlColor[3])
 		pyglet.graphics.draw(len(control_verts)/2, GL_QUADS, ('v2f/static', control_verts))
 			
@@ -322,14 +337,8 @@ class BezierCurve(pyglet.window.Window):
 	def pause_animating(self):
 		self._animating_paused = not self._animating_paused
 	def run_clear(self):
-		self.stop_animating()
-		self.selected_indices = []
-		if self._doodle_mode:
-			self._doodle_points = []
-			self._doodle_batch = pyglet.graphics.Batch()
-		else:
-			self.curves = [BezierBase()]
-		self.invalidate_all()
+		self.resetEverything()
+
 	def compare_curve_to_doodle(self):
 		pass
 	def undoodle(self):
@@ -353,7 +362,7 @@ class BezierCurve(pyglet.window.Window):
 		else:
 			if button == mouse.LEFT:
 				if modifiers & key.MOD_CTRL:
-					self.curves.append(BezierBase())
+					self.curves.append(BezierBase(self._throttle))
 					self.curve = self.curves[-1]
 					self.curve._throttle = self.curves[-2]._throttle
 					self.selected_indices = []

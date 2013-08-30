@@ -67,9 +67,9 @@ class BezierBase(object):
 	POINT_REMOVED = 1
 	POINT_NOT_FOUND = 2
 
-	def __init__(self):
+	def __init__(self, throttle=0.00001):
 		#super(BezierBase, self).__init__(*args, **kwargs)
-		self._throttle = 0.00001
+		self._throttle = throttle
 		self._scaleOffsets = (0,0)
 		self._scaleFactor = 1
 		self._canvas_time = 0
