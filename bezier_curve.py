@@ -73,6 +73,7 @@ class BezierCurve(pyglet.window.Window):
 		self._show = {"curve":True, "controls":True, "bounds":True, "fps":False}
 		self._invalidated = False
 		self._animating = False
+		self._apply_all_curves = False
 		self._animating_paused = False
 		self._stepping = 0
 		self._animation_length = 2.0
@@ -170,13 +171,27 @@ class BezierCurve(pyglet.window.Window):
 			if self.curve._canvas_time >= 1.0:
 				self.stop_animating()
 			else:
-				self.curve.calc_frame(self.curve._canvas_time)
+				if self._apply_all_curves:
+					for curve in self.curves:
+						curve._canvas_time = self.curve._canvas_time
+						curve.calc_frame(curve._canvas_time)
+				else:
+					self.curve.calc_frame(self.curve._canvas_time)
 		elif self._stepping != 0:
 			self._animation_time += (self._stepping * dt) / self._animation_length
 			self.curve._canvas_time = math.floor(self._animation_time / self.curve._throttle) * self.curve._throttle
-			self.curve.calc_frame(self.curve._canvas_time)
+			if self._apply_all_curves:
+				for curve in self.curves:
+					curve._canvas_time = self.curve._canvas_time
+					curve.calc_frame(curve._canvas_time)
+			else:
+				self.curve.calc_frame(self.curve._canvas_time)
 			if self.curve._canvas_time < 0:
-				self.curve._canvas_time = 0
+				if self._apply_all_curves:
+					for curve in self.curves:
+						curve._canvas_time = 0
+				else:
+					self.curve._canvas_time = 0
 			if self.curve._canvas_time > 1.0:
 				self.stop_animating()
 	def clear_to_2d(self):
@@ -248,16 +263,31 @@ class BezierCurve(pyglet.window.Window):
 				verts.append(c[1])
 			pyglet.graphics.draw(len(verts)/2, GL_LINE_STRIP, ('v2f/static', verts))
 	def draw_calc_lines(self):
-		p, line_points = static_calc_line_layer((self.curve._controls, self.curve._canvas_time), True)
-		glColor3f(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2]);
-		pyglet.graphics.draw(len(line_points)/2, GL_LINES, ('v2f', line_points))
-		#draw the control for it
-		pyglet.graphics.draw(4, GL_QUADS, ('v2f', [
-			p[0] - 5, p[1],
-			p[0], p[1] - 5,
-			p[0] + 5, p[1],
-			p[0], p[1] + 5
-			]))
+		if self._apply_all_curves:
+			for curve in self.curves:
+				p, line_points = static_calc_line_layer((curve._controls, curve._canvas_time), True)
+				if line_points != 0:
+					glColor3f(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2]);
+					pyglet.graphics.draw(len(line_points)/2, GL_LINES, ('v2f', line_points))
+					#draw the control for it
+					pyglet.graphics.draw(4, GL_QUADS, ('v2f', [
+						p[0] - 5, p[1],
+						p[0], p[1] - 5,
+						p[0] + 5, p[1],
+						p[0], p[1] + 5
+						]))
+		else:
+			p, line_points = static_calc_line_layer((self.curve._controls, self.curve._canvas_time), True)
+			if line_points != 0:
+				glColor3f(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2]);
+				pyglet.graphics.draw(len(line_points)/2, GL_LINES, ('v2f', line_points))
+				#draw the control for it
+				pyglet.graphics.draw(4, GL_QUADS, ('v2f', [
+					p[0] - 5, p[1],
+					p[0], p[1] - 5,
+					p[0] + 5, p[1],
+					p[0], p[1] + 5
+					]))
 	def run(self):
 		self.clear_to_2d()
 		pyglet.app.run()
@@ -268,6 +298,7 @@ class BezierCurve(pyglet.window.Window):
 		self._animating_paused = False
 	def stop_animating(self):
 		self._animating = False
+		self._apply_all_curves = False
 		self._animating_paused = False
 		self._animation_time = 0.0
 		self.curve._canvas_time = 0
@@ -358,12 +389,14 @@ class BezierCurve(pyglet.window.Window):
 
 	def on_key_press(self, symbol, modifiers):
 		if symbol == key.A: #animate it!
+			self._apply_all_curves = modifiers & key.MOD_CTRL
 			self.start_animating()
 		elif symbol == key.C:
 			self.run_clear()
 		elif symbol == key.P:
 			self.pause_animating()
 		elif symbol == key.S:
+			self._apply_all_curves = modifiers & key.MOD_CTRL
 			if not (self._animating and not self._animating_paused):
 				if not self._animating:
 					self.start_animating()

@@ -21,7 +21,7 @@ def static_calc_line_layer((controls, t), verbose=False):
 
 	control_count = len(controls) - 1
 	if control_count == 1:
-		return controls[0]
+		return [controls[0]]
 	elif control_count == 0:
 		return (0,0)
 
