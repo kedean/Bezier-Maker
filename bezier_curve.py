@@ -77,10 +77,12 @@ class BezierCurve(pyglet.window.Window):
 		self._show = {"curve":True, "controls":True, "bounds":True, "fps":False}
 
 		self._throttle = 0.00001
-		
-		self.stuff = True
+		self._color = (0,0,0, 255)
+		self._controlColor = (0,0,0, 255)
+		self._boundingLineColor = (0,0,0, 255)
+		self._animatedLineColor = (0,255,0, 255)
+
 		self.resetEverything()
-		self.stuff = False
 
 		#the update loop runs at up to 60fps
 		pyglet.clock.schedule_interval(self.update, 1.0 / TICKS_PER_SEC)
@@ -89,10 +91,6 @@ class BezierCurve(pyglet.window.Window):
 		self.curves = [BezierBase(self._throttle)]
 		self.curve = self.curves[0]
 		
-		self._color = (0,0,0, 255)
-		self._controlColor = (0,0,0, 255)
-		self._boundingLineColor = (0,0,0, 255)
-		self._animatedLineColor = (0,255,0, 255)
 		self._zoom_factor = 1.3
 		self._zoom = 1.0
 		
