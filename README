@@ -5,11 +5,12 @@ Copyright 2013
   
 Python version of my Bezier demo. Keyboard and mouse controls:  
   
-left mouse click - add a control point, select an existing point, drag to move a point
-shift + left click - select more control points, drag to move them
-ctrl + left click - start a new curve with a control point at the click location
-right mouse click - remove the closest point within n pixels, hardcoded to 5 currently
-a - animate the calculations over 1 second. Button exists.
+left mouse click - add a control point, select an existing point, drag to move a point.
+shift + left click - select more control points, drag to move them.
+ctrl + left click - start a new curve with a control point at the click location.
+right mouse click - remove the closest point within n pixels, hardcoded to 5 currently.
+a - animate the calculations over 1 second for the selected (most recent) curve. Button exists.
+ctrl + a - animate all curves simulaneously.
 p - pause or resume animation  
 s - perform an animation step, can be done without starting animation  
 shift+s - reverse an animation step  
@@ -32,16 +33,33 @@ It must be run in 32-bit python due to pyglet use. On Mac OSX this requires
 where 'python' is the absolute path to your python interpreter. Just 'python' will work if using the OSX included version.
 
 ----------
+Building Releases
+----------
+
+Releases are built with PyInstaller. Currently only a linux version exists. To build for linux, use the command 
+
+    pyinstaller main.py -F --distpath=release/linux/ -n bezier-maker
+
+Then copy the images to the release path with
+
+    cp *.png release/linux/
+
+Windows and OSX should follow the same basic principles, and will be included later. Hopefully image inclusion can be streamlined, as well.
+
+----------
 Implementation Details
 ----------
 
-The usage of static_calc_line_layer is now somewhat of a relic, it's only used for the animation structure. Actual regeneration has been switched over to using a more standard interpolate() function that uses binomial coefficient multiplication to calculate the curve. In tests comparing the two, I found that the interpolate method is 3 to 4 times as fast, even with 1000 ponts of calculation.
+The usage of static_calc_line_layer is now somewhat of a relic, it's only used for the animation structure. Actual regeneration has been switched over to using a more standard interpolate() function that uses binomial coefficient multiplication to calculate the curve. In tests comparing the two, I found that the interpolate method is 3 to 4 times as fast, even with 1000 points of calculation.
 
 ----------
 Todo
 ----------
 
 - detail slider instead of buttons
+- make animate button capable of animating all curves (ctrl+a right now)
+- add interfaces for multiple curve capabilities (already exist through ctrl modifier)
+- add switching between curves
 
 ----------
 Future
@@ -52,5 +70,5 @@ Future
 - ability to save designs and extract the coordinates of points
 - ability to have multiple curves
 - antialiased lines
-- curve guessing (from hand drawn ones)
+- curve guessing
 - progessive curve drawing, using async map-reduce
