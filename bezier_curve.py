@@ -307,7 +307,7 @@ class BezierCurve(pyglet.window.Window):
 				pass
 		else:
 			if button == mouse.LEFT:
-				if modifiers == key.MOD_CTRL:
+				if modifiers & key.MOD_CTRL:
 					self.curves.append(BezierBase())
 					self.curve = self.curves[-1]
 					self.curve._throttle = self.curves[-2]._throttle
@@ -331,6 +331,7 @@ class BezierCurve(pyglet.window.Window):
 							self.selected_indices = [grabbed_index]
 						self.invalidate()
 			elif button == mouse.RIGHT:
+				self.selected_indices = []
 				self.curve.pop_point(5, x, y)
 				self.invalidate()
 	def on_mouse_release(self, x, y, button, modifiers):

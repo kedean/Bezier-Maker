@@ -103,7 +103,8 @@ class BezierBase(object):
 	"""
 	def pop_point(self, range, x, y):
 		i, c = self.find_point(range, x, y)
-		self._controls.remove(c)
+		if i != -1:
+			self._controls.remove(c)
 		return c
 	
 	""" 
