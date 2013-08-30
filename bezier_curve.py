@@ -8,7 +8,7 @@ import sys
 from bezier_base import BezierBase, interpolate, static_calc_line_layer
 
 TICKS_PER_SEC = 60
-
+MAX_ZOOM_DETAIL = 0.001
 
 class Button(pyglet.text.Label):
 	left_click_event = lambda:None
@@ -76,7 +76,7 @@ class BezierCurve(pyglet.window.Window):
 		self.buttons = [exit_button, animate_button, clear_button, more_detail_button, less_detail_button, more_zoom_button, less_zoom_button]
 		self._show = {"curve":True, "controls":True, "bounds":True, "fps":False}
 
-		self._throttle = 0.00001
+		self._throttle = 0.01
 		self._color = (0,0,0, 255)
 		self._controlColor = (0,0,0, 255)
 		self._boundingLineColor = (0,0,0, 255)
@@ -120,8 +120,8 @@ class BezierCurve(pyglet.window.Window):
 			curve._throttle = self._throttle
 	def change_detail(self, amount):
 		self._throttle += amount
-		if self._throttle < 0.01:
-			self._throttle = 0.01
+		if self._throttle < MAX_ZOOM_DETAIL:
+			self._throttle = MAX_ZOOM_DETAIL
 		for curve in self.curves:
 			curve._throttle = self._throttle
 		self.invalidate_all()
@@ -358,6 +358,8 @@ class BezierCurve(pyglet.window.Window):
 			if button == mouse.LEFT:
 				pass
 		else:
+			self.stop_animating()
+			
 			if button == mouse.LEFT:
 				if modifiers & key.MOD_CTRL:
 					self.curves.append(BezierBase(self._throttle))
@@ -365,7 +367,6 @@ class BezierCurve(pyglet.window.Window):
 					self.curve._throttle = self.curves[-2]._throttle
 					self.selected_indices = []
 					self.curve.add_point(x, y)
-					self.stop_animating()
 					self.invalidate_all()
 				else:
 					grabbed_index, point = self.curve.find_point(5, x, y)
