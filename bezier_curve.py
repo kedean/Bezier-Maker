@@ -364,16 +364,16 @@ class BezierCurve(pyglet.window.Window):
 		elif symbol == key.P:
 			self.pause_animating()
 		elif symbol == key.S:
-			if modifiers in (0, 1) and not (self._animating and not self._animating_paused):
+			if not (self._animating and not self._animating_paused):
 				if not self._animating:
 					self.start_animating()
 					self._animating_paused = True
 
-				if modifiers == 1:
+				if modifiers & key.MOD_SHIFT:
 					self._stepping = -1
 					if self._animation_time == 0:
 						self._animation_time = 1.0
-				elif modifiers == 0:
+				else:
 					self._stepping = 1
 		elif symbol == key.R:
 			if modifiers & key.MOD_SHIFT:
