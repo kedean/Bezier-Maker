@@ -1,3 +1,5 @@
+#!/usr/bin/python -O
+
 from bezier_curve import BezierCurve
 import random
 from ConfigParser import *
