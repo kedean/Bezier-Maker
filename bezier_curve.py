@@ -216,9 +216,9 @@ class BezierCurve(object):
 			self.draw_controls()
 		if self._show["bounds"]:
 			self.draw_bounding_lines()
-		"""
+		
 		if self._animating:
-			self.draw_calc_lines()"""
+			self.draw_calc_lines()
 		"""if self._show["fps"]:
 			self._fps_label.draw()
 			self._location_label.draw()"""
@@ -231,18 +231,17 @@ class BezierCurve(object):
 			if len(curve_points) > 0:
 				self.canvas.window.draw_lines(self.gc, curve_points)
 	def draw_controls(self):
-		#self._control_batch.draw()
-		#glColor4f(self._controlColor[0], self._controlColor[1], self._controlColor[2], self._controlColor[3])
-		self.gc.foreground = self.canvas.get_colormap().alloc(self._color[0], self._color[1], self._color[2])
 		control_verts = []
 		for curve in self.curves:
 			for i, c in enumerate(curve._controls):
 				if curve == self.curve and i in self.selected_indices:
 					self.gc.foreground = self.canvas.get_colormap().alloc(100, 0, 0)
 					#pyglet.graphics.draw(4, GL_QUADS, ('v2f/static', self.make_control_vertices(c)))
-					print self.make_control_vertices(c)
+					vert = self.make_control_vertices(c)
+					self.canvas.window.draw_rectangle(self.gc, True, vert[0], vert[1], vert[2], vert[3])
 				else:
 					control_verts.append(self.make_control_vertices(c))
+
 		self.gc.foreground = self.canvas.get_colormap().alloc(self._controlColor[0], self._controlColor[1], self._controlColor[2])
 		for vert in control_verts:
 			self.canvas.window.draw_rectangle(self.gc, True, vert[0], vert[1], vert[2], vert[3])
@@ -257,32 +256,16 @@ class BezierCurve(object):
 			if len(verts) > 0:
 				self.canvas.window.draw_lines(self.gc, verts)
 	def draw_calc_lines(self):
-		if self._apply_all_curves:
-			for curve in self.curves:
-				p, line_points = static_calc_line_layer((curve._controls, curve._canvas_time), True)
-				if line_points != 0:
-					glColor3f(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2]);
-					pyglet.graphics.draw(len(line_points)/2, GL_LINES, ('v2f', line_points))
-					#draw the control for it
-					pyglet.graphics.draw(4, GL_QUADS, ('v2f', [
-						p[0] - 5, p[1],
-						p[0], p[1] - 5,
-						p[0] + 5, p[1],
-						p[0], p[1] + 5
-						]))
-		else:
-			p, line_points = static_calc_line_layer((self.curve._controls, self.curve._canvas_time), True)
+		curves = self.curves if self._apply_all_curves else [self.curve]
+		
+		for curve in self.curves:
+			p, line_points = static_calc_line_layer((curve._controls, curve._canvas_time), True)
 			if line_points != 0:
-				glColor3f(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2]);
-				pyglet.graphics.draw(len(line_points)/2, GL_LINES, ('v2f', line_points))
+				self.gc.foreground = self.canvas.get_colormap().alloc(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2])
+				self.canvas.window.draw_segments(self.gc, line_points)
 				#draw the control for it
-				pyglet.graphics.draw(4, GL_QUADS, ('v2f', [
-					p[0] - 5, p[1],
-					p[0], p[1] - 5,
-					p[0] + 5, p[1],
-					p[0], p[1] + 5
-					]))
-
+				self.canvas.window.draw_rectangle(self.gc, True, int(p[0])-5, int(p[1])-5, 10, 10)
+		
 	def quit_app(self, event):
 		self.quit = True
 	def run(self):
@@ -293,13 +276,19 @@ class BezierCurve(object):
 		self.width, self.height = 800, 600
 		self.canvas = gtk.DrawingArea()
 		self.canvas.set_size_request(self.width, self.height)
-		self.canvas.add_events(gtk.gdk.BUTTON_PRESS_MASK | gtk.gdk.KEY_PRESS_MASK)
+		
 		self.canvas.connect("expose-event", self.canvas_expose)
-		self.canvas.connect("button_press_event", self.on_mouse_press)
+		
+		self.window.add_events(gtk.gdk.BUTTON_PRESS_MASK | gtk.gdk.KEY_PRESS_MASK)
+		self.window.connect("button_press_event", self.on_mouse_press)
+		self.window.connect("key-press-event", self.on_key_press)
+		self.window.connect("key-release-event", self.on_key_release)
+		self.window.set_resizable(False)
+		
 		self.canvas.show()
 		self.window.add(self.canvas)
 		self.window.show_all()
-		#gtk.mainloop()
+		
 		last_update_time = time.time()
 		while not self.quit:
 			while gtk.events_pending():
@@ -411,47 +400,50 @@ class BezierCurve(object):
 				self.curve.set_point(i, existing[0] + dx, existing[1] + dy)
 				self.invalidate()
 
-	def on_key_press(self, symbol, modifiers):
-		if symbol == key.A: #animate it!
-			self._apply_all_curves = modifiers & key.MOD_CTRL
+	def on_key_press(self, canvas, event):
+		symbol, modifiers = event.keyval, None
+		print symbol
+		if symbol == ord('a'): #animate it!
+			#self._apply_all_curves = modifiers & key.MOD_CTRL
 			self.start_animating()
-		elif symbol == key.C:
+		elif symbol == ord('c'):
 			self.run_clear()
-		elif symbol == key.P:
+		elif symbol == ord('p'):
 			self.pause_animating()
-		elif symbol == key.S:
-			self._apply_all_curves = modifiers & key.MOD_CTRL
+		elif symbol == ord('s'):
+			#self._apply_all_curves = modifiers & key.MOD_CTRL
+			if not (self._animating and not self._animating_paused):
+				if not self._animating:
+					self.start_animating()
+					self._animating_paused = True
+				self._stepping = 1
+		elif symbol == ord('S'):
+			#self._apply_all_curves = modifiers & key.MOD_CTRL
 			if not (self._animating and not self._animating_paused):
 				if not self._animating:
 					self.start_animating()
 					self._animating_paused = True
 
-				if modifiers & key.MOD_SHIFT:
-					self._stepping = -1
-					if self._animation_time == 0:
-						self._animation_time = 1.0
-				else:
-					self._stepping = 1
-		elif symbol == key.R:
-			if modifiers & key.MOD_SHIFT:
-				self.curve.pop_point_at_index(-1)
-			else:
-				for i in self.selected_indices:
-					self.curve.pop_point_at_index(i)
-				self.selected_indices = []
+				self._stepping = -1
+				if self._animation_time == 0:
+					self._animation_time = 1.0
+		elif symbol == ord('r'):
+			for i in self.selected_indices:
+				self.curve.pop_point_at_index(i)
+			self.selected_indices = []
 			self.invalidate()
-		elif symbol == key.D:
+		elif symbol == ord('R'):
+			self.curve.pop_point_at_index(-1)
+			self.invalidate()
+		elif symbol == ord('d'):
 			self.debug()
-		elif symbol == key.BRACKETRIGHT:
+		elif symbol == ord(']'):
 			self.zoom(self._zoom_factor)
-		elif symbol == key.BRACKETLEFT:
+		elif symbol == ord('['):
 			self.zoom(1/self._zoom_factor)
-		elif symbol == key.T:
-			if self._doodle_mode:
-				self.undoodle()
-			self._doodle_mode = not self._doodle_mode
-	def on_key_release(self, symbol, modifiers):
-		if symbol == key.S:
+	def on_key_release(self, canvas, event):
+		symbol = event.keyval
+		if symbol == ord('s') or symbol == ord('S'):
 			self._stepping = 0
 	def on_resize(self, width, height):
 		self.clear_to_2d()
@@ -489,26 +481,26 @@ class BezierCurve(object):
 			self._show["bounds"] = bool(val)
 
 	def set_curve_color(self, color):
-		color = list(color)
+		color = [int(c, 0) if type(c) != int else c for c in color]
 		assert len(color) == 3 or len(color) == 4
 		if len(color) == 3:
-			color.append(255)
+			color.append(0xffff)
 		self._color = color
 	def set_control_color(self, color):
-		color = list(color)
+		color = [int(c, 0) if type(c) != int else c for c in color]
 		assert len(color) == 3 or len(color) == 4
 		if len(color) == 3:
-			color.append(255)
+			color.append(0xffff)
 		self._controlColor = color
 	def set_bounds_color(self, color):
-		color = list(color)
+		color = [int(c, 0) if type(c) != int else c for c in color]
 		assert len(color) == 3 or len(color) == 4
 		if len(color) == 3:
-			color.append(255)
+			color.append(0xffff)
 		self._boundingLineColor = color
 	def set_animation_color(self, color):
-		color = list(color)
+		color = [int(c, 0) if type(c) != int else c for c in color]
 		assert len(color) == 3 or len(color) == 4
 		if len(color) == 3:
-			color.append(255)
+			color.append(0xffff)
 		self._animatedLineColor = color

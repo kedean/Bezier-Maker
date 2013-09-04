@@ -36,7 +36,7 @@ def static_calc_line_layer((controls, t), verbose=False):
 				sub_controls[i][1] + (sub_controls[i+1][1] - sub_controls[i][1]) * t
 				)
 			if i != 0:
-				sub_points.extend([sub_controls[i-1][0], sub_controls[i-1][1], sub_controls[i][0], sub_controls[i][1]])
+				sub_points.extend([(int(sub_controls[i-1][0]), int(sub_controls[i-1][1]), int(sub_controls[i][0]), int(sub_controls[i][1]))])
 	
 	if verbose:
 		return sub_controls[0], sub_points
