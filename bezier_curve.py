@@ -402,7 +402,6 @@ class BezierCurve(object):
 
 	def on_key_press(self, canvas, event):
 		symbol, modifiers = event.keyval, None
-		print symbol
 		if symbol == ord('a'): #animate it!
 			#self._apply_all_curves = modifiers & key.MOD_CTRL
 			self.start_animating()
