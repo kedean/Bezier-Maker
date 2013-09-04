@@ -3,6 +3,7 @@ import math
 import sys
 import time
 
+from bezier_collection import BezierCollection
 from bezier_base import BezierBase, interpolate, static_calc_line_layer
 
 TICKS_PER_SEC = 60
@@ -82,8 +83,7 @@ class BezierCurve(object):
 		self.resetEverything()
 		
 	def resetEverything(self):
-		self.curves = [BezierBase(self._throttle)]
-		self.curve = self.curves[0]
+		self._curve_set = BezierCollection(self._throttle)
 		
 		self._zoom_factor = 1.3
 		self._zoom = 1.0
@@ -113,19 +113,16 @@ class BezierCurve(object):
 		"""
 	def set_throttle(self, throttle):
 		self._throttle = float(throttle)
-		for curve in self.curves:
-			curve._throttle = self._throttle
+		self._curve_set.throttle = throttle
 	def change_detail(self, amount):
 		self._throttle += amount
 		if self._throttle < MAX_ZOOM_DETAIL:
 			self._throttle = MAX_ZOOM_DETAIL
-		for curve in self.curves:
-			curve._throttle = self._throttle
+		self._curve_set.throttle = self._throttle
 		self.invalidate_all()
 	def zoom(self, amount):
 		self._zoom *= amount
-		for curve in self.curves:
-			curve.scale(self._zoom, self.width/2, self.height/2)
+		self._curve_set.scale(self._zoom, self.width/2, self.height/2)
 		self.invalidate_all()
 	def invalidate(self):
 		self._invalidated = True
@@ -148,60 +145,22 @@ class BezierCurve(object):
 		#self._fps_label.text = "fps = {0:.02f}".format(pyglet.clock.get_fps())
 		
 		if self._invalidated:
-			if self._invalidated_all:
-				for curve in self.curves:
-					curve.regenerate()
-			else:
-				self.curve.regenerate()
-
-			if len(self.curve._controls) > 0:
-				#[vert.delete() for c, vert in self._control_vertices.iteritems() if c not in self.curve._controls]
-				"""
-				self._control_vertices = {}
-				for i, c in enumerate(self.curve._controls):
-					if c not in self._control_vertices and i not in self.selected_indices:
-						self._control_vertices[c] = self._control_batch.add(4, GL_QUADS, None, ('v2f/static', self.make_control_vertices(c)))
-				for curve in self.curves:
-					for c in curve._controls:
-						if c not in self._control_vertices:
-							self._control_vertices[c] = self._control_batch.add(4, GL_QUADS, None, ('v2f/static', self.make_control_vertices(c)))
-				"""
-				"""
-				for curve in self.curves:
-					curve_points = []
-					[curve_points.extend([c[0], c[1]]) for c in curve._points]
-					#self._curve_vertices.delete() if (self._curve_vertices is not None) else None
-					self._curve_vertices = self._curve_batch.add(len(curve_points) / 2, GL_LINE_STRIP, None, ('v2f/static', curve_points))
-				"""
+			self._curve_set.regenerate_all() if self._invalidated_all else self._curve_set.regenerate_primary()
 			self.validate()
 		if self._animating and not self._animating_paused:
 			self._animation_time += dt / self._animation_length
-			self.curve._canvas_time = math.floor(self._animation_time / self.curve._throttle) * self.curve._throttle
-			if self.curve._canvas_time >= 1.0:
+			n_canvas_time = math.floor(self._animation_time / self._curve_set.primary._throttle) * self._curve_set.primary._throttle
+			if n_canvas_time >= 1.0:
 				self.stop_animating()
 			else:
-				if self._apply_all_curves:
-					for curve in self.curves:
-						curve._canvas_time = self.curve._canvas_time
-						curve.calc_frame(curve._canvas_time)
-				else:
-					self.curve.calc_frame(self.curve._canvas_time)
+				self._curve_set.calc_frame(n_canvas_time, self._apply_all_curves)
 		elif self._stepping != 0:
 			self._animation_time += (self._stepping * dt) / self._animation_length
-			self.curve._canvas_time = math.floor(self._animation_time / self.curve._throttle) * self.curve._throttle
-			if self._apply_all_curves:
-				for curve in self.curves:
-					curve._canvas_time = self.curve._canvas_time
-					curve.calc_frame(curve._canvas_time)
-			else:
-				self.curve.calc_frame(self.curve._canvas_time)
-			if self.curve._canvas_time < 0:
-				if self._apply_all_curves:
-					for curve in self.curves:
-						curve._canvas_time = 0
-				else:
-					self.curve._canvas_time = 0
-			if self.curve._canvas_time > 1.0:
+			n_canvas_time = math.floor(self._animation_time / self._curve_set.primary._throttle) * self._curve_set.primary._throttle
+			self._curve_set.calc_frame(n_canvas_time, self._apply_all_curves)
+			if n_canvas_time < 0:
+				self._curve_set.reset_canvas_time(self._apply_all_curves)
+			elif n_canvas_time > 1.0:
 				self.stop_animating()
 	def clear(self):
 		white = self.canvas.get_colormap().alloc(0xffff, 0xffff, 0xffff)
@@ -225,41 +184,16 @@ class BezierCurve(object):
 		#[button.draw() for button in self.buttons]
 	def draw_curve(self):
 		self.gc.foreground = self.canvas.get_colormap().alloc(self._color[0], self._color[1], self._color[2])
-		#self._curve_batch.draw()
-		for curve in self.curves:
-			curve_points = [(int(c[0]), int(c[1])) for c in curve._points]
-			if len(curve_points) > 0:
-				self.canvas.window.draw_lines(self.gc, curve_points)
+		[self.canvas.window.draw_lines(self.gc, points) for points in self._curve_set.get_curve_points() if len(points) > 0]
 	def draw_controls(self):
-		control_verts = []
-		for curve in self.curves:
-			for i, c in enumerate(curve._controls):
-				if curve == self.curve and i in self.selected_indices:
-					self.gc.foreground = self.canvas.get_colormap().alloc(100, 0, 0)
-					#pyglet.graphics.draw(4, GL_QUADS, ('v2f/static', self.make_control_vertices(c)))
-					vert = self.make_control_vertices(c)
-					self.canvas.window.draw_rectangle(self.gc, True, vert[0], vert[1], vert[2], vert[3])
-				else:
-					control_verts.append(self.make_control_vertices(c))
-
 		self.gc.foreground = self.canvas.get_colormap().alloc(self._controlColor[0], self._controlColor[1], self._controlColor[2])
-		for vert in control_verts:
-			self.canvas.window.draw_rectangle(self.gc, True, vert[0], vert[1], vert[2], vert[3])
-			
+		[self.canvas.window.draw_rectangle(self.gc, True, v[0], v[1], 10, 10) for v in self._curve_set.get_deselected_controls()]
 
 	def draw_bounding_lines(self):
 		self.gc.foreground = self.canvas.get_colormap().alloc(self._boundingLineColor[0], self._boundingLineColor[1], self._boundingLineColor[2])
-		for curve in self.curves:
-			verts = []
-			for c in curve._controls:
-				verts.append((int(c[0]), int(c[1])))
-			if len(verts) > 0:
-				self.canvas.window.draw_lines(self.gc, verts)
+		[self.canvas.window.draw_lines(self.gc, verts) for verts in self._curve_set.get_bounding_points() if len(verts) > 0]
 	def draw_calc_lines(self):
-		curves = self.curves if self._apply_all_curves else [self.curve]
-		
-		for curve in self.curves:
-			p, line_points = static_calc_line_layer((curve._controls, curve._canvas_time), True)
+		for p, line_points in self._curve_set.get_calc_lines(self._apply_all_curves):
 			if line_points != 0:
 				self.gc.foreground = self.canvas.get_colormap().alloc(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2])
 				self.canvas.window.draw_segments(self.gc, line_points)
@@ -307,18 +241,16 @@ class BezierCurve(object):
 		self.on_draw()
 
 	def start_animating(self):
-		self.curve._canvas_time = 0
+		self._curve_set.reset_canvas_time(True)
 		self._animating = True
-		self.curve.calc_frame(0)
+		self._curve_set.calc_frame(0, self._apply_all_curves)
 		self._animating_paused = False
 	def stop_animating(self):
 		self._animating = False
 		
 		self._animating_paused = False
 		self._animation_time = 0.0
-		for curve in self.curves:
-			curve._canvas_time = 0
-			curve.calc_frame(1)
+		self._curve_set.calc_frame(1, True)
 
 		self.invalidate_all() if self._apply_all_curves else self.invalidate()
 
@@ -359,14 +291,14 @@ class BezierCurve(object):
 				self.curve.add_point(x, y)
 				self.invalidate_all()
 			else:
-				grabbed_index, point = self.curve.find_point(5, x, y)
+				grabbed_index, point = self._curve_set.primary.find_point(5, x, y)
 
 				if len(self.selected_indices) > 0 and grabbed_index != self.selected_indices[0]:
 					self.invalidate()
 
 				if grabbed_index == -1:
 					self.selected_indices = []
-					self.curve.add_point(x, y)
+					self._curve_set.primary.add_point(x, y)
 					self.invalidate()
 				else:
 					if modifiers & key.MOD_SHIFT:
@@ -376,7 +308,7 @@ class BezierCurve(object):
 					self.invalidate()
 		elif button == 3:
 			self.selected_indices = []
-			self.curve.pop_point(5, x, y)
+			self._curve_set.primary.pop_point(5, x, y)
 			self.invalidate()
 	def on_mouse_release(self, x, y, button, modifiers):
 		if self._doodle_mode:
