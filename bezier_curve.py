@@ -8,53 +8,6 @@ from bezier_base import BezierBase, interpolate, static_calc_line_layer
 
 TICKS_PER_SEC = 60
 MAX_ZOOM_DETAIL = 0.001
-"""
-class Button(pyglet.text.Label):
-	left_click_event = lambda:None
-	right_click_event = lambda:None
-	middle_click_event = lambda:None
-
-	def parse_click(self, x, y, mouse_button):
-		if x > self.x and x < self.x + self.content_width and y < self.y and y > self.y - self.content_height:
-			if mouse_button == mouse.LEFT:
-				self.left_click_event()
-			elif mouse_button == mouse.RIGHT:
-				self.right_click_event()
-			elif mouse_button == mouse.MIDDLE:
-				self.middle_click_event()
-			return True
-		else:
-			return False
-	def hovering(self, x, y):
-		return (x > self.x and x < self.x + self.content_width and y < self.y and y > self.y - self.content_height)
-
-class ImageButton(pyglet.sprite.Sprite):
-	left_click_event = lambda:None
-	right_click_event = lambda:None
-	middle_click_event = lambda:None
-
-	def parse_click(self, x, y, mouse_button):
-		if x > self.x and x < self.x + self.width and y > self.y and y < self.y + self.height:
-			if mouse_button == mouse.LEFT:
-				self.left_click_event()
-			elif mouse_button == mouse.RIGHT:
-				self.right_click_event()
-			elif mouse_button == mouse.MIDDLE:
-				self.middle_click_event()
-			return True
-		else:
-			return False
-	def hovering(self, x, y):
-		return (x > self.x and x < self.x + self.width and y < self.y and y > self.y - self.height)
-	@staticmethod
-	def make_button(filename, y_pos, left_click=lambda:None, right_click=lambda:None, middle_click=lambda:None):
-		image = pyglet.image.load(filename)
-		button = ImageButton(image, x=0, y=y_pos - image.height)
-		button.left_click_event = left_click
-		button.right_click_event = right_click
-		button.middle_click_event = middle_click
-		return button
-"""
 
 class BezierCurve(object):
 	def __init__(self, *args, **kwargs):
@@ -96,21 +49,11 @@ class BezierCurve(object):
 		self._stepping = 0
 		self._animation_length = 2.0
 		self._animation_time = 0.0
-		"""
-		self._control_batch = pyglet.graphics.Batch()
-		self._curve_batch = pyglet.graphics.Batch()
-		"""
+		
 		self._control_vertices = {}
 		self._curve_vertices = None
 		self.selected_indices = []
-		"""
-		self._doodle_mode = False
-		self._doodle_points = []
-		self._doodle_batch = pyglet.graphics.Batch()
-		self._doodle_vertices = []
 		
-		self._doodle_tolerance = 5 #pixels of difference in any direction between estimated curve and the drawn line
-		"""
 	def set_throttle(self, throttle):
 		self._throttle = float(throttle)
 		self._curve_set.throttle = throttle
@@ -145,7 +88,8 @@ class BezierCurve(object):
 		#self._fps_label.text = "fps = {0:.02f}".format(pyglet.clock.get_fps())
 		
 		if self._invalidated:
-			self._curve_set.regenerate_all() if self._invalidated_all else self._curve_set.regenerate_primary()
+			self._curve_set.regenerate(self._invalidated_all)
+			self._should_redraw = True
 			self.validate()
 		if self._animating and not self._animating_paused:
 			self._animation_time += dt / self._animation_length
@@ -154,6 +98,7 @@ class BezierCurve(object):
 				self.stop_animating()
 			else:
 				self._curve_set.calc_frame(n_canvas_time, self._apply_all_curves)
+			self._should_redraw = True
 		elif self._stepping != 0:
 			self._animation_time += (self._stepping * dt) / self._animation_length
 			n_canvas_time = math.floor(self._animation_time / self._curve_set.primary._throttle) * self._curve_set.primary._throttle
@@ -162,6 +107,7 @@ class BezierCurve(object):
 				self._curve_set.reset_canvas_time(self._apply_all_curves)
 			elif n_canvas_time > 1.0:
 				self.stop_animating()
+			self._should_redraw = True
 	def clear(self):
 		white = self.canvas.get_colormap().alloc(0xffff, 0xffff, 0xffff)
 		self.gc.foreground = white
@@ -188,6 +134,9 @@ class BezierCurve(object):
 	def draw_controls(self):
 		self.gc.foreground = self.canvas.get_colormap().alloc(self._controlColor[0], self._controlColor[1], self._controlColor[2])
 		[self.canvas.window.draw_rectangle(self.gc, True, v[0], v[1], 10, 10) for v in self._curve_set.get_deselected_controls()]
+
+		self.gc.foreground = self.canvas.get_colormap().alloc(abs(0xffff - self._controlColor[0]), abs(0xffff - self._controlColor[1]), abs(0xffff - self._controlColor[2]))
+		[self.canvas.window.draw_rectangle(self.gc, True, v[0], v[1], 10, 10) for v in self._curve_set.get_selected_controls()]
 
 	def draw_bounding_lines(self):
 		self.gc.foreground = self.canvas.get_colormap().alloc(self._boundingLineColor[0], self._boundingLineColor[1], self._boundingLineColor[2])
@@ -222,6 +171,10 @@ class BezierCurve(object):
 		self.canvas.show()
 		self.window.add(self.canvas)
 		self.window.show_all()
+
+		self._should_redraw = True
+
+		self._shift_down = False
 		
 		last_update_time = time.time()
 		while not self.quit:
@@ -232,12 +185,15 @@ class BezierCurve(object):
 			if elapsed >= 1.0 / TICKS_PER_SEC:
 				self.update(elapsed)
 				last_update_time = now
-				self.canvas.queue_draw()
+				if self._should_redraw:
+					self._should_redraw = False
+					#self.canvas.queue_draw()
+					self.on_draw()
+					
 
 
 	def canvas_expose(self, canvas, event):
 		self.gc = event.window.new_gc()
-		self.clear()
 		self.on_draw()
 
 	def start_animating(self):
@@ -293,7 +249,7 @@ class BezierCurve(object):
 			else:
 				grabbed_index, point = self._curve_set.primary.find_point(5, x, y)
 
-				if len(self.selected_indices) > 0 and grabbed_index != self.selected_indices[0]:
+				if len(self._curve_set._selections[self._curve_set._primary_index]) > 0 and grabbed_index != self._curve_set._selections[self._curve_set._primary_index][0]:
 					self.invalidate()
 
 				if grabbed_index == -1:
@@ -301,13 +257,14 @@ class BezierCurve(object):
 					self._curve_set.primary.add_point(x, y)
 					self.invalidate()
 				else:
-					if modifiers & key.MOD_SHIFT:
-						self.selected_indices.append(grabbed_index)
+					if self._shift_down:
+						self._curve_set.select_from_primary(grabbed_index)
 					else:
-						self.selected_indices = [grabbed_index]
+						self._curve_set.reset_selections()
+						self._curve_set.select_from_primary(grabbed_index)
 					self.invalidate()
 		elif button == 3:
-			self.selected_indices = []
+			self._curve_set.reset_selections()
 			self._curve_set.primary.pop_point(5, x, y)
 			self.invalidate()
 	def on_mouse_release(self, x, y, button, modifiers):
@@ -334,7 +291,9 @@ class BezierCurve(object):
 
 	def on_key_press(self, canvas, event):
 		symbol, modifiers = event.keyval, None
-		if symbol == ord('a'): #animate it!
+		if symbol == 65505: #shift down
+			self._shift_down = True
+		elif symbol == ord('a'): #animate it!
 			#self._apply_all_curves = modifiers & key.MOD_CTRL
 			self.start_animating()
 		elif symbol == ord('c'):
@@ -374,6 +333,8 @@ class BezierCurve(object):
 			self.zoom(1/self._zoom_factor)
 	def on_key_release(self, canvas, event):
 		symbol = event.keyval
+		if symbol == 65505: #shift up
+			self._shift_down = False
 		if symbol == ord('s') or symbol == ord('S'):
 			self._stepping = 0
 	def on_resize(self, width, height):
