@@ -69,11 +69,9 @@ class BezierCurve(object):
 		self.invalidate_all()
 	def invalidate(self):
 		self._invalidated = True
-		self.canvas.queue_draw()
 	def invalidate_all(self):
 		self._invalidated = True
 		self._invalidated_all = True
-		self.canvas.queue_draw()
 	def validate(self):
 		self._invalidated = False
 		self._invalidated_all = False
@@ -109,9 +107,8 @@ class BezierCurve(object):
 				self.stop_animating()
 			self._should_redraw = True
 	def clear(self):
-		white = self.canvas.get_colormap().alloc(0xffff, 0xffff, 0xffff)
-		self.gc.foreground = white
-		self.canvas.window.draw_rectangle(self.gc, True, 0, 0, self.width, self.height)
+		self.gc.foreground = self.white
+		self.canvas.draw_rectangle(self.gc, True, 0, 0, self.width, self.height)
 	def on_draw(self):
 		self.clear()
 		
@@ -130,37 +127,37 @@ class BezierCurve(object):
 		#[button.draw() for button in self.buttons]
 	def draw_curve(self):
 		self.gc.foreground = self.canvas.get_colormap().alloc(self._color[0], self._color[1], self._color[2])
-		[self.canvas.window.draw_lines(self.gc, points) for points in self._curve_set.get_curve_points() if len(points) > 0]
+		[self.canvas.draw_lines(self.gc, points) for points in self._curve_set.get_curve_points() if len(points) > 0]
 	def draw_controls(self):
 		self.gc.foreground = self.canvas.get_colormap().alloc(self._controlColor[0], self._controlColor[1], self._controlColor[2])
-		[self.canvas.window.draw_rectangle(self.gc, True, v[0], v[1], 10, 10) for v in self._curve_set.get_deselected_controls()]
+		[self.canvas.draw_rectangle(self.gc, True, v[0], v[1], 10, 10) for v in self._curve_set.get_deselected_controls()]
 
 		self.gc.foreground = self.canvas.get_colormap().alloc(abs(0xffff - self._controlColor[0]), abs(0xffff - self._controlColor[1]), abs(0xffff - self._controlColor[2]))
-		[self.canvas.window.draw_rectangle(self.gc, True, v[0], v[1], 10, 10) for v in self._curve_set.get_selected_controls()]
+		[self.canvas.draw_rectangle(self.gc, True, v[0], v[1], 10, 10) for v in self._curve_set.get_selected_controls()]
 
 	def draw_bounding_lines(self):
 		self.gc.foreground = self.canvas.get_colormap().alloc(self._boundingLineColor[0], self._boundingLineColor[1], self._boundingLineColor[2])
-		[self.canvas.window.draw_lines(self.gc, verts) for verts in self._curve_set.get_bounding_points() if len(verts) > 0]
+		[self.canvas.draw_lines(self.gc, verts) for verts in self._curve_set.get_bounding_points() if len(verts) > 0]
 	def draw_calc_lines(self):
+		self.gc.foreground = self.canvas.get_colormap().alloc(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2])
 		for p, line_points in self._curve_set.get_calc_lines(self._apply_all_curves):
 			if line_points != 0:
-				self.gc.foreground = self.canvas.get_colormap().alloc(self._animatedLineColor[0], self._animatedLineColor[1], self._animatedLineColor[2])
-				self.canvas.window.draw_segments(self.gc, line_points)
-				#draw the control for it
-				self.canvas.window.draw_rectangle(self.gc, True, int(p[0])-5, int(p[1])-5, 10, 10)
+				self.canvas.draw_segments(self.gc, line_points)
+				self.canvas.draw_rectangle(self.gc, True, int(p[0])-5, int(p[1])-5, 10, 10)
 		
 	def quit_app(self, event):
 		self.quit = True
 	def run(self):
 		self.quit = False
+
 		self.window = gtk.Window()
 		self.window.set_title("Bezier Maker")
 		self.window.connect("destroy", self.quit_app)
 		self.width, self.height = 800, 600
-		self.canvas = gtk.DrawingArea()
-		self.canvas.set_size_request(self.width, self.height)
+		self.screen = gtk.DrawingArea()
+		self.screen.set_size_request(self.width, self.height)
 		
-		self.canvas.connect("expose-event", self.canvas_expose)
+		self.screen.connect("expose-event", self.canvas_expose)
 		
 		self.window.add_events(gtk.gdk.BUTTON_PRESS_MASK | gtk.gdk.KEY_PRESS_MASK)
 		self.window.connect("button_press_event", self.on_mouse_press)
@@ -168,9 +165,12 @@ class BezierCurve(object):
 		self.window.connect("key-release-event", self.on_key_release)
 		self.window.set_resizable(False)
 		
-		self.canvas.show()
-		self.window.add(self.canvas)
+		self.screen.show()
+		self.window.add(self.screen)
 		self.window.show_all()
+
+		self.canvas = gtk.gdk.Pixmap(self.screen.window, self.width, self.height)
+		self.white = self.canvas.get_colormap().alloc(0xffff, 0xffff, 0xffff)
 
 		self._should_redraw = True
 
@@ -185,16 +185,18 @@ class BezierCurve(object):
 			if elapsed >= 1.0 / TICKS_PER_SEC:
 				self.update(elapsed)
 				last_update_time = now
-				if self._should_redraw:
-					self._should_redraw = False
-					#self.canvas.queue_draw()
-					self.on_draw()
-					
+				self.full_redraw()
 
 
 	def canvas_expose(self, canvas, event):
 		self.gc = event.window.new_gc()
-		self.on_draw()
+		self._should_redraw = True
+		self.full_redraw()
+	def full_redraw(self):
+		if self._should_redraw:
+			self._should_redraw = False
+			self.on_draw()
+			self.screen.window.draw_drawable(self.screen.get_style().fg_gc[gtk.STATE_NORMAL], self.canvas, 0, 0, 0, 0, self.width, self.height)
 
 	def start_animating(self):
 		self._curve_set.reset_canvas_time(True)
