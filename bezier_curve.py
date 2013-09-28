@@ -178,6 +178,7 @@ class BezierCurve(object):
 		self._should_redraw = True
 
 		self._shift_down = False
+		self._ctrl_down = False
 		self._dragging_origin = None
 		
 		last_update_time = time.time()
@@ -238,9 +239,12 @@ class BezierCurve(object):
 				self._curve_set.reset_selections()
 				self._curve_set.primary.add_point(x, y)
 			else:
-				if not self._shift_down: #shift means add to the collection, so if theres no shifting then old selections are invalid
-					self._curve_set.reset_selections()
-				self._curve_set.select_from_curve(curve_index, grabbed_index)
+				if self._ctrl_down:
+					self._curve_set.deselect_from_curve(curve_index, grabbed_index)
+				else:
+					if not self._shift_down: #shift means add to the collection, so if theres no shifting then old selections are invalid
+						self._curve_set.reset_selections()
+					self._curve_set.select_from_curve(curve_index, grabbed_index)
 		elif button == 3:
 			self._curve_set.pop_index_from_curve(curve_index, grabbed_index)
 		
@@ -264,8 +268,11 @@ class BezierCurve(object):
 
 	def on_key_press(self, canvas, event):
 		symbol, modifiers = event.keyval, None
-		if symbol == 65505: #shift down
+
+		if symbol == 65505 or symbol == 65506: #shift down
 			self._shift_down = True
+		elif symbol == 65507 or symbol == 65508:
+			self._ctrl_down = True
 		elif symbol == ord('a'): #animate it!
 			#self._apply_all_curves = modifiers & key.MOD_CTRL
 			self.start_animating()
@@ -307,8 +314,10 @@ class BezierCurve(object):
 			self.zoom(1/self._zoom_factor)
 	def on_key_release(self, canvas, event):
 		symbol = event.keyval
-		if symbol == 65505: #shift up
+		if symbol == 65505 or symbol == 65506: #shift up
 			self._shift_down = False
+		elif symbol == 65507 or symbol == 65508:
+			self._ctrl_down = False
 		if symbol == ord('s') or symbol == ord('S'):
 			self._stepping = 0
 	def on_resize(self, width, height):

@@ -87,6 +87,8 @@ class BezierCollection(object):
 		self._selections[self._primary_index].append(index)
 	def select_from_curve(self, curve_index, point_index):
 		self._selections[curve_index].append(point_index)
+	def deselect_from_curve(self, curve_index, point_index):
+		self._selections[curve_index].remove(point_index)
 	def reset_selections(self):
 		self._selections = [[]] * len(self._curves)
 
