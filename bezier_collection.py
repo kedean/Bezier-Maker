@@ -1,6 +1,8 @@
 from bezier_base import BezierBase, interpolate, static_calc_line_layer
 
 class BezierCollection(object):
+	POINT_NOT_FOUND = 2
+
 	def __init__(self, throttle):
 		self.__group_throttle = throttle
 		self._curves = [BezierBase(self.__group_throttle)]
@@ -19,6 +21,12 @@ class BezierCollection(object):
 	@property
 	def primary(self):
 		return self._curves[self._primary_index]
+	def curves(self):
+		for c in self._curves:
+			yield c
+	def selections(self):
+		for c, s in zip(self._curves, self._selections):
+			yield c, set(s)
 
 	def add_curve(self):
 		self._curves.append(BezierBase(self._group_throttle))
@@ -77,5 +85,19 @@ class BezierCollection(object):
 
 	def select_from_primary(self, index):
 		self._selections[self._primary_index].append(index)
+	def select_from_curve(self, curve_index, point_index):
+		self._selections[curve_index].append(point_index)
 	def reset_selections(self):
 		self._selections = [[]] * len(self._curves)
+
+	def find_point(self, r, x, y):
+		for curve_index, curve in enumerate(self._curves):
+			index, point = curve.find_point(r, x, y)
+			if index != -1:
+				return index, curve_index, point
+		return -1, -1, self.POINT_NOT_FOUND
+
+	def pop_index_from_primary(self, point_index):
+		return self.primary.pop_point_at_index(point_index)
+	def pop_index_from_curve(self, curve_index, point_index):
+		return self._curves[curve_index].pop_point_at_index(point_index)

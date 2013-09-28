@@ -159,10 +159,12 @@ class BezierCurve(object):
 		
 		self.screen.connect("expose-event", self.canvas_expose)
 		
-		self.window.add_events(gtk.gdk.BUTTON_PRESS_MASK | gtk.gdk.KEY_PRESS_MASK)
-		self.window.connect("button_press_event", self.on_mouse_press)
+		self.window.add_events(gtk.gdk.POINTER_MOTION_MASK | gtk.gdk.BUTTON_PRESS_MASK | gtk.gdk.BUTTON_RELEASE_MASK | gtk.gdk.KEY_PRESS_MASK | gtk.gdk.KEY_RELEASE_MASK)
+		self.window.connect("button-press-event", self.on_mouse_press)
+		self.window.connect("button-release-event", self.on_mouse_release)
 		self.window.connect("key-press-event", self.on_key_press)
 		self.window.connect("key-release-event", self.on_key_release)
+		self.window.connect("motion-notify-event", self.on_mouse_drag)
 		self.window.set_resizable(False)
 		
 		self.screen.show()
@@ -175,6 +177,7 @@ class BezierCurve(object):
 		self._should_redraw = True
 
 		self._shift_down = False
+		self._dragging_origin = None
 		
 		last_update_time = time.time()
 		while not self.quit:
@@ -218,6 +221,8 @@ class BezierCurve(object):
 		self._animating_paused = not self._animating_paused
 	def run_clear(self):
 		self.resetEverything()
+		self.clear()
+		self.invalidate_all()
 		
 	#event bindings
 	def on_mouse_press(self, canvas, event):
@@ -226,49 +231,40 @@ class BezierCurve(object):
 			if b.parse_click(x, y, button):
 				return"""
 
+		self._dragging_origin = (x, y)
 		
 		self.stop_animating()
+
+		grabbed_index, curve_index, point = self._curve_set.find_point(5, x, y)
 		
 		if button == 1:
-			if False and modifiers & key.MOD_CTRL:
-				self.curves.append(BezierBase(self._throttle))
-				self.curve = self.curves[-1]
-				self.curve._throttle = self.curves[-2]._throttle
-				self.selected_indices = []
-				self.curve.add_point(x, y)
-				self.invalidate_all()
+			if point == self._curve_set.POINT_NOT_FOUND:
+				self._curve_set.reset_selections()
+				self._curve_set.primary.add_point(x, y)
 			else:
-				grabbed_index, point = self._curve_set.primary.find_point(5, x, y)
-
-				if len(self._curve_set._selections[self._curve_set._primary_index]) > 0 and grabbed_index != self._curve_set._selections[self._curve_set._primary_index][0]:
-					self.invalidate()
-
-				if grabbed_index == -1:
-					self.selected_indices = []
-					self._curve_set.primary.add_point(x, y)
-					self.invalidate()
-				else:
-					if self._shift_down:
-						self._curve_set.select_from_primary(grabbed_index)
-					else:
-						self._curve_set.reset_selections()
-						self._curve_set.select_from_primary(grabbed_index)
-					self.invalidate()
+				if not self._shift_down: #shift means add to the collection, so if theres no shifting then old selections are invalid
+					self._curve_set.reset_selections()
+				self._curve_set.select_from_curve(curve_index, grabbed_index)
 		elif button == 3:
-			self._curve_set.reset_selections()
-			self._curve_set.primary.pop_point(5, x, y)
-			self.invalidate()
-	def on_mouse_release(self, x, y, button, modifiers):
-		pass
+			self._curve_set.pop_index_from_curve(curve_index, grabbed_index)
+		
+		self.invalidate()
+	def on_mouse_release(self, canvas, event):
+		self._dragging_origin = None
 	def on_mouse_motion(self, x, y, dx, dy):
 		self._location_label.text = "pos = {0}, {1}".format(x, y)
-	def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
-		self._location_label.text = "pos = {0}, {1}".format(x, y)
-
-		for i in set(self.selected_indices):
-			existing = self.curve.get_point(i)
-			
-			self.curve.set_point(i, existing[0] + dx, existing[1] + dy)
+	def on_mouse_drag(self, canvas, event):
+		#x, y, dx, dy, buttons, modifiers):
+		#self._location_label.text = "pos = {0}, {1}".format(x, y)
+		
+		if self._dragging_origin is not None:
+			x, y = self._dragging_origin
+			dx, dy = event.x - x, event.y - y
+			self._dragging_origin = (event.x, event.y)
+			for curve, selections in self._curve_set.selections():
+				for i in selections:
+					existing = curve.get_point(i)
+					curve.set_point(i, existing[0] + dx, existing[1] + dy)
 			self.invalidate()
 
 	def on_key_press(self, canvas, event):
