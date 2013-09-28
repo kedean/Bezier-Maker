@@ -218,17 +218,6 @@ class BezierCurve(object):
 		self._animating_paused = not self._animating_paused
 	def run_clear(self):
 		self.resetEverything()
-
-	def compare_curve_to_doodle(self):
-		pass
-	def undoodle(self):
-		start = self._doodle_points[0]
-		end = self._doodle_points[-1]
-
-		self.curve.add_point(*start)
-		self.curve.add_point(*end)
-
-		self.run_clear()
 		
 	#event bindings
 	def on_mouse_press(self, canvas, event):
@@ -270,26 +259,17 @@ class BezierCurve(object):
 			self._curve_set.primary.pop_point(5, x, y)
 			self.invalidate()
 	def on_mouse_release(self, x, y, button, modifiers):
-		if self._doodle_mode:
-			if button == mouse.LEFT:
-				pass
-		else:
-			if button == mouse.LEFT:
-				self.grabbed_index = -1
+		pass
 	def on_mouse_motion(self, x, y, dx, dy):
 		self._location_label.text = "pos = {0}, {1}".format(x, y)
 	def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
 		self._location_label.text = "pos = {0}, {1}".format(x, y)
 
-		if self._doodle_mode:
-			self._doodle_points.append((x,y))
+		for i in set(self.selected_indices):
+			existing = self.curve.get_point(i)
+			
+			self.curve.set_point(i, existing[0] + dx, existing[1] + dy)
 			self.invalidate()
-		else:
-			for i in set(self.selected_indices):
-				existing = self.curve.get_point(i)
-				
-				self.curve.set_point(i, existing[0] + dx, existing[1] + dy)
-				self.invalidate()
 
 	def on_key_press(self, canvas, event):
 		symbol, modifiers = event.keyval, None
