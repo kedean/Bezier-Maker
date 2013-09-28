@@ -227,14 +227,9 @@ class BezierCurve(object):
 	#event bindings
 	def on_mouse_press(self, canvas, event):
 		x, y, button = event.x, event.y, event.button
-		"""for b in self.buttons:
-			if b.parse_click(x, y, button):
-				return"""
-
-		self._dragging_origin = (x, y)
 		
+		self._dragging_origin = (x, y)
 		self.stop_animating()
-
 		grabbed_index, curve_index, point = self._curve_set.find_point(5, x, y)
 		
 		if button == 1:
@@ -254,17 +249,16 @@ class BezierCurve(object):
 	def on_mouse_motion(self, x, y, dx, dy):
 		self._location_label.text = "pos = {0}, {1}".format(x, y)
 	def on_mouse_drag(self, canvas, event):
-		#x, y, dx, dy, buttons, modifiers):
 		#self._location_label.text = "pos = {0}, {1}".format(x, y)
 		
 		if self._dragging_origin is not None:
 			x, y = self._dragging_origin
 			dx, dy = event.x - x, event.y - y
-			self._dragging_origin = (event.x, event.y)
+			self._dragging_origin = (event.x, event.y) #the d is per iteration of this function, so next time it should be d from here
 			for curve, selections in self._curve_set.selections():
 				for i in selections:
-					existing = curve.get_point(i)
-					curve.set_point(i, existing[0] + dx, existing[1] + dy)
+					existing_x, existing_y = curve.get_point(i)
+					curve.set_point(i, existing_x + dx, existing_y + dy)
 			self.invalidate()
 
 	def on_key_press(self, canvas, event):
