@@ -10,6 +10,7 @@ TICKS_PER_SEC = 60
 MAX_ZOOM_DETAIL = 0.001
 
 class BezierCurve(object):
+	SELECT_RADIUS = 10
 	def __init__(self, *args, **kwargs):
 
 		"""self._fps_label = pyglet.text.Label('', font_name='Courier', font_size=13, x=20, y=60, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
@@ -230,7 +231,7 @@ class BezierCurve(object):
 		
 		self._dragging_origin = (x, y)
 		self.stop_animating()
-		grabbed_index, curve_index, point = self._curve_set.find_point(5, x, y)
+		grabbed_index, curve_index, point = self._curve_set.find_point(self.SELECT_RADIUS, x, y)
 		
 		if button == 1:
 			if point == self._curve_set.POINT_NOT_FOUND:
