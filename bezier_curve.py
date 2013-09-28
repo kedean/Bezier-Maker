@@ -296,12 +296,13 @@ class BezierCurve(object):
 				if self._animation_time == 0:
 					self._animation_time = 1.0
 		elif symbol == ord('r'):
-			for i in self.selected_indices:
-				self.curve.pop_point_at_index(i)
-			self.selected_indices = []
+			for curve, selections in self._curve_set.selections():
+				for i in reversed(list(selections)):
+					curve.pop_point_at_index(i)
+			self._curve_set.reset_selections()
 			self.invalidate()
 		elif symbol == ord('R'):
-			self.curve.pop_point_at_index(-1)
+			self._curve_set.primary.pop_point_at_index(-1)
 			self.invalidate()
 		elif symbol == ord('d'):
 			self.debug()
