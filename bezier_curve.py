@@ -154,9 +154,10 @@ class BezierCurve(object):
 		self.window = gtk.Window()
 		self.window.set_title("Bezier Maker")
 		self.window.connect("destroy", self.quit_app)
+		
 		self.width, self.height = 800, 600
 		self.screen = gtk.DrawingArea()
-		self.screen.set_size_request(self.width, self.height)
+		self.screen.set_size_request(self.width, self.height - 200)
 		
 		self.screen.connect("expose-event", self.canvas_expose)
 		
@@ -169,7 +170,27 @@ class BezierCurve(object):
 		self.window.set_resizable(False)
 		
 		self.screen.show()
-		self.window.add(self.screen)
+
+		self.vbox = gtk.VBox()
+		self._button_container = gtk.HButtonBox()
+		
+		exit_button = gtk.Button("Exit")
+		exit_button.connect("clicked", lambda x: sys.exit(0))
+		self._button_container.add(exit_button)
+
+		animate_button = gtk.Button("Animate")
+		animate_button.connect("clicked", self.start_animating)
+		self._button_container.add(animate_button)
+
+		clear_button = gtk.Button("Clear")
+		clear_button.connect("clicked", self.run_clear)
+		self._button_container.add(clear_button)
+		
+		self.vbox.pack_start(self.screen)
+		
+		self.vbox.pack_end(self._button_container)
+
+		self.window.add(self.vbox)
 		self.window.show_all()
 
 		self.canvas = gtk.gdk.Pixmap(self.screen.window, self.width, self.height)
@@ -203,7 +224,7 @@ class BezierCurve(object):
 			self.on_draw()
 			self.screen.window.draw_drawable(self.screen.get_style().fg_gc[gtk.STATE_NORMAL], self.canvas, 0, 0, 0, 0, self.width, self.height)
 
-	def start_animating(self):
+	def start_animating(self, event=None):
 		self._curve_set.reset_canvas_time(True)
 		self._animating = True
 		self._curve_set.calc_frame(0, self._apply_all_curves)
@@ -221,7 +242,7 @@ class BezierCurve(object):
 		self._stepping = 0
 	def pause_animating(self):
 		self._animating_paused = not self._animating_paused
-	def run_clear(self):
+	def run_clear(self, event=None):
 		self.resetEverything()
 		self.clear()
 		self.invalidate_all()
