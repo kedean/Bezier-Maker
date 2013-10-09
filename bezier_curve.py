@@ -1,4 +1,5 @@
 import gtk
+import glib
 import math
 import sys
 import time

@@ -31,15 +31,7 @@ Runs and tested on Python 2.7, requires PyGTK to run.
 Building Releases
 ----------
 
-Releases are built with PyInstaller. Currently only a linux version exists. To build for linux, use the command 
-
-    pyinstaller main.py -F --distpath=release/linux/ -n bezier-maker
-
-Then copy the images to the release path with
-
-    cp *.png release/linux/
-
-Windows and OSX should follow the same basic principles, and will be included later. Hopefully image inclusion can be streamlined, as well.
+Currently there is no reliable release method. Pyinstaller fails to include the correct glib libraries, currently looking into other options.
 
 ----------
 Implementation Details

@@ -6,6 +6,8 @@ from ConfigParser import *
 import json
 from time import time
 import multiprocessing
+import gtk
+import glib
 
 def main():
 	config = ConfigParser({"draw_curve":"True", "draw_bounds":"True", "draw_controls":"True",
