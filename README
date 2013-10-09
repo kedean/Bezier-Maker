@@ -25,12 +25,7 @@ d - toggle debug mode
 Requirements  
 ----------  
   
-Runs and tested on Python 2.7, requires an installation of Pyglet.  
-It must be run in 32-bit python due to pyglet use. On Mac OSX this requires  
-
-    arch -i386 python main.py
-
-where 'python' is the absolute path to your python interpreter. Just 'python' will work if using the OSX included version.
+Runs and tested on Python 2.7, requires PyGTK to run.
 
 ----------
 Building Releases
@@ -57,7 +52,6 @@ Todo
 ----------
 
 - detail slider instead of buttons
-- make animate button capable of animating all curves (ctrl+a right now)
 - add interfaces for multiple curve capabilities (already exist through ctrl modifier)
 - add switching between curves
 
