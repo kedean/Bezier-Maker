@@ -39,9 +39,9 @@ def static_calc_line_layer((controls, t), verbose=False):
 				sub_points.extend([(int(sub_controls[i-1][0]), int(sub_controls[i-1][1]), int(sub_controls[i][0]), int(sub_controls[i][1]))])
 	
 	if verbose:
-		return sub_controls[0], sub_points
+		return (sub_controls[0], sub_points) if len(sub_controls) > 0 else (0, 0)
 	else:
-		return sub_controls[0]
+		return sub_controls[0] if len(sub_controls) > 0 else 0
 
 def binomial_coefficient(n, i):
 	return math.factorial(n) / (math.factorial(i) * math.factorial(n - i))
