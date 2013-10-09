@@ -8,6 +8,11 @@ class BezierCollection(object):
 		self._curves = [BezierBase(self.__group_throttle)]
 		self._selections = [[]]
 		self._primary_index = 0
+
+	def reset(self):
+		self._curves = [BezierBase(self.__group_throttle)]
+		self._selections = [[]]
+		self._primary_index = 0
 	
 	@property
 	def throttle(self):

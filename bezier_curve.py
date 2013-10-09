@@ -21,10 +21,12 @@ class BezierCurve(object):
 		self._boundingLineColor = (0,0,0, 255)
 		self._animatedLineColor = (0,255,0, 255)
 
+		self._curve_set = BezierCollection(self._throttle)
+
 		self.resetEverything()
 		
 	def resetEverything(self):
-		self._curve_set = BezierCollection(self._throttle)
+		self._curve_set.reset() #have to do a reset instead of just making a new one because some buttons are bound to the object already
 		
 		self._zoom_factor = 1.3
 		self._zoom = 1.0
