@@ -13,19 +13,6 @@ class BezierCurve(object):
 	SELECT_RADIUS = 10
 	def __init__(self, *args, **kwargs):
 
-		"""self._fps_label = pyglet.text.Label('', font_name='Courier', font_size=13, x=20, y=60, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
-		self._location_label = pyglet.text.Label('pos = 0, 0', font_name='Courier', font_size=13, x=20, y=40, anchor_x='left', anchor_y='top', color=(0, 0, 0, 255))
-
-		exit_button = ImageButton.make_button("exit.png", self.height, lambda:(sys.exit(0)))
-		animate_button = ImageButton.make_button("animate.png", exit_button.y, lambda: (self.start_animating()))
-		clear_button = ImageButton.make_button("clear.png", animate_button.y, lambda:(self.run_clear()))
-		more_detail_button = ImageButton.make_button("more_detail.png", clear_button.y, lambda:(self.change_detail(-0.01)))
-		less_detail_button = ImageButton.make_button("less_detail.png", more_detail_button.y, lambda:(self.change_detail(0.01)))
-		more_zoom_button = ImageButton.make_button("more_zoom.png", less_detail_button.y, lambda:(self.zoom(self._zoom_factor)))
-		less_zoom_button = ImageButton.make_button("less_zoom.png", more_zoom_button.y, lambda:(self.zoom(1/self._zoom_factor)))
- 
-		self.buttons = [exit_button, animate_button, clear_button, more_detail_button, less_detail_button, more_zoom_button, less_zoom_button]
-		"""
 		self._show = {"curve":True, "controls":True, "bounds":True, "fps":False}
 
 		self._throttle = 0.01
@@ -50,10 +37,6 @@ class BezierCurve(object):
 		self._stepping = 0
 		self._animation_length = 2.0
 		self._animation_time = 0.0
-		
-		self._control_vertices = {}
-		self._curve_vertices = None
-		self.selected_indices = []
 		
 	def set_throttle(self, throttle):
 		self._throttle = float(throttle)
@@ -85,8 +68,6 @@ class BezierCurve(object):
 			self._show["fps"] = not self._show["fps"]
 		else:
 			self._show["fps"] = bool(val)
-	def make_control_vertices(self, (x,y)):
-		return [int(x-5), int(y-5), 10, 10]
 	def update(self, dt):
 		#self._fps_label.text = "fps = {0:.02f}".format(pyglet.clock.get_fps())
 		
@@ -296,6 +277,7 @@ class BezierCurve(object):
 					curve.set_point(i, existing_x + dx, existing_y + dy)
 			self.invalidate()
 
+	#TODO: refactor the keypress method into a key/method table system
 	def on_key_press(self, canvas, event):
 		symbol, modifiers = event.keyval, None
 
@@ -304,21 +286,21 @@ class BezierCurve(object):
 		elif symbol == 65507 or symbol == 65508:
 			self._ctrl_down = True
 		elif symbol == ord('a'): #animate it!
-			#self._apply_all_curves = modifiers & key.MOD_CTRL
+			self._apply_all_curves = self._ctrl_down
 			self.start_animating()
 		elif symbol == ord('c'):
 			self.run_clear()
 		elif symbol == ord('p'):
 			self.pause_animating()
 		elif symbol == ord('s'):
-			#self._apply_all_curves = modifiers & key.MOD_CTRL
+			self._apply_all_curves = self._ctrl_down
 			if not (self._animating and not self._animating_paused):
 				if not self._animating:
 					self.start_animating()
 					self._animating_paused = True
 				self._stepping = 1
 		elif symbol == ord('S'):
-			#self._apply_all_curves = modifiers & key.MOD_CTRL
+			self._apply_all_curves = self._ctrl_down
 			if not (self._animating and not self._animating_paused):
 				if not self._animating:
 					self.start_animating()
@@ -350,24 +332,7 @@ class BezierCurve(object):
 			self._ctrl_down = False
 		if symbol == ord('s') or symbol == ord('S'):
 			self._stepping = 0
-	def on_resize(self, width, height):
-		self.clear_to_2d()
-		self.invalidate_all()
-		exit_button = self.buttons[0]
-		animate_button = self.buttons[1]
-		clear_button = self.buttons[2]
-		more_detail_button = self.buttons[3]
-		less_detail_button = self.buttons[4]
-		more_zoom_button = self.buttons[5]
-		less_zoom_button = self.buttons[6]
 
-		exit_button.y = height - exit_button.height
-		animate_button.y = exit_button.y - animate_button.height
-		clear_button.y = animate_button.y - clear_button.height
-		more_detail_button.y = clear_button.y - more_detail_button.height
-		less_detail_button.y = more_detail_button.y - less_detail_button.height
-		more_zoom_button.y = less_detail_button.y - more_zoom_button.height
-		less_zoom_button.y = more_zoom_button.y - less_zoom_button.height
 	#visual toggles
 	def toggle_curve(self, val=None):
 		if val is None:
