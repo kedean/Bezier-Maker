@@ -29,7 +29,7 @@ class BezierCollection(object):
 			yield c, set(s)
 
 	def add_curve(self):
-		self._curves.append(BezierBase(self._group_throttle))
+		self._curves.append(BezierBase(self.__group_throttle))
 		self._primary_index = len(self._curves) - 1
 	def regenerate(self, do_all):
 		self.regenerate_all() if do_all else self.regenerate_primary()

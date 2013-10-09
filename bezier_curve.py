@@ -68,6 +68,10 @@ class BezierCurve(object):
 		self._zoom *= amount
 		self._curve_set.scale(self._zoom, self.width/2, self.height/2)
 		self.invalidate_all()
+	def zoom_in(self, event=None):
+		self.zoom(self._zoom_factor)
+	def zoom_out(self, event=None):
+		self.zoom(1/self._zoom_factor)
 	def invalidate(self):
 		self._invalidated = True
 	def invalidate_all(self):
@@ -174,18 +178,23 @@ class BezierCurve(object):
 		self.vbox = gtk.VBox()
 		self._button_container = gtk.HButtonBox()
 		
-		exit_button = gtk.Button("Exit")
-		exit_button.connect("clicked", lambda x: sys.exit(0))
-		self._button_container.add(exit_button)
+		buttons = [
+			("Exit", lambda x: sys.exit(0), None),
+			("Animate", BezierCurve.start_animating, self),
+			("Clear", BezierCurve.run_clear, self),
+			("Zoom In", BezierCurve.zoom_in, self),
+			("Zoom Out", BezierCurve.zoom_out, self),
+			("Add Curve", BezierCollection.add_curve, self._curve_set)
+		]
 
-		animate_button = gtk.Button("Animate")
-		animate_button.connect("clicked", self.start_animating)
-		self._button_container.add(animate_button)
+		for label, func, obj in buttons:
+			button = gtk.Button(label)
+			if obj:
+				button.connect_object("clicked", func, obj)
+			else:
+				button.connect("clicked", func)
+			self._button_container.add(button)
 
-		clear_button = gtk.Button("Clear")
-		clear_button.connect("clicked", self.run_clear)
-		self._button_container.add(clear_button)
-		
 		self.vbox.pack_start(self.screen)
 		
 		self.vbox.pack_end(self._button_container)
